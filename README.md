@@ -1,5 +1,13 @@
 # Global Game Jam 2014
 
+## The Crew
+
+* Derek Ensign
+* Katie Ensign
+* Nick Marra
+* [Dillon Shook](http://github.com/dshook)
+* [Brandon Valosek](http://github.com/bvalosek)
+
 ## The Stack
 
 * **Javascript**. ES5 Javascript for the game's code base.
@@ -20,6 +28,4 @@
 * `UpperCamelCase` for constructor functions.
 * `ALL_CAPS_AND_UNDERSCORES` for constants.
 * Use `require()` statements via browserify for managing dependencies / modules
-
-## Reference Material
 
