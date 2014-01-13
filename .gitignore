@@ -1,4 +1,12 @@
+# deps
 node_modules
 bower_components
-test/bin
+
+# allow for checked-in cgame
+!node_modules/cgame
+
+# local tern settings
 .tern-port
+
+# output
+bin
