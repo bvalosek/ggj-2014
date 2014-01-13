@@ -33,7 +33,11 @@ module.exports = function(grunt) {
 
     watch: {
       game: {
-        files: ['src/**/*.js', 'src/**/*.json'],
+        files: [
+          'src/**/*.js',
+          'src/**/*.json',
+          'node_modules/cgame/**/*.js'
+        ],
       },
 
       options: { livereload: 35729 }
