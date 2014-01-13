@@ -1,6 +1,8 @@
 # Global Game Jam 2014
 
-## The Crew
+## Overview
+
+### The Crew
 
 * Derek Ensign
 * Katie Ensign
@@ -8,7 +10,7 @@
 * [Dillon Shook](http://github.com/dshook)
 * [Brandon Valosek](http://github.com/bvalosek)
 
-## The Stack
+### The Stack
 
 * **Javascript**. ES5 Javascript for the game's code base.
 * **HTML5 / Canvas**. Game sounds, input, and graphics layer.
@@ -21,7 +23,7 @@
 * **CocoonJS**. Effortless porting to Android / iPhone as a native, accelerated
   app.
 
-## Javascript
+### The Style
 
 * 2 spaces per indentation, no tabs.
 * `lowerCamelCase` for all variables and methods.
