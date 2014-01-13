@@ -29,3 +29,13 @@
 * `ALL_CAPS_AND_UNDERSCORES` for constants.
 * Use `require()` statements via browserify for managing dependencies / modules
 
+
+## Getting Started
+
+* Install [NodeJS](http://nodejs.org/) (comes with npm) .
+* Install `grunt` globally: `npm install -g grunt`
+* Clone the git repo: `git clone git@github.com:djanx-inc/ggj-2014.git`
+* Go to the project directory.
+* Install all of the development dependencies locally: `npm install`
+* Build the game into the `bin/` directory of the project: `grunt`
+* You can have grunt watch for changes and auto-build: `grunt watch`
