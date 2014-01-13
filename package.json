@@ -1,0 +1,21 @@
+{
+  "name": "ggj-2014",
+  "version": "0.1.0",
+  "description": "Entry for the 2014 Global Game Jam.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/djanx-inc/ggj-2014.git"
+  },
+  "keywords": [
+    "game",
+    "cgame",
+    "ggj",
+    "ggj2014"
+  ],
+  "author": "Djanx, Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/djanx-inc/ggj-2014/issues"
+  },
+  "homepage": "https://github.com/djanx-inc/ggj-2014"
+}
