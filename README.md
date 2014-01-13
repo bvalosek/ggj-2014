@@ -41,3 +41,6 @@
 * Install all of the development dependencies locally: `npm install`
 * Build the game into the `bin/` directory of the project: `grunt`
 * You can have grunt watch for changes and auto-build: `grunt watch`
+* Run a local web server to serve up the static files located in `bin/`
+* Use the LiveReload chrome extension to automatically refresh the page on
+  builds
