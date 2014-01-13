@@ -1,9 +1,6 @@
 # deps
-node_modules
 bower_components
-
-# allow for checked-in cgame
-!node_modules/cgame
+node_modules
 
 # local tern settings
 .tern-port
