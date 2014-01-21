@@ -20,17 +20,6 @@
   dependencies.
 * **git**. Version control and source code hosting on github. Make sure you
   have a github account so you can be added to the team.
-* **CocoonJS**. Effortless porting to Android / iPhone as a native, accelerated
-  app.
-
-### The Style
-
-* 2 spaces per indentation, no tabs.
-* `lowerCamelCase` for all variables and methods.
-* `UpperCamelCase` for constructor functions.
-* `ALL_CAPS_AND_UNDERSCORES` for constants.
-* Use `require()` statements via browserify for managing dependencies / modules
-
 
 ## Getting Started
 
@@ -39,8 +28,8 @@
 * Clone the git repo: `git clone git@github.com:djanx-inc/ggj-2014.git`
 * Go to the project directory.
 * Install all of the development dependencies locally: `npm install`
-* Build the game into the `bin/` directory of the project: `grunt`
+* Build the game into the `dist/` directory of the project: `grunt`
 * You can have grunt watch for changes and auto-build: `grunt watch`
-* Run a local web server to serve up the static files located in `bin/`
+* Run a local web server to serve up the static files located in `dist/`
 * Use the LiveReload chrome extension to automatically refresh the page on
   builds

@@ -1,54 +1,46 @@
 module.exports = function(grunt) {
-  'use strict';
 
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      cgame: ['node_modules/cgame/**/*.js'],
-      game: ['src/**/*.js', 'src/**/*.json'],
+      game: ['./game/**/*.{js,json}'],
       grunt: ['Gruntfile.js']
     },
 
-    clean: { bin: { src: ['./bin'] } },
+    clean: { dist: { src: ['./dist'] } },
 
     copy: {
-      index: { src: 'src/index.html', dest: 'bin/index.html' },
-      resources: {
+      public: {
         expand: true,
-        cwd: 'src/resources',
+        cwd: './public',
         src: '**',
-        dest: 'bin/resources'
+        dest: './dist'
       }
     },
 
     browserify: {
       game: {
-        src: ['src/main.js'],
-        dest: 'bin/main.js',
+        files: { './dist/main.js': ['./dist/main.js'] },
         options: { debug: true }
       }
     },
 
     watch: {
       game: {
-        files: [
-          'src/**/*.js',
-          'src/**/*.json',
-          'node_modules/cgame/**/*.js'
-        ],
+        files: ['game/**/*.{js,json}'],
+        tasks: ['build']
       },
-
       options: { livereload: 35729 }
     }
+
   });
 
   // plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browserify');
 
   // Tasks

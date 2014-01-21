@@ -1,9 +1,3 @@
-# deps
-bower_components
 node_modules
-
-# local tern settings
 .tern-port
-
-# output
-bin
+dist
