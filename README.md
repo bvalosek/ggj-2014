@@ -5,7 +5,7 @@
 ### The Crew
 
 * Derek Ensign
-* Katie Ensign
+* [Katie Ensign](http://github.com/katieensign)
 * Nick Marra
 * [Dillon Shook](http://github.com/dshook)
 * [Brandon Valosek](http://github.com/bvalosek)
