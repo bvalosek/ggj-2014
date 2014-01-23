@@ -1,8 +1,8 @@
 module.exports = main;
 
-var HelloActivity   = require('./HelloActivity.js');
 var ActivityManager = require('activities').ActivityManager;
-var MODES           = require('activities').Activity.modes;
+var modes           = require('activities').Activity.modes;
+var HelloActivity   = require('./HelloActivity.js');
 
 /**
  * Application entry.
@@ -10,13 +10,12 @@ var MODES           = require('activities').Activity.modes;
  */
 function main(activities)
 {
-  activities.start(HelloActivity, MODES.SINGLE_INSTANCE | MODES.FLAG_CLEAR_TOP);
-
-  var frames = activities.getFrames();
-
-  var lastTime = 0;
+  activities.start(HelloActivity,
+    modes.SINGLE_INSTANCE | modes.FLAG_CLEAR_TOP);
 
   // Primary game loop
+  var frames = activities.getFrames();
+  var lastTime = 0;
   function loop(time)
   {
     global.requestAnimationFrame(loop);
@@ -32,6 +31,7 @@ function main(activities)
     }
   }
 
+  // Boom.
   global.requestAnimationFrame(loop);
 }
 
