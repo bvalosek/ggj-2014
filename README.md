@@ -33,3 +33,19 @@
 * Run a local web server to serve up the static files located in `dist/`
 * Use the LiveReload chrome extension to automatically refresh the page on
   builds
+
+## Directory Structure
+
+* `dist` The compiled game. This is the build output directory and should be
+  the webroot of your local server. Not checked into git. Don't edit any of
+  these files or your changes will be lost next build.
+* `game` The game's source code and data files. All Javascript/JSON data goes
+  here.
+    * `systems`
+    * `components`
+    * `boot` Initial setup code and inversion-of-control setup with Sack.
+* `public` Files that will dumped into the webroot (`dist`). Static assets.
+    * `sound`
+    * `sprites`
+    * `music`
+* `node_modules` Installed deps from npm. Don't mess with it.
