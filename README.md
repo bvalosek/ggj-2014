@@ -44,8 +44,11 @@
     * `systems`
     * `components`
     * `boot` Initial setup code and inversion-of-control setup with Sack.
+* `lib` More Javascript source, but more of the stand-alone pieces that are
+  candidates for becoming their own modules before/during/after GGJ.
 * `public` Files that will dumped into the webroot (`dist`). Static assets.
     * `sound`
     * `sprites`
     * `music`
 * `node_modules` Installed deps from npm. Don't mess with it.
+

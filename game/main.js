@@ -8,10 +8,13 @@ var HelloActivity   = require('./HelloActivity.js');
  * Application entry.
  * @param {ActivityManager} activities
  */
-function main(activities)
+function main(activities, debug)
 {
   activities.start(HelloActivity,
     modes.SINGLE_INSTANCE | modes.FLAG_CLEAR_TOP);
+
+  debug.frameTime    = 0;
+  debug.loopTime     = 0;
 
   // Primary game loop
   var frames = activities.getFrames();
@@ -22,6 +25,8 @@ function main(activities)
 
     var dt = lastTime ? time - lastTime : 0;
     lastTime = time;
+
+    debug.frameTime = dt;
 
     for (var n = 0; n < frames.length; n++) {
       var activity = frames[n].activity;

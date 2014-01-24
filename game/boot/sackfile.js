@@ -1,23 +1,23 @@
 var Container       = require('sack').Container;
 var ActivityManager = require('activities').ActivityManager;
-var EntityManager   = require('tiny-ecs').EntityManager;
+
+// ----------------------------------------------------------------------------
+// Our life
 
 var container = new Container();
 module.exports = container;
-
 global.container = container;
 
-function factory(T) { return container.make(T); }
+// ----------------------------------------------------------------------------
+// A nice hash object to dump shit into that we can inspect in the console
+
+global.debug = {};
+container.register('debug', global.debug);
 
 // ----------------------------------------------------------------------------
-// Activities
+// Services
 
-var activities = new ActivityManager(factory);
-container.shared('activities', activities);
-container.shared('navigator', activities.navigator);
+container.make(require('./ScreenService.js'));
+container.make(require('./EcsService.js'));
+container.make(require('./ActivityService.js'));
 
-// ----------------------------------------------------------------------------
-// ECS
-
-var entities = new EntityManager(factory);
-container.shared('entities', entities);

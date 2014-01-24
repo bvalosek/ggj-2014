@@ -16,6 +16,10 @@ module.exports = function(grunt) {
         cwd: './public',
         src: '**',
         dest: './dist'
+      },
+      js: {
+        src: './public/main.js',
+        dest: './dist/main.js'
       }
     },
 
@@ -28,8 +32,8 @@ module.exports = function(grunt) {
 
     watch: {
       game: {
-        files: ['game/**/*.{js,json}'],
-        tasks: ['build']
+        files: ['lib/**/*.js', 'game/**/*.{js,json}'],
+        tasks: ['copy:js', 'browserify']
       },
       options: { livereload: 35729 }
     }
