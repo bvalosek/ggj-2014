@@ -26,12 +26,14 @@ SoundService.prototype.play = function(sound)
   if(!_loadedSounds[sound]){
     _loadedSounds[sound] = play('sound/' + soundbank[sound]);
   }
-  //_loadedSounds[sound].autoplay();
-  play('sound/' + soundbank[sound]).play();
+  _loadedSounds[sound].load('sound/' + soundbank[sound]).play();
 
   this.debug._loadedSounds = _loadedSounds;
 };
 
+SoundService.prototype.doneLoading = function(){
+  return Object.keys(_loadedSounds).length == Object.keys(soundbank).length;
+}
 
 
 
