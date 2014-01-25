@@ -5,7 +5,7 @@ module.exports = {
     {
       position : {x: 500, y: 500},
       spatial: {x : 100, y: 200},
-      color: {red: 255, green: 0, blue: 0}
+      color: {r: 255, g: 0, b: 0}
     },
     {
       position : {x: 20, y:200},

@@ -45,9 +45,9 @@ MapService.prototype.loadLevel = function(levelNumber)
     entity.spatial.hwidth.y = wall.spatial.y;
 
     entity.colorSpirit.set(
-      wall.colorSpirit.red,
-      wall.colorSpirit.green,
-      wall.colorSpirit.blue);
+      wall.color.r,
+      wall.color.g,
+      wall.color.b);
 
     this.debug.worldobjs.push(entity);
   }
