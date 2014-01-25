@@ -18,7 +18,6 @@ function MapService(container, entities)
 {
   this.entities = entities;
   container.register('maps', this);
-  this.loadLevel(0);
 }
 
 /**
