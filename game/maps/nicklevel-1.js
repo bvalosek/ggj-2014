@@ -1,41 +1,41 @@
 var C = 15; 
 var colors = require('./colors.js');
-var mapWidth = 1000;
-var mapHeight = 1000;
+var mapCX = 1000;
+var mapCY = 1000;
 
 module.exports = {
   gems: { },
   walls: [
 //LINE 1
     {	
-      position : {x:250, y: mapHeight/2},
-      spatial: {x : 1*C, y: mapHeight},
+      position : {x: mapCX/4, y: mapCY/2},
+      spatial: {x : 1*C, y: mapCY/2},
       color: colors.red 
     },
 //LINE 2
     {	
-      position : {x: 575, y: mapHeight/2},
-      spatial: {x : 1*C, y: mapHeight},
+      position : {x: mapCX/2, y: mapCY/2},
+      spatial: {x : 1*C, y: mapCY/2},
       color: colors.blue
     },
 //SQUARE
     {
-      position : {x: 875, y: 300},
+      position : {x: (3*(mapCX/4)), y: (mapCY/3)},
       spatial: {x : 6*C, y: 1*C},
       color: colors.green
     },
     {
-      position : {x: 875-7*C, y: 300+6*C},
+      position : {x: (3*(mapCX/4))-7*C, y: (mapCY/3)+6*C},
       spatial: {x : 1*C, y: 7*C},
       color: colors.green
     },
     {
-      position : {x: 875, y: 300+12*C},
+      position : {x: (3*(mapCX/4)), y: (mapCY/3)+12*C},
       spatial: {x : 6*C, y: 1*C},
       color: colors.green
     },
     {
-      position : {x: 875+7*C, y: 300+6*C},
+      position : {x: (3*(mapCX/4))+7*C, y: (mapCY/3)+6*C},
       spatial: {x : 1*C, y: 7*C},
       color: colors.green
     },
@@ -46,21 +46,21 @@ module.exports = {
       spatial: {x : C, y: C},
       color: colors.green
     },
-//GEM
+//GEM 1 
     {
-      position : {x: C + 25, y:750},
+      position : {x: C + 25, y:(mapCY/4) * 3},
       spatial: {x : C, y: C},
       color: colors.red
     },
-//GEM
+//GEM 2
     {
-      position : {x: 400, y:50 + C},
+      position : {x: 3*(mapCX/8), y:50 + C},
       spatial: {x : C, y: C},
       color: colors.blue
     },
-//GEM
+//GEM 3
     {
-      position : {x: 1000 - C, y:750},
+      position : {x: (3*(mapCX/4)) + C, y:(mapCY/4) * 3},
       spatial: {x : C, y: C},
       color: colors.green
     }
