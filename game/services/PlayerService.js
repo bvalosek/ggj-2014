@@ -9,6 +9,8 @@ var Avatar      = require('../components/Avatar.js');
 var Steering    = require('../components/Steering.js');
 var Newtonian   = require('../components/Newtonian.js');
 
+var colors = require('../maps/colors.js');
+
 /**
  * @constructor
  * @param {EntityManager} entities
@@ -26,7 +28,7 @@ function PlayerService(entities, container)
 
   player.position.location.set(250, 250);
   player.spatial.hwidth.set(50, 50);
-  player.colorSpirit.set(125,125,125);
+  // player.colorSpirit.set(colors.blue.r, colors.blue.g, colors.blue.b);
 
   global.player = player;
 

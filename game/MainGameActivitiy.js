@@ -8,13 +8,14 @@ var EcsService = require('./services/EcsService.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function MainGameActivity(maps, screen, ecs, sound)
+function MainGameActivity(player, maps, screen, ecs, sound)
 {
   this.paused = true;
   this.screen = screen;
   this.ecs    = ecs;
   this.maps   = maps;
   this.sound  = sound;
+  this.player = player;
 
   this.fade = 1;
 
@@ -23,8 +24,8 @@ function MainGameActivity(maps, screen, ecs, sound)
 
 MainGameActivity.prototype.onStart = function()
 {
-  this.maps.loadLevel('nicklevel');
-  //this.sound.play('reload1');
+  this.maps.loadLevel('level3');
+  this.player.colorSpirit.set(colors.red);
 };
 
 MainGameActivity.prototype.onResume = function()
@@ -62,7 +63,7 @@ MainGameActivity.prototype.drawBg = function()
 {
   this.screen
     .save()
-    .fill('#333')
+    .fill(this.player.colorSpirit.style.color)
     .restore();
 };
 

@@ -27,6 +27,12 @@ ColorSpirit.prototype.__init = function()
  */
 ColorSpirit.prototype.set = function(r, g, b)
 {
+  if (r && r.r !== undefined) {
+    b = r.b;
+    g = r.g;
+    r = r.r;
+  }
+
   this.red   = Math.min(255, 0|r);
   this.green = Math.min(255, 0|g);
   this.blue  = Math.min(255, 0|b);
