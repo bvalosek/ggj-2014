@@ -12,15 +12,17 @@ var colors            = require('./maps/colors.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function TitleActivity(screen, sound)
+function TitleActivity(navigator, screen, sound, inputs)
 {
-  this.paused = false;
+  this.navigator = navigator;
   this.screen = screen;
   this.sound = sound;
+  this.inputs = inputs;
+  this.paused = false;
 
   this.colorArray = [];
   for (var key in colors) {
-    if(key != 'black' && key != 'white')
+    if(key != 'black' && key != 'white' && key != 'gray')
       this.colorArray.push(colors[key])
   }
   this.maxColors = this.colorArray.length;
@@ -50,6 +52,11 @@ TitleActivity.prototype.onPause = function()
 TitleActivity.prototype.update = function(dt, time)
 {
   if (this.paused) return;
+
+  if (this.inputs.button_k_87){
+    this.navigator.finish(this);
+    this.navigator.start(MainGameActivity);
+  }
   this.drawBg(dt);
   this.drawText();
 };
