@@ -1,24 +1,13 @@
 var C = 5;
 var colors = require('./colors.js');
-var mapCX = 1000;
-var mapCY = 1000;
-var unit = mapCX/30;
 
-function u(n) { return unit*n; }
+var u = require('./simplify.js').u;
+var line = require('./simplify.js').line;
 
-function line(posx,posy,hw,hh,col,text)
-{
-	return [{
-      position : {x:posx, y:posy},
-      spatial: {x : hw, y: hh},
-      color: col,
-	text: text
-    	}];
-}
 module.exports = {
   levelObjects:{
     playerStart: {x: C + 100, y: 50 + C},
-    levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
+    levelFinish:{x: 500, y: 500}
   },
   gems: [
   ],
