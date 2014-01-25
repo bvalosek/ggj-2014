@@ -1,31 +1,10 @@
-var C = 15;
+var C = 10;
 var colors = require('./colors.js');
 var mapCX = 1000;
 var mapCY = 1000;
+var unit = mapCX/20;
 
-function createPoly(cX, cY, w, h)
-{
-return [{
-      position : {x: cX, y: cY - (h/2)},
-      spatial: {x : w/2 + C/2, y: C},
-      color: colors.green
-    },
-    {
-      position : {x: cX-(w/2), y: cY},
-      spatial: {x : C, y: h/2 + C},
-      color: colors.green
-    },
-    {
-      position : {x: cX, y: cY +(h/2)},
-      spatial: {x : w/2 + C/2, y: C},
-      color: colors.green
-    },
-    {
-      position : {x: cX +(w/2), y: cY},
-      spatial: {x : C, y: h/2 + C},
-      color: colors.green
-    }];
-}
+function u(n) { return unit*n; }
 
 module.exports = {
   levelObjects:{
@@ -33,33 +12,40 @@ module.exports = {
     levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
   },
   gems: [
-    //GEM 1
     {
-      position : {x: C + 25, y:(mapCY/4) * 3},
+      position : {x: u(3), y:u(5)},
       color: colors.red
     },
-    //GEM 2
     {
-      position : {x: 3*(mapCX/8), y:50 + C},
-      color: colors.blue
-    },
-    //GEM 3
-    {
-      position : {x: (3*(mapCX/4)) + C, y:(mapCY/4) * 3},
-      color: colors.green
+      position : {x: u(2), y: u(12)},
+      color: colors.purple
     }
   ],
   walls: [
-    //LINE 1
     {
-      position : {x: mapCX/4, y: mapCY/2},
-      spatial: {x : 1*C, y: mapCY/2},
+      position : {x: u(2), y: u(2)},
+      spatial: {x : C, y: u(2)},
+      color: colors.green
+    },
+    {
+      position : {x: u(6) - C, y: u(4)},
+      spatial: {x : u(4), y: C },
       color: colors.red
     },
-    //LINE 2
     {
-      position : {x: mapCX/2, y: mapCY/2},
-      spatial: {x : 1*C, y: mapCY/2},
+      position : {x: u(5) - C, y: u(7)+C},
+      spatial: {x : C, y: u(3) },
       color: colors.blue
-    }].concat( createPoly((3*(mapCX/4)),(mapCY/3), 12*C, 12*C))  
+    },
+    {
+      position : {x: u(2), y: u(10) - C},
+      spatial: {x : u(3), y: C },
+      color: colors.red
+    },
+    {
+      position : {x: u(5) - C, y: u(12)},
+      spatial: {x : C, y: u(2) },
+      color: colors.purple
+    },
+]  
 };
