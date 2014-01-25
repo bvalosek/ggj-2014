@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: QuadTree.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: QuadTree.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>module.exports = QuadTree;
+
+var Pool = require('./Pool.js');
+var Vec2 = require('./Vec2.js');
+
+/**
+ * Effectively store positional and sized objects. Each tree has a position and
+ * size, as well as up to 4 child nodes (other trees) and an array of entries.
+ * @constructor
+ */
+function QuadTree()
+{
+  this.level = 0;
+  this.position = new Vec2();
+  this.size = new Vec2();
+
+  /**
+   * @type {Array.&lt;QuadTree>}
+   */
+  this.nodes = [];
+
+  /**
+   * @type {Array.&lt;Entry>}
+   */
+  this.entries = [];
+}
+
+/**
+ * Max number of entries in a node before it splits
+ * @const
+ */
+QuadTree.MAX_ENTRIES = 15;
+
+/**
+ * Max depth the tree will split
+ * @const
+ */
+QuadTree.MAX_LEVELS = 4;
+
+/**
+ * A single item in the tree, contiains a pointer back to the node its in as
+ * well as the spatial information of where its at.
+ * @constructor
+ */
+QuadTree.Entry = Entry;
+function Entry()
+{
+  this.obj      = null;
+  this.node     = null;
+  this.position = new Vec2();
+  this.hwidth   = new Vec2();
+}
+
+// Static Pools
+QuadTree.pool = new Pool(QuadTree);
+Entry.pool = new Pool(Entry);
+
+QuadTree.prototype.__init = function()
+{
+  this.level = 0;
+  this.position.clear();
+  this.size.clear();
+  this.nodes.length = 0;
+  this.entries.length = 0;
+};
+
+Entry.prototype.__init = function()
+{
+  this.obj = null;
+  this.node = null;
+  this.position.clear();
+  this.hwidth.clear();
+};
+
+/**
+ * Pack an object into an entry and add it to the tree.
+ * @param {Object} object
+ * @param {Vec2} position
+ * @param {Vec2} hwidth
+ */
+QuadTree.prototype.insert = function(object, position, hwidth)
+{
+  var entry = Entry.pool.aquire();
+  entry.obj = object;
+  entry.position.assign(position);
+  entry.hwidth.assign(hwidth);
+  return this.pushEntry(entry);
+};
+
+/**
+ * Add item to tree that is already packed into an entry.
+ * @param {Entry} entry
+ */
+QuadTree.prototype.pushEntry = function(entry)
+{
+  // Delegate insertion to a child node if we can
+  if (this.nodes.length) {
+    var index = this._getIndex(entry.position, entry.hwidth);
+    if (~index) return this.nodes[index].pushEntry(entry);
+  }
+
+  this.entries.push(entry);
+  entry.node = this;
+
+  this._splitAndRedistributeIfNeeded();
+  return entry;
+};
+
+/**
+ * Return which of the 4 quandrants of this tree an object would go into.
+ * @param {Vec2} position
+ * @param {Vec2} hwidth
+ * @return {Number} Which quandrant, or -1 if won't fit.
+ */
+QuadTree.prototype._getIndex = function(position, hwidth)
+{
+  var midX = this.position.x + this.size.x / 2;
+  var midY = this.position.y + this.size.y / 2;
+
+  var left   = position.x - hwidth.x &lt; midX &amp;&amp; position.x + hwidth.x &lt; midX;
+  var right  = position.x - hwidth.x > midX &amp;&amp; position.x + hwidth.x > midX;
+  var top    = position.y - hwidth.y &lt; midY &amp;&amp; position.y + hwidth.y &lt; midY;
+  var bottom = position.y - hwidth.y > midY &amp;&amp; position.y + hwidth.y > midY;
+
+  if (top &amp;&amp; right) return 0;
+  if (top &amp;&amp; left) return 1;
+  if (bottom &amp;&amp; left) return 2;
+  if (bottom &amp;&amp; right) return 3;
+
+  return -1;
+};
+
+/**
+ * If we've overpacked this tree, then split into 4 smaller trees (if we
+ * haven't already) and redistribute.
+ */
+QuadTree.prototype._splitAndRedistributeIfNeeded = function()
+{
+  if (this.entries.length > QuadTree.MAX_ENTRIES &amp;&amp;
+    this.level &lt; QuadTree.MAX_LEVELS)
+  {
+    this._split();
+    this._redistribute();
+  }
+};
+
+/**
+ * Create 4 sub nodes for the tree (does not populate tho)
+ */
+QuadTree.prototype._split = function()
+{
+  if (this.nodes.length) return;
+
+  var x = this.position.x;
+  var y = this.position.y;
+
+  var w = this.size.x / 2;
+  var h = this.size.y / 2;
+
+  // Create the seperate nodes
+  for (var n = 0; n &lt; 4; n++) {
+    var node = QuadTree.pool.aquire();
+    node.level = this.level + 1;
+    node.size.set(w, h);
+
+    switch(n) {
+      case 0:
+        node.position.set(x + w, y);
+        break;
+      case 1:
+        node.position.set(x, y);
+        break;
+      case 2:
+        node.position.set(x, y + h);
+        break;
+      case 3:
+        node.position.set(x + w, y + h);
+        break;
+    }
+
+    this.nodes.push(node);
+  }
+};
+
+/**
+ * Distrubute all entrys into child nodes if we can.
+ */
+QuadTree.prototype._redistribute = function()
+{
+  // Loop through all of our entries and if they can fit into a child node,
+  // move them there
+  var i = 0;
+  while (i &lt; this.entries.length) {
+    var entry = this.entries[i];
+    var index = this._getIndex(entry.position, entry.hwidth);
+
+    // Insert into child, remove from our array if they belong in another node
+    if (~index) {
+      this.nodes[index].pushEntry(entry);
+      this.entries.splice(i, 1);
+    } else {
+      i++;
+    }
+  }
+};
+
+/**
+ * Get all tree entries that are interesected by a rectangle defined with
+ * position and hwidth.
+ * @param {Vec2} position
+ * @param {Vec2} hwidth
+ * @param {Array.&lt;Entry>=} out__objects Return objects.
+ * @return {Array.&lt;Entry>} The out__objects parameter (filled up now)
+ */
+QuadTree.prototype.querySpace = function(position, hwidth, out__objects)
+{
+  var objects = out__objects || [];
+
+  // If query belongs in ONLY a single node, then recurse
+  var index = this._getIndex(position, hwidth);
+  if (~index &amp;&amp; this.nodes.length) {
+    this.nodes[index].querySpace(position, hwidth, objects);
+
+  // Otherwise, we have to add ALL of the nodes as it may be overlapping one
+  } else {
+    for (var j = 0; j &lt; this.nodes.length; j++) {
+      var node = this.nodes[j];
+      node.querySpace(position, hwidth, objects);
+    }
+  }
+
+  // Also add everything from this node itself
+  for (var m = 0; m &lt; this.entries.length; m++) {
+    var entry = this.entries[m];
+    if (Vec2.rectIntersect(entry.position, entry.hwidth, position, hwidth))
+      objects.push(entry);
+  }
+
+  return objects;
+};
+
+/**
+ * Removes an entry from the tree (but does NOT release it back to the pool!!)
+ * @param {Entry} entry
+ */
+QuadTree.prototype.popEntry = function(entry)
+{
+  var node = entry.node;
+  var index = node.entries.indexOf(entry);
+  node.entries.splice(index, 1);
+  node._combine();
+  node._splitAndRedistributeIfNeeded();
+
+  return entry;
+};
+
+/**
+ * Empty the tree recursively.
+ */
+QuadTree.prototype.clear = function()
+{
+  // Release all of our entries, clear the array
+  for (var i = 0; i &lt; this.entries.length; i++) {
+    var entry = this.entries[i];
+    Entry.pool.release(entry);
+  }
+  this.entries.length = 0;
+
+  // Recurse, free the node, and wipe out our node length
+  for (var n = 0; n &lt; this.nodes.length; n++) {
+    var node = this.nodes[n];
+    node.clear();
+    QuadTree.pool.release(node);
+  }
+  this.nodes.length = 0;
+};
+
+/**
+ * Unwinds this node. Move all child nodes into this node and remove child
+ * nodes.
+ */
+QuadTree.prototype._combine = function()
+{
+  for (var n = 0; n &lt; this.nodes.length; n++) {
+    var node = this.nodes[n];
+
+    // Combine all children first
+    node._combine();
+
+    // All entries combined on node, now add it to US
+    for (var m = 0; m &lt; node.entries.length; m++) {
+      var entry = node.entries[m];
+      this.entries.push(entry);
+      entry.node = this;
+    }
+
+    // Clear out and ensure we release it
+    node.entries.length = 0;
+    node.clear();
+    QuadTree.pool.release(node);
+  }
+
+  // Clear nodes array
+  this.nodes.length = 0;
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="Entity.html">Entity</a></li><li><a href="EntityManager.html">EntityManager</a></li><li><a href="Group.html">Group</a></li><li><a href="Pool.html">Pool</a></li><li><a href="QuadTree.html">QuadTree</a></li><li><a href="QuadTree.Entry.html">Entry</a></li><li><a href="Vec2.html">Vec2</a></li></ul><h3>Global</h3><ul><li><a href="global.html#freeList">freeList</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha3</a> on Fri Jan 24 2014 22:06:43 GMT-0600 (CST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
