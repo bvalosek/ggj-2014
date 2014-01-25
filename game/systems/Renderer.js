@@ -1,6 +1,8 @@
 module.exports = Renderer;
 
 var EntityManager = require('tiny-ecs').EntityManager;
+var Vec2          = require('tiny-ecs').Vec2;
+var Style         = require('../../lib/renderer/Style.js');
 var Canvas        = require('../../lib/renderer/Canvas.js');
 var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
@@ -36,12 +38,31 @@ Renderer.prototype.update = function(dt, time)
       switch(entity.levelObject.type) {
         case LevelObject.types.GEM:
           this.drawGem(entity);
-        break;
+          break;
+        case LevelObject.types.PLAYER_START:
+          this.drawStart(entity);
+          break;
       }
     } else if (entity.colorSpirit) {
       this.drawWall(entity);
     }
   }
+};
+
+
+
+var startSize = new Vec2(25, 25);
+var startStyle = new Style()
+startStyle.stroke = '#fff';
+startStyle.strokeWidth = 2;
+
+Renderer.prototype.drawStart = function(entity)
+{
+  this.screen
+    .save()
+    .vtranslate(entity.position.location)
+    .drawHwRect(startSize, startStyle)
+    .restore();
 };
 
 Renderer.prototype.drawGem = function(entity)
