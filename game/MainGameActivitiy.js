@@ -1,5 +1,7 @@
 module.exports = MainGameActivity;
 
+var colors = require('./maps/colors.js');
+
 var EcsService    = require('./boot/EcsService.js');
 
 /**
@@ -39,6 +41,7 @@ MainGameActivity.prototype.onPause = function()
 MainGameActivity.prototype.update = function(dt, time)
 {
   if (this.paused) return;
+  this.drawBg();
   this.ecs.update(dt, time);
 };
 
