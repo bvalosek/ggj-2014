@@ -8,7 +8,7 @@ function u(n) { return unit*n; }
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 25, y: 50 + C},
+    playerStart: {x: C + 100, y: 50 + C},
     levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
   },
   gems: [
@@ -19,7 +19,21 @@ module.exports = {
     {
       position : {x: u(2), y: u(12)},
       color: colors.purple
+    },
+    {
+      position : {x: u(17), y: u(12)-C},
+      color: colors.green
+    },
+    {
+	position : {x: u(16), y: u(1)},
+	color: colors.red
+    },
+//LEVEL END
+    {
+       position : {x: u(22), y: u(12)-C},
+	color: colors.purple
     }
+
   ],
   walls: [
     {
@@ -89,6 +103,43 @@ module.exports = {
       color: colors.green,
 	text: 'g3'
     },
+    {
+      position : {x: u(22), y: u(10)},
+      spatial: {x : u(2), y: C },
+      color: colors.blue,
+	text: 'b3'
+    },
+    {
+      position : {x: u(16)+C/2, y: u(2)},
+      spatial: {x : u(2)+C/2, y: C },
+      color: colors.green,
+	text: 'r5'
+    },
+    {
+      position : {x: u(19), y: u(4)},
+      spatial: {x : u(1), y: C },
+      color: colors.purple,
+	text: 'p5'
+    },
+    {
+      position : {x: u(18), y: u(3)+C},
+      spatial: {x : C, y: u(1) },
+      color: colors.red,
+	text: 'r5'
+    },
+    {
+      position : {x: u(20), y: u(7)-C},
+      spatial: {x : C, y: u(3) },
+      color: colors.red,
+	text: 'r4'
+    },
+    {
+      position : {x: u(20), y: u(12)-C},
+      spatial: {x : C, y: u(2) },
+      color: colors.purple,
+	text: 'p4'
+    },
+
 
 ]  
 };
