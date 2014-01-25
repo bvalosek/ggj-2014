@@ -68,7 +68,7 @@ MapService.prototype.loadLevel = function(levelName)
     entity.position.location.x = gem.position.x;
     entity.position.location.y = gem.position.y;
 
-    entity.spatial.hwidth.set(20,20);
+    entity.spatial.hwidth.set(10,10);
 
     entity.colorSpirit.set(
       gem.color.r,
