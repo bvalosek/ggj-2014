@@ -1,81 +1,109 @@
-var C = 15; 
+var C = 10; 
 var colors = require('./colors.js');
 var mapCX = 1000;
 var mapCY = 1000;
+var unit = mapCX/20;
+
+function u(n) { return unit*n; }
+
+function createPoly(cX, cY, w, h, color)
+{
+return [{
+      position : {x: cX, y: cY - (h/2)},
+      spatial: {x : w/2 + C/2, y: C},
+      color: color
+    },
+    {
+      position : {x: cX-(w/2), y: cY},
+      spatial: {x : C, y: h/2 + C},
+      color: color
+    },
+    {
+      position : {x: cX, y: cY +(h/2)},
+      spatial: {x : w/2 + C/2, y: C},
+      color: color
+    },
+    {
+      position : {x: cX +(w/2), y: cY},
+      spatial: {x : C, y: h/2 + C},
+      color: color
+    }];
+}
 
 module.exports = {
-  gems: { },
+  levelObjects:{
+    playerStart: {x: C + 100, y: 50 + C},
+    levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
+  },
+  gems: [
+    {
+      position : {x: u(1), y:u(14)},
+      color: colors.blue
+    },
+    {
+      position : {x: u(4), y:u(17)},
+      color: colors.green
+    },
+    {
+      position : {x: u(25), y:u(16)},
+      color: colors.blue
+    },
+    {
+      position : {x: u(9), y:u(6)},
+      color: colors.red
+    },
+    {
+      position : {x: u(9), y:u(10)},
+      color: colors.red
+    },
+    {
+      position : {x: u(11)+ C, y:u(6)},
+      color: colors.blue
+    },
+    {
+      position : {x: u(11)+ C, y:u(10)},
+      color: colors.blue
+    },
+    {
+      position : {x:u(14), y:u(15)},
+      color: colors.green
+    }
+
+]
+ ,
   walls: [
 //LINE 1
     {	
-      position : {x: mapCX/8, y: 2*mapCY/3},
-      spatial: {x : mapCY/8, y: 1*C},
+      position : {x: u(3), y:u(13)},
+      spatial: {x : u(3), y: C},
       color: colors.blue 
     },
     {	
-      position : {x: mapCX/4, y: .776*mapCY},
-      spatial: {x : 1*C, y: mapCY/8},
+      position : {x: u(6), y: u(16)-C},
+      spatial: {x : C, y: u(3)},
       color: colors.blue 
     },
-//LINE 2
     {	
-      position : {x: mapCX/2, y: mapCY/2},
-      spatial: {x : 1*C, y: mapCY/2},
-      color: colors.blue
-    },
-//SQUARE
-    {
-      position : {x: (3*(mapCX/4)), y: (mapCY/3)},
-      spatial: {x : 6*C, y: 1*C},
+      position : {x: u(15), y: u(14)},
+      spatial: {x : C, y: u(4)},
       color: colors.green
     },
-    {
-      position : {x: (3*(mapCX/4))-7*C, y: (mapCY/3)+6*C},
-      spatial: {x : 1*C, y: 7*C},
+    {	
+      position : {x: u(6), y: u(8)},
+      spatial: {x : u(6), y: C},
       color: colors.green
     },
-    {
-      position : {x: (3*(mapCX/4)), y: (mapCY/3)+12*C},
-      spatial: {x : 6*C, y: 1*C},
-      color: colors.green
-    },
-    {
-      position : {x: (3*(mapCX/4))+7*C, y: (mapCY/3)+6*C},
-      spatial: {x : 1*C, y: 7*C},
-      color: colors.green
-    },
-
-//START
-    {
-      position : {x: C + 25, y:50 + C},
-      spatial: {x : C, y: C},
-      color: colors.green
-    },
-//GEM 1 
-    {
-      position : {x: C + 25, y:(mapCY/4) * 3},
-      spatial: {x : C, y: C},
-      color: colors.blue
-    },
-//GEM 1.5 
-    {
-      position : {x: C + 165, y:(mapCY/4) * 3 + 100},
-      spatial: {x : C, y: C},
-      color: colors.green
-    },
-//GEM 2
-    {
-      position : {x: 3*(mapCX/8), y:50 + C},
-      spatial: {x : C, y: C},
-      color: colors.blue
-    },
-//GEM 3
-    {
-      position : {x: (3*(mapCX/4)) + C, y:(mapCY/4) * 3},
-      spatial: {x : C, y: C},
-      color: colors.green
+    {	
+      position : {x: u(18), y: u(2)-(2*C)},
+      spatial: {x : C, y: u(3)},
+      color: colors.blue 
     }
-  ]
-};
 
+
+  ].concat( createPoly(u(15), u(8), u(6), u(4), colors.blue ) ).concat( 
+	createPoly(u(15), u(8), u(9), u(7), colors.red ) ).concat( 
+	createPoly(u(25), u(8), u(3), u(3), colors.blue ) )
+
+
+};
 
