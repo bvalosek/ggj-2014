@@ -3,6 +3,7 @@ module.exports = MapService;
 var EntityManager = require('tiny-ecs').EntityManager;
 var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
+var ColorSpirit   = require('../components/ColorSpirit.js');
 
 var LEVELS = [
   require('../maps/level-1.js')
@@ -36,6 +37,7 @@ MapService.prototype.loadLevel = function(levelNumber)
             this.entities.createEntity()
               .addComponent(Position)
               .addComponent(Spatial)
+              .addComponent(ColorSpirit)
               .addTag('world')
               ;
 
@@ -44,6 +46,10 @@ MapService.prototype.loadLevel = function(levelNumber)
 
         entity.spatial.x = wall.spatial.x;
         entity.spatial.y = wall.spatial.y;
+
+        entity.colorSpirit.red = wall.colorSpirit.red;
+        entity.colorSpirit.green = wall.colorSpirit.green;
+        entity.colorSpirit.blue = wall.colorSpirit.blue;
 
         this.debug.worldobjs.push(entity);
     };
