@@ -8,7 +8,7 @@ module.exports = {
       color: {r: 255, g: 0, b: 0}
     },
     {
-      position : {x: 20, y:200},
+      position : {x: 500, y:200},
       spatial: {x : 200, y: 100},
       color: GREEN
     }
