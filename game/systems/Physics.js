@@ -25,15 +25,18 @@ Physics.prototype.update = function(dt, time)
 
   for (var n = 0; n < entities.length; n++) {
     var entity = entities[n];
-    var v   = entity.newtonian.velocity;
-    var a   = entity.newtonian.acceleration;
-    var pos = entity.position.location;
+    var v      = entity.newtonian.velocity;
+    var maxV   = entity.newtonian.maxSpeed;
+    var a      = entity.newtonian.acceleration;
+    var pos    = entity.position.location;
 
     v.x += a.x * t;
     v.y += a.y * t;
 
     pos.x += v.x * t;
     pos.y += v.y * t;
+
+    v.limit(maxV);
   }
 };
 

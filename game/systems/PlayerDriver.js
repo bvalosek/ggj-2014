@@ -36,24 +36,26 @@ PlayerDriver.directions = {
 PlayerDriver.prototype.movePlayer = function(direction)
 {
   var player = this.entities.queryTag('player')[0];
-  var v = player.newtonian.velocity;
+  var v = player.newtonian.velocity
+  var h = player.steering.heading;
+
   var speed = 100;
 
   switch (direction) {
     case PlayerDriver.directions.stop:
-      v.set(0, 0);
+      h.set(0, 0);
       break;
     case PlayerDriver.directions.up:
-      v.set(0, -speed);
+      h.set(0, -speed);
       break;
     case PlayerDriver.directions.down:
-      v.set(0, speed);
+      h.set(0, speed);
       break;
     case PlayerDriver.directions.left:
-      v.set(-speed, 0);
+      h.set(-speed, 0);
       break;
     case PlayerDriver.directions.right:
-      v.set(speed, 0);
+      h.set(speed, 0);
       break;
   }
 
