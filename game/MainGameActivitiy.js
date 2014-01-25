@@ -15,6 +15,10 @@ function MainGameActivity(maps, screen, ecs, sound)
   this.ecs    = ecs;
   this.maps   = maps;
   this.sound  = sound;
+
+  this.fade = 1;
+
+  this.startTime = 0;
 }
 
 MainGameActivity.prototype.onStart = function()
@@ -39,9 +43,19 @@ MainGameActivity.prototype.onPause = function()
  */
 MainGameActivity.prototype.update = function(dt, time)
 {
+  this.startTime = this.startTime || time;
+  var fade = Math.max(0, 1 - (time - this.startTime) / 1000);
+  this.fade = this.fade * 0.9 + fade * 0.1;
+
   if (this.paused) return;
   this.drawBg();
   this.ecs.update(dt, time);
+  this.drawFade();
+};
+
+MainGameActivity.prototype.drawFade = function()
+{
+  this.screen.save().setAlpha(this.fade).fill('black').restore();
 };
 
 MainGameActivity.prototype.drawBg = function()
