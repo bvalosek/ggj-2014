@@ -1,4 +1,4 @@
-module.exports = LevelObject
+module.exports = LevelObject;
 
 /**
  * @constructor
@@ -12,6 +12,6 @@ LevelObject.types = {
   PLAYER_START: 1,
   LEVEL_FINISH: 2,
   GEM: 3
-}
+};
 
 

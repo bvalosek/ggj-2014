@@ -50,7 +50,6 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('build', [
     'clean',
-    'jshint',
     'copy',
     'browserify'
   ]);
