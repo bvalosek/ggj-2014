@@ -1,64 +1,67 @@
-var GREEN = { r: 0, g: 255, b: 0 };
-var RED = { r: 255, g: 0, b:0 };
-var BLUE = { r: 0, g: 0, b:255 };
-var C = 20; 
+var C = 15; 
+var colors = require('./colors.js');
+var mapWidth = 1000;
+var mapHeight = 1000;
 
 module.exports = {
   walls: [
+//LINE 1
     {	
-      position : {x:250, y: 450},
-      spatial: {x : 1*C, y: 18*C},
-      color: RED
+      position : {x:250, y: mapHeight/2},
+      spatial: {x : 1*C, y: mapHeight},
+      color: colors.red 
     },
+//LINE 2
     {	
-      position : {x: 575, y: 450},
-      spatial: {x : 1*C, y: 18*C},
-      color: BLUE
+      position : {x: 575, y: mapHeight/2},
+      spatial: {x : 1*C, y: mapHeight},
+      color: colors.blue
     },
+//SQUARE
     {
       position : {x: 875, y: 300},
       spatial: {x : 6*C, y: 1*C},
-      color: GREEN
+      color: colors.green
     },
     {
       position : {x: 875-7*C, y: 300+6*C},
       spatial: {x : 1*C, y: 7*C},
-      color: GREEN
+      color: colors.green
     },
     {
       position : {x: 875, y: 300+12*C},
       spatial: {x : 6*C, y: 1*C},
-      color: GREEN
+      color: colors.green
     },
     {
       position : {x: 875+7*C, y: 300+6*C},
       spatial: {x : 1*C, y: 7*C},
-      color: GREEN
+      color: colors.green
     },
 
 //START
     {
-      position : {x: 1*C + 25, y:2*C},
-      spatial: {x : 1*C, y: 1*C},
-      color: GREEN
+      position : {x: C + 25, y:50 + C},
+      spatial: {x : C, y: C},
+      color: colors.green
     },
 //GEM
     {
-      position : {x: 1*C + 25, y:20*C},
-      spatial: {x : 1*C, y: 1*C},
-      color: RED
+      position : {x: C + 25, y:750},
+      spatial: {x : C, y: C},
+      color: colors.red
     },
 //GEM
     {
-      position : {x: 350 + 1*C, y:2*C},
-      spatial: {x : 1*C, y: 1*C},
-      color: BLUE
+      position : {x: 400, y:50 + C},
+      spatial: {x : C, y: C},
+      color: colors.blue
     },
 //GEM
     {
-      position : {x: 40*C, y:30*C},
-      spatial: {x : 1*C, y: 1*C},
-      color: GREEN
+      position : {x: 1000 - C, y:750},
+      spatial: {x : C, y: C},
+      color: colors.green
     }
   ]
 };
