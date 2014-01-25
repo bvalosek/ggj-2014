@@ -60,6 +60,7 @@ TitleActivity.prototype.update = function(dt, time)
   }
   this.drawBg(dt);
   this.drawText();
+  this.drawAbout();
 };
 
 var boxStyle = new Style()
@@ -86,11 +87,14 @@ TitleActivity.prototype.drawBg = function(dt)
     .fill(htmlColor)
     .restore();
 
+  //draw bottom box
   this.screen
     .save()
     .translate(screenSize.x / 2, screenSize.y - screenSize.y / 5)
     .drawHwRect(boxSize, boxStyle)
     .restore();
+
+
 };
 
 var textStyle = new Style();
@@ -120,4 +124,31 @@ TitleActivity.prototype.drawText = function(entity)
   this.screen.restore();
 }
 
+var aboutText = new Style();
+aboutText.color = '#fff';
+aboutText.font  = 'italic 25px monospace';
+aboutText.textAlign = 'left';
 
+var inc = new Style();
+inc.color = '#fff';
+inc.font  = '25px Conv_HumanoidStraight';
+inc.textAlign = 'right';
+TitleActivity.prototype.drawAbout = function(entity)
+{
+  var screenSize = this.screen.getSize();
+
+  //draw left
+  this.screen
+    .save()
+    .translate(25, screenSize.y - screenSize.y / 4)
+    .drawText("We don't see things as they are, we see them as we are", aboutText)
+    .restore();
+
+  //draw right
+  this.screen
+    .save()
+    .translate(screenSize.x - 25, screenSize.y - screenSize.y / 6)
+    .drawText("Sapphire on Sails", inc)
+    .restore();
+
+}
