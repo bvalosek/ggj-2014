@@ -8,6 +8,7 @@ var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
 var LevelObject   = require('../components/LevelObject.js');
 var ColorSpirit   = require('../components/ColorSpirit.js');
+var Avatar        = require('../components/Avatar.js');
 
 /**
  * @constructor
@@ -24,6 +25,9 @@ function Renderer(screen, entities)
 var COLOR_FILTER = [Position, Spatial, ColorSpirit];
 var LEVEL_FILTER = [Position, LevelObject];
 
+// All avatars have to have a color spirit
+var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
+
 /**
  * @param {Number} dt
  * @param {Number} time
@@ -32,6 +36,12 @@ Renderer.prototype.update = function(dt, time)
 {
   this.drawColorEntities();
   this.drawLevelObjects();
+  this.drawAvatars();
+};
+
+Renderer.prototype.drawAvatars = function()
+{
+
 };
 
 Renderer.prototype.drawLevelObjects = function()
