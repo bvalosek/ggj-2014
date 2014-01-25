@@ -34,14 +34,59 @@ var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
  */
 Renderer.prototype.update = function(dt, time)
 {
-  this.drawColorEntities();
-  this.drawLevelObjects();
+  this.drawWalls();
+  this.drawGems();
   this.drawAvatars();
+};
+
+Renderer.prototype.drawWalls = function()
+{
+  var entities = this.entities.queryTag('wall');
+  for (var n = 0; n < entities.length; n++) {
+    this.drawWall(entities[n]);
+  }
+};
+
+Renderer.prototype.drawWall = function(entity)
+{
+  this.screen
+    .save()
+    .vtranslate(entity.position.location)
+    .drawHwRect(entity.spatial.hwidth, entity.colorSpirit.style)
+    .restore();
+};
+
+Renderer.prototype.drawGems = function()
+{
+  var entities = this.entities.queryTag('gem');
+  for (var n = 0; n < entities.length; n++) {
+    var entity = entities[n];
+    this.drawGem(entity);
+  }
+};
+
+Renderer.prototype.drawGem = function(entity)
+{
+  this.screen
+    .save()
+    .vtranslate(entity.position.location)
+    .drawCircle(entity.spatial.hwidth.x, entity.colorSpirit.style)
+    .restore();
 };
 
 Renderer.prototype.drawAvatars = function()
 {
+  var entities = this.entities.queryComponents(AVATAR_FILTER);
 
+  for (var n = 0; n < entities.length; n++) {
+    var entity = entities[n];
+    this.drawAvatar(entity);
+  }
+};
+
+Renderer.prototype.drawAvatar = function(entity)
+{
+  this.drawWall(entity);
 };
 
 Renderer.prototype.drawLevelObjects = function()
@@ -57,35 +102,8 @@ Renderer.prototype.drawLevelObjects = function()
   }
 };
 
-Renderer.prototype.drawColorEntities = function()
-{
-  var entities = this.entities.queryComponents(COLOR_FILTER);
-  var screen = this.screen;
-
-  for (var n = 0; n < entities.length; n++) {
-    var entity = entities[n];
-
-    if (entity.levelObject &&
-      entity.levelObject.type === LevelObject.types.GEM) {
-      this.drawGem(entity);
-    } else {
-      this.drawWall(entity);
-    }
-
-    if (entity.text) {
-      this.drawText(entity);
-    }
-  }
-};
-
-var startSize = new Vec2(25, 25);
-var startStyle = new Style()
-startStyle.stroke = '#fff';
-startStyle.strokeWidth = 2;
-
 var textStyle = new Style();
 textStyle.color = '#fff';
-
 Renderer.prototype.drawText = function(entity)
 {
   this.screen
@@ -95,6 +113,11 @@ Renderer.prototype.drawText = function(entity)
     .restore();
 }
 
+
+var startSize = new Vec2(25, 25);
+var startStyle = new Style()
+startStyle.stroke = '#fff';
+startStyle.strokeWidth = 2;
 Renderer.prototype.drawStart = function(entity)
 {
   this.screen
@@ -104,23 +127,6 @@ Renderer.prototype.drawStart = function(entity)
     .restore();
 };
 
-Renderer.prototype.drawGem = function(entity)
-{
-  this.screen
-    .save()
-    .vtranslate(entity.position.location)
-    .drawCircle(entity.spatial.hwidth.x, entity.colorSpirit.style)
-    .restore();
-};
-
-Renderer.prototype.drawWall = function(entity)
-{
-  this.screen
-    .save()
-    .vtranslate(entity.position.location)
-    .drawHwRect(entity.spatial.hwidth, entity.colorSpirit.style)
-    .restore();
-};
 
 
 
