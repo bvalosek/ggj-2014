@@ -7,12 +7,18 @@ var EcsService    = require('./boot/EcsService.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function MainGameActivity(screen, ecs)
+function MainGameActivity(maps, screen, ecs)
 {
   this.paused = true;
   this.screen = screen;
   this.ecs    = ecs;
+  this.maps   = maps;
 }
+
+MainGameActivity.prototype.onStart = function()
+{
+  this.maps.loadLevel(0);
+};
 
 MainGameActivity.prototype.onResume = function()
 {
