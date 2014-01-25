@@ -4,6 +4,7 @@ var EntityManager = require('tiny-ecs').EntityManager;
 var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
 var ColorSpirit   = require('../components/ColorSpirit.js');
+var LevelObject   = require('../components/LevelObject.js');
 
 var LEVELS = [
   require('../maps/level-1.js')
@@ -27,7 +28,7 @@ MapService.prototype.loadLevel = function(levelNumber)
 {
   var level = LEVELS[levelNumber];
 
-  this.debug.worldobjs = [];
+  //whaaals
   for (var i = 0; i < level.walls.length; i++) {
     var wall = level.walls[i];
 
@@ -48,10 +49,56 @@ MapService.prototype.loadLevel = function(levelNumber)
       wall.color.r,
       wall.color.g,
       wall.color.b);
-
-    this.debug.worldobjs.push(entity);
   }
 
+  //geems
+  for (var g = 0; g < level.gems.length; g++) {
+    var gem = level.gems[g];
+
+    var entity =
+    this.entities.createEntity()
+      .addComponent(Position)
+      .addComponent(Spatial)
+      .addComponent(ColorSpirit)
+      .addComponent(LevelObject)
+      .addTag('gem');
+
+    entity.position.location.x = gem.position.x;
+    entity.position.location.y = gem.position.y;
+
+    entity.spatial.hwidth.x = gem.spatial.x;
+    entity.spatial.hwidth.y = gem.spatial.y;
+
+    entity.colorSpirit.set(
+      gem.color.r,
+      gem.color.g,
+      gem.color.b);
+
+    entity.levelObject.type = LevelObject.types.GEM;
+
+    //world OBJS
+    var playerStart = this.entities.createEntity()
+        .addComponent(Position)
+        .addComponent(LevelObject)
+        .addTag('playerStart');
+
+    playerStart.position.location.x = level.levelObjects.playerStart.x;
+    playerStart.position.location.y = level.levelObjects.playerStart.y;
+    playerStart.levelObject.type = LevelObject.types.PLAYER_START;
+
+    debug.playerStart = playerStart;
+
+    var levelFinish = this.entities.createEntity()
+        .addComponent(Position)
+        .addComponent(LevelObject)
+        .addTag('levelFinish');
+
+    levelFinish.position.location.x = level.levelObjects.levelFinish.x;
+    levelFinish.position.location.y = level.levelObjects.levelFinish.y;
+    levelFinish.levelObject.type = LevelObject.types.LEVEL_FINISH;
+
+    debug.levelFinish = levelFinish;
+  }
 };
 
 MapService.prototype.clearLevel = function()
