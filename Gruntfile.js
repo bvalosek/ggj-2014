@@ -35,6 +35,10 @@ module.exports = function(grunt) {
         files: ['lib/**/*.js', 'game/**/*.{js,json}'],
         tasks: ['copy:js', 'browserify']
       },
+      public: {
+        files: ['public/**'],
+        task: ['build']
+      },
       options: { livereload: 35729 }
     }
 
