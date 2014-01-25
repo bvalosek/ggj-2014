@@ -4,7 +4,27 @@ var mapCX = 1000;
 var mapCY = 1000;
 
 module.exports = {
-  gems: { },
+  levelObjects:{
+  	playerStart: {x: 50, y: 60},
+  	levelFinish:{x: 1000, y: 1000}
+  },
+  gems: [
+//GEM 1 
+    {
+      position : {x: C + 25, y:(mapCY/4) * 3},
+      color: colors.red
+    },
+//GEM 2
+    {
+      position : {x: 3*(mapCX/8), y:50 + C},
+      color: colors.blue
+    },
+//GEM 3
+    {
+      position : {x: (3*(mapCX/4)) + C, y:(mapCY/4) * 3},
+      color: colors.green
+    }
+  ],
   walls: [
 //LINE 1
     {	
@@ -46,23 +66,5 @@ module.exports = {
       spatial: {x : C, y: C},
       color: colors.green
     },
-//GEM 1 
-    {
-      position : {x: C + 25, y:(mapCY/4) * 3},
-      spatial: {x : C, y: C},
-      color: colors.red
-    },
-//GEM 2
-    {
-      position : {x: 3*(mapCX/8), y:50 + C},
-      spatial: {x : C, y: C},
-      color: colors.blue
-    },
-//GEM 3
-    {
-      position : {x: (3*(mapCX/4)) + C, y:(mapCY/4) * 3},
-      spatial: {x : C, y: C},
-      color: colors.green
-    }
   ]
 };
