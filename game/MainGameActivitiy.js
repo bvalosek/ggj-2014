@@ -19,7 +19,7 @@ function MainGameActivity(maps, screen, ecs, sound)
 MainGameActivity.prototype.onStart = function()
 {
   this.maps.loadLevel(0);
-  this.sound.play('reload1');
+  //this.sound.play('reload1');
 };
 
 MainGameActivity.prototype.onResume = function()
