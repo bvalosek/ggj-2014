@@ -10,7 +10,8 @@ function LevelObject()
 
 LevelObject.types = {
   PLAYER_START: 1,
-  LEVEL_FINISH: 2
+  LEVEL_FINISH: 2,
+  GEM: 3
 }
 
 
