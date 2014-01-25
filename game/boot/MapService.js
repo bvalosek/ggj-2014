@@ -7,11 +7,11 @@ var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
 var Text          = require('../components/Text.js');
 
-var LEVELS = [
-  require('../maps/nicklevel-1.js'),
-  require('../maps/level-2.js'),
-  require('../maps/level-3.js')
-];
+var LEVELS = {
+  nicklevel: require('../maps/nicklevel-1.js'),
+  level2: require('../maps/level-2.js'),
+  level3: require('../maps/level-3.js')
+}
 
 /**
  * @constructor
@@ -26,9 +26,9 @@ function MapService(container, entities)
 /**
  * @param {Number} levelNumber
  */
-MapService.prototype.loadLevel = function(levelNumber)
+MapService.prototype.loadLevel = function(levelName)
 {
-  var level = LEVELS[levelNumber];
+  var level = LEVELS[levelName];
 
   //whaaals
   for (var i = 0; i < level.walls.length; i++) {

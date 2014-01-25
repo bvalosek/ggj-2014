@@ -1,6 +1,4 @@
-module.exports = MainGameActivity;
-
-var colors = require('./maps/colors.js');
+module.exports = TitleActivity;
 
 var EcsService    = require('./boot/EcsService.js');
 
@@ -9,7 +7,7 @@ var EcsService    = require('./boot/EcsService.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function MainGameActivity(maps, screen, ecs, sound)
+function TitleActivity(maps, screen, ecs, sound)
 {
   this.paused = true;
   this.screen = screen;
@@ -18,18 +16,18 @@ function MainGameActivity(maps, screen, ecs, sound)
   this.sound  = sound;
 }
 
-MainGameActivity.prototype.onStart = function()
+TitleActivity.prototype.onStart = function()
 {
-  this.maps.loadLevel('nicklevel');
+  this.maps.loadLevel('title');
   //this.sound.play('reload1');
 };
 
-MainGameActivity.prototype.onResume = function()
+TitleActivity.prototype.onResume = function()
 {
   this.paused = false;
 };
 
-MainGameActivity.prototype.onPause = function()
+TitleActivity.prototype.onPause = function()
 {
   this.paused = true;
 };
@@ -38,14 +36,13 @@ MainGameActivity.prototype.onPause = function()
  * @param {Number} dt
  * @param {Number} time
  */
-MainGameActivity.prototype.update = function(dt, time)
+TitleActivity.prototype.update = function(dt, time)
 {
   if (this.paused) return;
-  this.drawBg();
   this.ecs.update(dt, time);
 };
 
-MainGameActivity.prototype.drawBg = function()
+TitleActivity.prototype.drawBg = function()
 {
   this.screen
     .save()
