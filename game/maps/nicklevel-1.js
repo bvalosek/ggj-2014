@@ -4,6 +4,7 @@ var mapWidth = 1000;
 var mapHeight = 1000;
 
 module.exports = {
+  gems: { },
   walls: [
 //LINE 1
     {	
