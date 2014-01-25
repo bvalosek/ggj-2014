@@ -46,7 +46,7 @@ MapService.prototype.loadLevel = function(levelName)
 
     if (wall.text) addText(entity, wall.text);
 
-    entity.colorSpirit.set(
+    entity.colorSpirit.setBoth(
       wall.color.r,
       wall.color.g,
       wall.color.b);
@@ -70,7 +70,7 @@ MapService.prototype.loadLevel = function(levelName)
 
     entity.spatial.hwidth.set(10,10);
 
-    entity.colorSpirit.set(
+    entity.colorSpirit.setBoth(
       gem.color.r,
       gem.color.g,
       gem.color.b);

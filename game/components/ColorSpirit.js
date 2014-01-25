@@ -18,8 +18,21 @@ function ColorSpirit()
   this.style = new Style();
 }
 
+ColorSpirit.prototype.setBoth = function(r, g, b)
+{
+  this.target.r = this.red = r;
+  this.target.g = this.green = g;
+  this.target.b = this.blue = b;
+};
+
 ColorSpirit.prototype.setTarget = function(r, g, b)
 {
+  if (r && r.r !== undefined) {
+    b = r.b;
+    g = r.g;
+    r = r.r;
+  }
+
   this.target.r = r;
   this.target.g = g;
   this.target.b = b;
