@@ -94,14 +94,14 @@ module.exports = {
       color: colors.green
     },
     {	
-      position : {x: u(18), y: u(2)-(2*C)},
-      spatial: {x : C, y: u(3)},
+      position : {x: u(18), y: u(2)},
+      spatial: {x : C, y: u(2)},
       color: colors.blue 
     }
 
 
   ].concat( createPoly(u(15), u(8), u(6), u(4), colors.blue ) ).concat( 
-	createPoly(u(15), u(8), u(9), u(7), colors.red ) ).concat( 
+	createPoly(u(15), u(8), u(10), u(8), colors.red ) ).concat( 
 	createPoly(u(25), u(8), u(3), u(3), colors.blue ) )
 
 
