@@ -5,14 +5,14 @@ module.exports = SteeringSystem;
  * steering vector.
  * @constructor
  */
-function SteeringSystem()
+function SteeringSystem(entities)
 {
-
+  this.entities = entities;
 }
 
 SteeringSystem.prototype.update = function(dt, time)
 {
-  
+  var player = this.entities.queryTag('player')[0];
 };
 
 

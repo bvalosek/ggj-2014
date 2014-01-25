@@ -8,14 +8,16 @@ var EcsService = require('./services/EcsService.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function MainGameActivity(player, maps, screen, ecs, sound)
+function MainGameActivity(navigator, inputs, player, maps, screen, ecs, sound)
 {
-  this.paused = true;
-  this.screen = screen;
-  this.ecs    = ecs;
-  this.maps   = maps;
-  this.sound  = sound;
-  this.player = player;
+  this.paused    = true;
+  this.screen    = screen;
+  this.ecs       = ecs;
+  this.maps      = maps;
+  this.sound     = sound;
+  this.player    = player;
+  this.inputs    = inputs;
+  this.navigator = navigator;
 
   this.fade = 1;
 
@@ -47,6 +49,12 @@ MainGameActivity.prototype.update = function(dt, time)
   this.startTime = this.startTime || time;
   var fade = Math.max(0, 1 - (time - this.startTime) / 1000);
   this.fade = this.fade * 0.9 + fade * 0.1;
+
+  if (this.inputs.button_k_27) {
+    this.navigator.finish(this);
+  }
+
+
   if (this.paused) return;
 
   this.drawBg();
