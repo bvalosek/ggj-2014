@@ -8,13 +8,10 @@ var MainGameActivity = require('./MainGameActivitiy.js');
  * Application entry.
  * @param {ActivityManager} activities
  */
-function main(activities, debug)
+function main(inputService, activities)
 {
   activities.start(MainGameActivity,
     modes.SINGLE_INSTANCE | modes.FLAG_CLEAR_TOP);
-
-  debug.frameTime    = 0;
-  debug.loopTime     = 0;
 
   // Primary game loop
   var frames = activities.getFrames();
@@ -26,7 +23,7 @@ function main(activities, debug)
     var dt = lastTime ? time - lastTime : 0;
     lastTime = time;
 
-    debug.frameTime = dt;
+    inputService.update(dt, time);
 
     for (var n = 0; n < frames.length; n++) {
       var activity = frames[n].activity;

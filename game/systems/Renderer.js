@@ -84,9 +84,23 @@ Renderer.prototype.drawAvatars = function()
   }
 };
 
+var vh = new Vec2();
 Renderer.prototype.drawAvatar = function(entity)
 {
-  this.drawWall(entity);
+
+  var h = Vec2.aquire();
+  var pos = Vec2.aquire();
+
+  this.screen
+    .save()
+    .vtranslate(entity.position.location)
+    .rotate(entity.position.rotation)
+    .drawHwRect(entity.spatial.hwidth, entity.colorSpirit.style)
+    .drawHwRect(vh, entity.colorSpirit.style)
+    .restore();
+
+  Vec2.release(h);
+  Vec2.release(pos);
 };
 
 Renderer.prototype.drawLevelObjects = function()
