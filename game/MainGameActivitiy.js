@@ -30,7 +30,6 @@ MainGameActivity.prototype.onPause = function()
  */
 MainGameActivity.prototype.update = function(dt, time)
 {
-  this.drawBg();
   if (this.paused) return;
   this.ecs.update(dt, time);
 };
