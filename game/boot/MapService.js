@@ -80,7 +80,7 @@ MapService.prototype.loadLevel = function(levelNumber)
     var playerStart = this.entities.createEntity()
         .addComponent(Position)
         .addComponent(LevelObject)
-        .addTag('playerStart');
+        .addTag('world');
 
     playerStart.position.location.x = level.levelObjects.playerStart.x;
     playerStart.position.location.y = level.levelObjects.playerStart.y;
@@ -91,7 +91,7 @@ MapService.prototype.loadLevel = function(levelNumber)
     var levelFinish = this.entities.createEntity()
         .addComponent(Position)
         .addComponent(LevelObject)
-        .addTag('levelFinish');
+        .addTag('world');
 
     levelFinish.position.location.x = level.levelObjects.levelFinish.x;
     levelFinish.position.location.y = level.levelObjects.levelFinish.y;
