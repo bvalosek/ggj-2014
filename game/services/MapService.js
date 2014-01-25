@@ -104,7 +104,6 @@ function addText(entity, text)
 {
   entity.addComponent(Text);
   entity.text.value = text;
-  console.log(entity);
 };
 
 MapService.prototype.clearLevel = function()

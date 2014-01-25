@@ -3,7 +3,7 @@ module.exports = PlayerDriver;
 /**
  * @constructor
  */
-function PlayerDriver(inputs)
+function PlayerDriver()
 {
 
 }
