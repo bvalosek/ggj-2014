@@ -1,7 +1,8 @@
 module.exports = MapService;
 
 var EntityManager = require('tiny-ecs').EntityManager;
-
+var Position      = require('../components/Position.js');
+var Spatial       = require('../components/Spatial.js');
 
 var LEVELS = [
   require('../maps/level-1.js')
@@ -47,7 +48,6 @@ MapService.prototype.loadLevel = function(levelNumber)
         this.debug.worldobjs.push(entity);
     };
 
-    this.debug.level = level;
 
 };
 
