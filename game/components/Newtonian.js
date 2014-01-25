@@ -1,5 +1,7 @@
 module.exports = Newtonian;
 
+var Vec2 = require('tiny-ecs').Vec2;
+
 /**
  * @constructor
  */

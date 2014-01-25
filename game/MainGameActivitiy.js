@@ -2,7 +2,7 @@ module.exports = MainGameActivity;
 
 var colors = require('./maps/colors.js');
 
-var EcsService    = require('./boot/EcsService.js');
+var EcsService    = require('./services/EcsService.js');
 
 /**
  * @constructor

@@ -17,10 +17,11 @@ container.register('debug', global.debug);
 // ----------------------------------------------------------------------------
 // Services
 
-container.make(require('./ScreenService.js'));
-container.make(require('./EcsService.js'));
-container.make(require('./ActivityService.js'));
-container.make(require('./MapService.js'));
-container.make(require('./SoundService.js'));
-container.make(require('./PlayerService.js'));
+container.make(require('../services/ScreenService.js'));
+container.make(require('../services/EcsService.js'));
+container.make(require('../services/ActivityService.js'));
+container.make(require('../services/MapService.js'));
+container.make(require('../services/SoundService.js'));
+container.make(require('../services/PlayerService.js'));
+container.make(require('../services/InputService.js'));
 
