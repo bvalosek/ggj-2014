@@ -57,9 +57,15 @@ MainGameActivity.prototype.update = function(dt, time)
   if(this.inputs.button_k_49)
     this.player.colorSpirit.set(colors.red);
   if(this.inputs.button_k_50)
-    this.player.colorSpirit.set(colors.green);
+    this.player.colorSpirit.set(colors.yellow);
   if(this.inputs.button_k_51)
+    this.player.colorSpirit.set(colors.green);
+  if(this.inputs.button_k_52)
     this.player.colorSpirit.set(colors.blue);
+  if(this.inputs.button_k_53)
+    this.player.colorSpirit.set(colors.purple);
+  if(this.inputs.button_k_54)
+    this.player.colorSpirit.set(colors.gray);
 
   if (this.paused) return;
 
