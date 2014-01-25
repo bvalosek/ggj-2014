@@ -61,7 +61,7 @@ module.exports = {
     {
       position : {x:u(6), y: u(4)},
       spatial: {x : C, y: u(5)},
-      color: colors.orange,
+      color: colors.yellow,
 	text: 'o1'
     },
     {
@@ -73,7 +73,7 @@ module.exports = {
     {
       position : {x:u(18), y: u(18)},
       spatial: {x : C, y: u(6)},
-      color: colors.orange,
+      color: colors.yellow,
 	text: 'o2'
     },
     {
@@ -124,8 +124,8 @@ module.exports = {
 	text:'g3'
     },
     {
-      position : {x:u(31)+C, y: u(6)-C},
-      spatial: {x : u(1), y: C},
+      position : {x:u(32)+C, y: u(6)-C},
+      spatial: {x : u(2), y: C},
       color: colors.purple,
 	text:'p4'
     },
@@ -142,14 +142,14 @@ module.exports = {
 	text:'g4'
     },
     {
-      position : {x:u(31)+C, y: u(8)-C},
-      spatial: {x : u(1), y: C},
+      position : {x:u(32)+C, y: u(8)-C},
+      spatial: {x : u(2), y: C},
       color: colors.green,
 	text:'g5'
     },
     {
-      position : {x:u(31)+C, y: u(12)},
-      spatial: {x : u(1), y: C},
+      position : {x:u(32)+C, y: u(12)},
+      spatial: {x : u(2), y: C},
       color: colors.blue,
 	text:'b6'
     }
