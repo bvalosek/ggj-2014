@@ -8,12 +8,14 @@ var Vec2 = require('tiny-ecs').Vec2;
  */
 function Steering()
 {
-  this.direction = new Vec2();
+  this.heading = new Vec2();
+  this.deceleration = 1;
 }
 
 Steering.prototype.__init = function()
 {
-  this.direction.clear();
+  this.heading.clear();
+  this.deceleration = 1;
 };
 
 
