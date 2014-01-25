@@ -2,7 +2,7 @@ module.exports = main;
 
 var ActivityManager  = require('activities').ActivityManager;
 var modes            = require('activities').Activity.modes;
-var MainGameActivity = require('./MainGameActivitiy.js');
+var TitleActivity    = require('./TitleActivity.js');
 
 /**
  * Application entry.
@@ -10,7 +10,7 @@ var MainGameActivity = require('./MainGameActivitiy.js');
  */
 function main(inputService, activities)
 {
-  activities.start(MainGameActivity,
+  activities.start(TitleActivity,
     modes.SINGLE_INSTANCE | modes.FLAG_CLEAR_TOP);
 
   // Primary game loop
