@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
 	walls: [
 		{
 			position : {x: 0, y: 0},
