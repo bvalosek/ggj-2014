@@ -24,7 +24,7 @@ function MainGameActivity(player, maps, screen, ecs, sound)
 
 MainGameActivity.prototype.onStart = function()
 {
-  this.maps.loadLevel('nicklevel');
+  this.maps.loadLevel('level2');
   this.player.colorSpirit.set(colors.gray);
 };
 
