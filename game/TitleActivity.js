@@ -54,6 +54,9 @@ TitleActivity.prototype.update = function(dt, time)
   this.drawText();
 };
 
+var boxStyle = new Style()
+boxStyle.color = '#333';
+
 TitleActivity.prototype.drawBg = function(dt)
 {
   var nextcolor = this.colorArray[this.colorIndex];
@@ -65,32 +68,48 @@ TitleActivity.prototype.drawBg = function(dt)
     this.colorIndex++;
     this.colorIndex %= this.maxColors;
   }
-  var rgbcolor = 'rgb(' +
-    this.currentColor.r.toFixed(0) + ',' +
-    this.currentColor.g.toFixed(0) + ',' +
-    this.currentColor.b.toFixed(0) + ')';
+  var htmlColor = Color.tohtml(this.currentColor);
+
+  var screenSize = this.screen.getSize();
+  var boxSize = new Vec2(screenSize.x / 2, screenSize.y / 5);
+
+ this.screen
+    .save()
+    .fill(htmlColor)
+    .restore();
 
   this.screen
     .save()
-    .fill(rgbcolor)
+    .translate(screenSize.x / 2, screenSize.y - screenSize.y / 5)
+    .drawHwRect(boxSize, boxStyle)
     .restore();
 };
 
-var startPos = new Vec2(screen.width / 2, (screen.height / 2) - 10);
-
 var textStyle = new Style();
 textStyle.color = '#fff';
-textStyle.font  = '35px sans-serif';
-textStyle.textAlign = Style.RIGHT;
+textStyle.font  = '75px Conv_HumanoidStraight';
+textStyle.textAlign = 'right';
 textStyle.textBaseline = Style.MIDDLE;
+var title = 'Relativity';
+var KARRAY = [0, 40, 25, 45, 30, 30, 45, 25, 40, 40];
+//var KERN = new Vec2(35, 0);
 
 TitleActivity.prototype.drawText = function(entity)
 {
+  var width = this.screen.getSize().x;
+
   this.screen
     .save()
-    .vtranslate(startPos)
-    .drawText('Relativity', textStyle)
-    .restore();
+    .translate(width/4, 100);
+  
+  for (var i = 0; i < title.length; i++) {
+    textStyle.color = Color.tohtml(this.colorArray[ i % this.maxColors ] );
+    this.screen
+      .translate(KARRAY[i], 0)
+      .drawText(title[i], textStyle)
+  };
+
+  this.screen.restore();
 }
 
 
