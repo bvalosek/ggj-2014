@@ -34,6 +34,11 @@ SoundService.prototype.play = function(sound)
   this.debug._loadedSounds = _loadedSounds;
 };
 
+SoundService.prototype.pause = function(sound)
+{
+  _loadedSounds[sound].load('sound/' + soundbank[sound]).pause();
+}
+
 SoundService.prototype.doneLoading = function(){
   return Object.keys(_loadedSounds).length == Object.keys(soundbank).length;
 }

@@ -41,13 +41,15 @@ TitleActivity.prototype.onStart = function()
 TitleActivity.prototype.onResume = function()
 {
   this.paused = false;
-  
+
   this.sound.play('synth');
 };
 
 TitleActivity.prototype.onPause = function()
 {
   this.paused = true;
+
+  this.sound.pause('synth');
 };
 
 /**
