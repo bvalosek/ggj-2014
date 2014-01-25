@@ -47,8 +47,8 @@ MainGameActivity.prototype.update = function(dt, time)
   this.startTime = this.startTime || time;
   var fade = Math.max(0, 1 - (time - this.startTime) / 1000);
   this.fade = this.fade * 0.9 + fade * 0.1;
-
   if (this.paused) return;
+
   this.drawBg();
   this.ecs.update(dt, time);
   this.drawFade();

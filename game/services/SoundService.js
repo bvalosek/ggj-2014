@@ -14,9 +14,8 @@ var _loadedSounds = {};
  * @constructor
  * @param {EntityManager} entities
  */
-function SoundService(container, entities, debug)
+function SoundService(container, debug)
 {
-  this.entities = entities;
   this.debug = debug;
   container.register('sound', this);
 }

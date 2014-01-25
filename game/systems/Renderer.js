@@ -98,6 +98,8 @@ Renderer.prototype.drawAvatars = function()
 };
 
 var vh = new Vec2();
+var playerStyle = new Style();
+playerStyle.color = '#fff';
 Renderer.prototype.drawAvatar = function(entity)
 {
   var h = Vec2.aquire();
@@ -105,15 +107,15 @@ Renderer.prototype.drawAvatar = function(entity)
 
   h.assign(entity.spatial.hwidth);
   h.y *= 0.5;
-  pos.set(20, 0);
+  pos.set(entity.spatial.hwidth.x/2.2, 0);
 
   this.screen
     .save()
     .vtranslate(entity.position.location)
     .rotate(entity.position.rotation)
-    .drawHwRect(entity.spatial.hwidth, entity.colorSpirit.style)
+    .drawHwRect(entity.spatial.hwidth, playerStyle)
     .vtranslate(pos)
-    .drawHwRect(h, entity.colorSpirit.style)
+    .drawHwRect(h, playerStyle)
     .restore();
 
   Vec2.release(h);

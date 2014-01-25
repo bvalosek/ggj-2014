@@ -27,7 +27,8 @@ function PlayerService(entities, container)
     .addTag('player');
 
   player.position.location.set(250, 250);
-  player.spatial.hwidth.set(50, 50);
+  var playerSize = 20;
+  player.spatial.hwidth.set(playerSize, playerSize);
   // player.colorSpirit.set(colors.blue.r, colors.blue.g, colors.blue.b);
 
   global.player = player;
