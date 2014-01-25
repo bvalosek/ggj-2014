@@ -14,6 +14,15 @@ function ColorSpirit()
   this.style = new Style();
 }
 
+ColorSpirit.prototype.toColor = function()
+{
+  return {
+    r: this.red,
+    g: this.green,
+    b: this.blue
+  };
+};
+
 ColorSpirit.prototype.__init = function()
 {
   // TODO: reset style for no leaks

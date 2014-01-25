@@ -1,21 +1,48 @@
 module.exports = Physics;
 
-var EntityManager = require('tiny-ecs').EntityManager;
-var Vec2          = require('tiny-ecs').Vec2;
-var Position      = require('../components/Position.js');
-var Newtonian     = require('../components/Newtonian.js');
+var EntityManager    = require('tiny-ecs').EntityManager;
+var Vec2             = require('tiny-ecs').Vec2;
+var Position         = require('../components/Position.js');
+var Newtonian        = require('../components/Newtonian.js');
+var MessangerService = require('../services/MessangerService.js');
+var CollisionSystem  = require('./CollisionSystem.js');
+var Avatar           = require('../components/Avatar.js');
+var Color            = require('../../lib/renderer/Color.js');
 
 /**
  * Evolve position w/ velocity.
- * @param {EntityManager} entities
  * @constructor
+ * @param {EntityManager} entities
+ * @param {MessangerService} messanger
  */
-function Physics(entities)
+function Physics(messanger, entities)
 {
   this.entities = entities;
+  this.messanger = messanger;
+
+  this.messanger.listenTo(
+    CollisionSystem.COINCIDENT,
+    [Avatar],
+    this.onAvatarCollide.bind(this));
 }
 
 var FILTER = [Position, Newtonian];
+
+
+Physics.prototype.onAvatarCollide = function(entity, other)
+{
+  if (other.hasTag('wall'))
+    this.onWall(entity, other);
+};
+
+Physics.prototype.onWall = function(avatar, wall)
+{
+  var aColor = avatar.colorSpirit.toColor();
+  var wColor = wall.colorSpirit.toColor();
+  if (!Color.equals(aColor, wColor)) {
+    avatar.newtonian.velocity.smult(-10);
+  }
+};
 
 Physics.prototype.update = function(dt, time)
 {
