@@ -19,6 +19,7 @@ debug.dev = true;
 // ----------------------------------------------------------------------------
 // Services
 
+container.make(require('../services/MessangerService.js'));
 container.make(require('../services/ActivityService.js'));
 container.make(require('../services/ScreenService.js'));
 container.make(require('../services/SoundService.js'));

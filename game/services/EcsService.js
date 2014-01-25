@@ -8,6 +8,7 @@ var Systems = [
   require('../systems/SteeringSystem.js'),
   require('../systems/Physics.js'),
   require('../systems/SpatialIndexer.js'),
+  require('../systems/CollisionSystem.js'),
   require('../systems/Renderer.js')
 ];
 
