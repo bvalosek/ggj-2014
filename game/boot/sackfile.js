@@ -22,4 +22,5 @@ container.make(require('./EcsService.js'));
 container.make(require('./ActivityService.js'));
 container.make(require('./MapService.js'));
 container.make(require('./SoundService.js'));
+container.make(require('./PlayerService.js'));
 
