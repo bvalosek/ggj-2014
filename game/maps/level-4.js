@@ -50,6 +50,87 @@ module.exports = {
     levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
   },
   gems: [
+  {
+    position : {x: u(1), y: u(1)},
+    color : colors.yellow
+  },
+  {
+    position : {x: u(1), y: u(11)},
+    color : colors.green
+  },
+  {
+    position : {x: u(1), y: u(15)},
+    color : colors.red
+  },
+  {
+    position : {x: u(1), y: u(19)},
+    color : colors.green
+  },
+  {
+    position : {x: u(4), y: u(23)},
+    color : colors.blue
+  },
+  {
+    position : {x: u(11), y: u(1)},
+    color : colors.blue
+  },
+  {
+    position : {x: u(7), y: u(7)},
+    color : colors.red
+  },
+  {
+    position : {x: u(11), y: u(11)},
+    color : colors.purple
+  },
+  {
+    position : {x: u(11), y: u(19)},
+    color : colors.yellow
+  },
+  {
+    position : {x: u(15), y: u(1)},
+    color : colors.yellow
+  },
+  {
+    position : {x: u(15), y: u(23)},
+    color : colors.purple
+  },
+  {
+    position : {x: u(20), y: u(1)},
+    color : colors.purple
+  },
+  {
+    position : {x: u(23), y: u(6)},
+    color : colors.red
+  },
+  {
+    position : {x: u(23), y: u(11)},
+    color : colors.blue
+  },
+  {
+    position : {x: u(26), y: u(11)},
+    color : colors.green
+  },
+  {
+    position : {x: u(26), y: u(16)},
+    color : colors.blue
+  },
+  {
+    position : {x: u(20), y: u(23)},
+    color : colors.red
+  },
+  {
+    position : {x: u(32)+C, y: u(6)+2*C},
+    color : colors.purple
+  },
+  {
+    position : {x: u(32)+C, y: u(11)},
+    color : colors.red
+  },
+  {
+    position : {x: u(32)+C, y: u(23)},
+    color : colors.blue
+  }
+
   ],
   walls: [
     {
