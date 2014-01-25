@@ -109,11 +109,7 @@ function addText(entity, text)
 
 MapService.prototype.clearLevel = function()
 {
-  var world = this.entities.queryTag('world');
-
-  for (var i = 0; i < world.length; i++) {
-    world[i].remove();
-  }
+  this.entities.removeEntitiesByTag('world');
 };
 
 
