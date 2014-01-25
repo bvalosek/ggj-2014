@@ -7,18 +7,17 @@ var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
 
 var LEVELS = [
-  require('../maps/level-1.js')
+  require('../maps/nicklevel-1.js')
 ];
 
 /**
  * @constructor
  * @param {EntityManager} entities
  */
-function MapService(debug, entities)
+function MapService(container, entities)
 {
   this.entities = entities;
-  this.debug = debug;
-  this.loadLevel(0);
+  container.register('maps', this);
 }
 
 /**
@@ -86,8 +85,6 @@ MapService.prototype.loadLevel = function(levelNumber)
     playerStart.position.location.y = level.levelObjects.playerStart.y;
     playerStart.levelObject.type = LevelObject.types.PLAYER_START;
 
-    debug.playerStart = playerStart;
-
     var levelFinish = this.entities.createEntity()
         .addComponent(Position)
         .addComponent(LevelObject)
@@ -96,8 +93,6 @@ MapService.prototype.loadLevel = function(levelNumber)
     levelFinish.position.location.x = level.levelObjects.levelFinish.x;
     levelFinish.position.location.y = level.levelObjects.levelFinish.y;
     levelFinish.levelObject.type = LevelObject.types.LEVEL_FINISH;
-
-    debug.levelFinish = levelFinish;
   }
 };
 
