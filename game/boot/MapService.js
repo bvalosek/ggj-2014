@@ -7,11 +7,7 @@ var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
 var Text          = require('../components/Text.js');
 
-var LEVELS = {
-  nicklevel: require('../maps/nicklevel-1.js'),
-  level2: require('../maps/level-2.js'),
-  level3: require('../maps/level-3.js')
-}
+var LEVELS = require('../maps/levels.js');
 
 /**
  * @constructor
