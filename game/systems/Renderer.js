@@ -87,16 +87,20 @@ Renderer.prototype.drawAvatars = function()
 var vh = new Vec2();
 Renderer.prototype.drawAvatar = function(entity)
 {
-
   var h = Vec2.aquire();
   var pos = Vec2.aquire();
+
+  h.assign(entity.spatial.hwidth);
+  h.y *= 0.5;
+  pos.set(20, 0);
 
   this.screen
     .save()
     .vtranslate(entity.position.location)
     .rotate(entity.position.rotation)
     .drawHwRect(entity.spatial.hwidth, entity.colorSpirit.style)
-    .drawHwRect(vh, entity.colorSpirit.style)
+    .vtranslate(pos)
+    .drawHwRect(h, entity.colorSpirit.style)
     .restore();
 
   Vec2.release(h);
