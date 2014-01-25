@@ -1,8 +1,8 @@
 module.exports = main;
 
-var ActivityManager = require('activities').ActivityManager;
-var modes           = require('activities').Activity.modes;
-var HelloActivity   = require('./HelloActivity.js');
+var ActivityManager  = require('activities').ActivityManager;
+var modes            = require('activities').Activity.modes;
+var MainGameActivity = require('./MainGameActivitiy.js');
 
 /**
  * Application entry.
@@ -10,7 +10,7 @@ var HelloActivity   = require('./HelloActivity.js');
  */
 function main(activities, debug)
 {
-  activities.start(HelloActivity,
+  activities.start(MainGameActivity,
     modes.SINGLE_INSTANCE | modes.FLAG_CLEAR_TOP);
 
   debug.frameTime    = 0;
