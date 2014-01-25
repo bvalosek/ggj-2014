@@ -5,6 +5,7 @@ var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
 var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
+var Text          = require('../components/Text.js');
 
 var LEVELS = [
   require('../maps/nicklevel-1.js'),
@@ -46,6 +47,8 @@ MapService.prototype.loadLevel = function(levelNumber)
     entity.spatial.hwidth.x = wall.spatial.x;
     entity.spatial.hwidth.y = wall.spatial.y;
 
+    if (wall.text) addText(entity, wall.text);
+
     entity.colorSpirit.set(
       wall.color.r,
       wall.color.g,
@@ -74,6 +77,8 @@ MapService.prototype.loadLevel = function(levelNumber)
       gem.color.g,
       gem.color.b);
 
+    if (gem.text) addText(entity, gem.text);
+
     entity.levelObject.type = LevelObject.types.GEM;
 
     //world OBJS
@@ -95,6 +100,13 @@ MapService.prototype.loadLevel = function(levelNumber)
     levelFinish.position.location.y = level.levelObjects.levelFinish.y;
     levelFinish.levelObject.type = LevelObject.types.LEVEL_FINISH;
   }
+};
+
+function addText(entity, text)
+{
+  entity.addComponent(Text);
+  entity.text.value = text;
+  console.log(entity);
 };
 
 MapService.prototype.clearLevel = function()

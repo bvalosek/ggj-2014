@@ -71,6 +71,10 @@ Renderer.prototype.drawColorEntities = function()
     } else {
       this.drawWall(entity);
     }
+
+    if (entity.text) {
+      this.drawText(entity);
+    }
   }
 };
 
@@ -78,6 +82,18 @@ var startSize = new Vec2(25, 25);
 var startStyle = new Style()
 startStyle.stroke = '#fff';
 startStyle.strokeWidth = 2;
+
+var textStyle = new Style();
+textStyle.color = '#fff';
+
+Renderer.prototype.drawText = function(entity)
+{
+  this.screen
+    .save()
+    .vtranslate(entity.position.location)
+    .drawText(entity.text.value, textStyle)
+    .restore();
+}
 
 Renderer.prototype.drawStart = function(entity)
 {
