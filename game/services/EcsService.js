@@ -4,6 +4,7 @@ var EntityManager = require('tiny-ecs').EntityManager;
 var getName       = require('typedef').getName;
 
 var Systems = [
+  require('../systems/ColorSystem.js'),
   require('../systems/PlayerDriver.js'),
   require('../systems/SteeringSystem.js'),
   require('../systems/Physics.js'),

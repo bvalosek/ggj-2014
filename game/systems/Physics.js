@@ -8,6 +8,7 @@ var MessangerService = require('../services/MessangerService.js');
 var CollisionSystem  = require('./CollisionSystem.js');
 var Avatar           = require('../components/Avatar.js');
 var Color            = require('../../lib/renderer/Color.js');
+var LevelObject      = require('../components/LevelObject.js');
 
 /**
  * Evolve position w/ velocity.
@@ -28,20 +29,34 @@ function Physics(messanger, entities)
 
 var FILTER = [Position, Newtonian];
 
-
 Physics.prototype.onAvatarCollide = function(entity, other)
 {
   if (other.hasTag('wall'))
     this.onWall(entity, other);
+
+  if (other.levelObject && other.levelObject.type
+    == LevelObject.types.GEM) {
+    this.onGem(entity, other);
+  }
+};
+
+Physics.prototype.onGem = function(avatar, gem)
+{
+  console.log(gem.colorSpirit.toColor());
 };
 
 Physics.prototype.onWall = function(avatar, wall)
 {
+  var v      = Vec2.aquire();
+  var aVel   = avatar.newtonian.velocity;
   var aColor = avatar.colorSpirit.toColor();
   var wColor = wall.colorSpirit.toColor();
+
   if (!Color.equals(aColor, wColor)) {
-    avatar.newtonian.velocity.smult(-10);
+    v.assign(aVel).smult(-0.5);
+    avatar.newtonian.velocity.smult(-2);
   }
+  Vec2.release(v);
 };
 
 Physics.prototype.update = function(dt, time)

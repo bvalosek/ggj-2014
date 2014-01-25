@@ -28,7 +28,7 @@ function PlayerService(entities, container)
 
   global.player = player;
   container.register('player', player);
-  player.position.location.set(250, 250);
+  player.position.location.set(50, 50);
 
   var playerSize = 20;
   player.spatial.hwidth.set(playerSize, playerSize);
