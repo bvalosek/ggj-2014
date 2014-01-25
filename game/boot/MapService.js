@@ -15,6 +15,9 @@ var LEVELS = [
 function MapService(debug, entities)
 {
   this.entities = entities;
+  this.debug = debug;
+  this.loadLevel(0);
+
 }
 
 /**
@@ -22,12 +25,39 @@ function MapService(debug, entities)
  */
 MapService.prototype.loadLevel = function(levelNumber)
 {
+    var level = LEVELS[levelNumber];
+
+    this.debug.worldobjs = [];
+    for (var i = 0; i < level.walls.length; i++) {
+        var wall = level.walls[i];
+
+        var entity = 
+            this.entities.createEntity()
+              .addComponent(Position)
+              .addComponent(Spatial)
+              .addTag('world')
+              ;
+
+        entity.position.x = wall.position.x;
+        entity.position.y = wall.position.y;
+
+        entity.spatial.x = wall.spatial.x;
+        entity.spatial.y = wall.spatial.y;
+
+        this.debug.worldobjs.push(entity);
+    };
+
+    this.debug.level = level;
 
 };
 
 MapService.prototype.clearLevel = function()
 {
+    var world = this.entities.queryTag('world');
 
+    for (var i = 0; i < world.length; i++) {
+        this.entities.removeEntity( world[i]);
+    };
 };
 
 
