@@ -39,7 +39,8 @@ MapService.prototype.loadLevel = function(levelName)
       .addComponent(Position)
       .addComponent(Spatial)
       .addComponent(ColorSpirit)
-      .addTag('world');
+      .addTag('world')
+      .addTag('wall');
 
     entity.position.location.x = wall.position.x;
     entity.position.location.y = wall.position.y;
@@ -65,7 +66,8 @@ MapService.prototype.loadLevel = function(levelName)
       .addComponent(Spatial)
       .addComponent(ColorSpirit)
       .addComponent(LevelObject)
-      .addTag('gem');
+      .addTag('gem')
+      .addTag('world');
 
     entity.position.location.x = gem.position.x;
     entity.position.location.y = gem.position.y;
