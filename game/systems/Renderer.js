@@ -7,6 +7,7 @@ var Canvas        = require('../../lib/renderer/Canvas.js');
 var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
 var LevelObject   = require('../components/LevelObject.js');
+var ColorSpirit   = require('../components/ColorSpirit.js');
 
 /**
  * @constructor
@@ -20,7 +21,8 @@ function Renderer(screen, entities)
   global.renderer = this;
 }
 
-var FILTER = [Position, Spatial];
+var COLOR_FILTER = [Position, Spatial, ColorSpirit];
+var LEVEL_FILTER = [Position, LevelObject];
 
 /**
  * @param {Number} dt
@@ -28,28 +30,39 @@ var FILTER = [Position, Spatial];
  */
 Renderer.prototype.update = function(dt, time)
 {
-  var entities = this.entities.queryComponents(FILTER);
+  this.drawColorEntities();
+  this.drawLevelObjects();
+};
+
+Renderer.prototype.drawLevelObjects = function()
+{
+  var entities = this.entities.queryComponents(LEVEL_FILTER);
   var screen = this.screen;
 
   for (var n = 0; n < entities.length; n++) {
     var entity = entities[n];
 
-    if (entity.levelObject) {
-      switch(entity.levelObject.type) {
-        case LevelObject.types.GEM:
-          this.drawGem(entity);
-          break;
-        case LevelObject.types.PLAYER_START:
-          this.drawStart(entity);
-          break;
-      }
-    } else if (entity.colorSpirit) {
+    if (entity.levelObject.type === LevelObject.types.PLAYER_START)
+      this.drawStart(entity);
+  }
+};
+
+Renderer.prototype.drawColorEntities = function()
+{
+  var entities = this.entities.queryComponents(COLOR_FILTER);
+  var screen = this.screen;
+
+  for (var n = 0; n < entities.length; n++) {
+    var entity = entities[n];
+
+    if (entity.levelObject &&
+      entity.levelObject.type === LevelObject.types.GEM) {
+      this.drawGem(entity);
+    } else {
       this.drawWall(entity);
     }
   }
 };
-
-
 
 var startSize = new Vec2(25, 25);
 var startStyle = new Style()
