@@ -12,13 +12,14 @@ var colors            = require('./maps/colors.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function TitleActivity(navigator, screen, sound, inputs)
+function TitleActivity(debug, navigator, screen, sound, inputs)
 {
   this.navigator = navigator;
   this.screen = screen;
   this.sound = sound;
   this.inputs = inputs;
   this.paused = false;
+  this.debug = debug;
 
   this.colorArray = [];
   for (var key in colors) {
@@ -32,7 +33,8 @@ function TitleActivity(navigator, screen, sound, inputs)
 
 TitleActivity.prototype.onStart = function()
 {
-
+  if (this.debug.dev)
+    this.navigator.start(MainGameActivity);
 };
 
 TitleActivity.prototype.onResume = function()

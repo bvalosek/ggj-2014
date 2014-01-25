@@ -79,25 +79,26 @@ MapService.prototype.loadLevel = function(levelName)
 
     entity.levelObject.type = LevelObject.types.GEM;
 
-    //world OBJS
-    var playerStart = this.entities.createEntity()
-        .addComponent(Position)
-        .addComponent(LevelObject)
-        .addTag('world');
-
-    playerStart.position.location.x = level.levelObjects.playerStart.x;
-    playerStart.position.location.y = level.levelObjects.playerStart.y;
-    playerStart.levelObject.type = LevelObject.types.PLAYER_START;
-
-    var levelFinish = this.entities.createEntity()
-        .addComponent(Position)
-        .addComponent(LevelObject)
-        .addTag('world');
-
-    levelFinish.position.location.x = level.levelObjects.levelFinish.x;
-    levelFinish.position.location.y = level.levelObjects.levelFinish.y;
-    levelFinish.levelObject.type = LevelObject.types.LEVEL_FINISH;
   }
+
+  //world OBJS
+  var playerStart = this.entities.createEntity()
+      .addComponent(Position)
+      .addComponent(LevelObject)
+      .addTag('world');
+
+  playerStart.position.location.x = level.levelObjects.playerStart.x;
+  playerStart.position.location.y = level.levelObjects.playerStart.y;
+  playerStart.levelObject.type = LevelObject.types.PLAYER_START;
+
+  var levelFinish = this.entities.createEntity()
+      .addComponent(Position)
+      .addComponent(LevelObject)
+      .addTag('world');
+
+  levelFinish.position.location.x = level.levelObjects.levelFinish.x;
+  levelFinish.position.location.y = level.levelObjects.levelFinish.y;
+  levelFinish.levelObject.type = LevelObject.types.LEVEL_FINISH;
 };
 
 function addText(entity, text)
@@ -111,7 +112,7 @@ MapService.prototype.clearLevel = function()
   var world = this.entities.queryTag('world');
 
   for (var i = 0; i < world.length; i++) {
-    this.entities.removeEntity( world[i]);
+    world[i].remove();
   }
 };
 

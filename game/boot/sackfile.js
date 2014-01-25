@@ -11,8 +11,10 @@ global.container = container;
 // ----------------------------------------------------------------------------
 // A nice hash object to dump shit into that we can inspect in the console
 
-global.debug = {};
+var debug = global.debug = {};
 container.register('debug', global.debug);
+
+debug.dev = true;
 
 // ----------------------------------------------------------------------------
 // Services
