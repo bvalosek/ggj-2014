@@ -6,5 +6,6 @@ module.exports = {
   blue:   { r: 055, g: 180, b: 255 },
   purple: { r: 190, g: 112, b: 255 },
   black:  { r: 0,   g: 0,   b: 0   },
-  white:  { r: 255, g: 255, b: 255 }
+  white:  { r: 255, g: 255, b: 255 },
+  gray:   { r: 50,  g: 50,  b: 50  }
 };

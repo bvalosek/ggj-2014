@@ -24,8 +24,8 @@ function MainGameActivity(player, maps, screen, ecs, sound)
 
 MainGameActivity.prototype.onStart = function()
 {
-  this.maps.loadLevel('level3');
-  this.player.colorSpirit.set(colors.red);
+  this.maps.loadLevel('nicklevel');
+  this.player.colorSpirit.set(colors.gray);
 };
 
 MainGameActivity.prototype.onResume = function()
