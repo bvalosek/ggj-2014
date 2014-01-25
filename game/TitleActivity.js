@@ -54,7 +54,6 @@ TitleActivity.prototype.update = function(dt, time)
   if (this.paused) return;
 
   if (this.inputs.button_k_87){
-    this.navigator.finish(this);
     this.navigator.start(MainGameActivity);
   }
   this.drawBg(dt);
