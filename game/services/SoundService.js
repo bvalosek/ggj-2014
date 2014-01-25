@@ -6,7 +6,11 @@ var Position      = require('../components/Position.js');
 
 var soundbank = {
   reload1: 'reload1.mp3',
-  reload2: 'reload2.mp3'
+  reload2: 'reload2.mp3',
+  bit: '8bit theme.mp3',
+  dark: 'Dark Ambient Theme.mp3',
+  synth: 'heavy synth theme.mp3'
+
 }
 
 var _loadedSounds = {};

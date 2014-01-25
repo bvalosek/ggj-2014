@@ -29,6 +29,7 @@ function TitleActivity(debug, navigator, screen, sound, inputs)
   this.maxColors = this.colorArray.length;
   this.currentColor = this.colorArray[0];
   this.colorIndex = 1;
+
 }
 
 TitleActivity.prototype.onStart = function()
@@ -40,6 +41,8 @@ TitleActivity.prototype.onStart = function()
 TitleActivity.prototype.onResume = function()
 {
   this.paused = false;
+  
+  this.sound.play('synth');
 };
 
 TitleActivity.prototype.onPause = function()

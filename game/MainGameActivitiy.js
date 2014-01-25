@@ -54,6 +54,12 @@ MainGameActivity.prototype.update = function(dt, time)
     this.navigator.finish(this);
   }
 
+  if(this.inputs.button_k_49)
+    this.player.colorSpirit.set(colors.red);
+  if(this.inputs.button_k_50)
+    this.player.colorSpirit.set(colors.green);
+  if(this.inputs.button_k_51)
+    this.player.colorSpirit.set(colors.blue);
 
   if (this.paused) return;
 
