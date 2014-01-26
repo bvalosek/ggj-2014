@@ -10,7 +10,8 @@ var Systems = [
   require('../systems/Physics.js'),
   require('../systems/SpatialIndexer.js'),
   require('../systems/PlayerDriver.js'),
-  require('../systems/Renderer.js')
+  require('../systems/Renderer.js'),
+  require('../systems/LevelSystem.js')
 ];
 
 /**

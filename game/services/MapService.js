@@ -111,6 +111,7 @@ MapService.prototype.loadLevel = function(levelName)
   var avatars = this.entities.queryComponents(AVATAR_FILTER);
   for (var a = 0; a < avatars.length; a++) {
     avatars[a].position.location.set(playerStart.position.location.x, playerStart.position.location.y);
+    avatars[a].colorSpirit.setBoth(level.startColor);
   };
 
   var levelFinish = this.entities.createEntity()

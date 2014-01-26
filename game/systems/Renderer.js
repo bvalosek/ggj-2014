@@ -151,6 +151,8 @@ Renderer.prototype.drawAvatars = function()
 var vh = new Vec2();
 var playerStyle = new Style();
 playerStyle.color = '#fff';
+var shipsize = 15;
+//playerStyle.fillStyle = '#EEE';
 Renderer.prototype.drawAvatar = function(entity)
 {
   var h = Vec2.aquire();
@@ -164,9 +166,20 @@ Renderer.prototype.drawAvatar = function(entity)
     .save()
     .vtranslate(entity.position.location)
     .rotate(entity.position.rotation)
-    .drawHwRect(entity.spatial.hwidth, playerStyle)
-    .vtranslate(pos)
-    .drawHwRect(h, playerStyle)
+    //.drawHwRect(entity.spatial.hwidth, playerStyle)
+    .drawShape(
+      // [170, 80,
+      // 130, 100, 130, 150, 230, 150,
+      // 250, 180, 320, 180, 340, 150,
+      // 420, 150, 420, 120, 390, 100,
+      // 430, 40, 370, 30, 340, 50,
+      // 320, 5, 250, 20, 250, 50,
+      // 200, 5, 150, 20, 170, 80]
+      [ {x:-shipsize, y:shipsize}, {x:shipsize,y:0}, {x:-shipsize,y:-shipsize}]
+      , playerStyle)
+    
+    //.vtranslate(pos)
+    //.drawHwRect(h, playerStyle)
     .restore();
 
   Vec2.release(h);
