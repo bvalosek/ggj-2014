@@ -125,7 +125,7 @@ SoundService.prototype.playMusic = function()
   if(this.bgindex === null){
     this.bgindex = 0;
   }else{
-    this.bgindex++;
+    this.bgindex = (this.bgindex + 1) % bgorder.length;
   }
   
   var song = bgorder[this.bgindex];
