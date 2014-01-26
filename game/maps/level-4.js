@@ -108,9 +108,9 @@ concat(line(u(20)+C,u(12),u(2),C,colors.blue,'b5')).
 concat(line(u(26),u(8)-C,u(4),C,colors.blue,'b4')).
 concat(line(u(22),u(4),C,u(4),colors.blue,'b3')).
 concat(line(u(22),u(10)-C/2,C,u(2)-C/2,colors.green,'g6')).
-concat(line(u(28),u(6)-C,u(3),C,colors.green,'g3')).
+concat(line(u(27)+C,u(6)-C,u(2.5),C,colors.green,'g3')).
 concat(line(u(25),u(3),C,u(3),colors.green,'g2')).
-concat(line(u(6),u(17)-4*C,C,u(7)+4*C,colors.green,'g1')).
+concat(line(u(6),u(16.5),C,u(7.5),colors.green,'g1')).
 concat(line(u(32)-C,u(6)-C,u(2),C,colors.purple,'p4')).
 concat(line(u(18),u(6),C,u(6),colors.purple,'p1')).
 concat(line(u(6),u(4)+2*C,C,u(4)+2*C,colors.yellow,'y1')).
