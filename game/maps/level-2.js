@@ -32,8 +32,8 @@ return [{
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 100, y: 50 + C},
-    levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
+    playerStart: {x: u(3), y: u(3)},
+    levelFinish:{x: u(15), y: u(8)}
   },
   gems: [
     {
