@@ -14,8 +14,6 @@ global.container = container;
 var debug = global.debug = {};
 container.register('debug', global.debug);
 
-debug.dev = true;
-
 // ----------------------------------------------------------------------------
 // Services
 
