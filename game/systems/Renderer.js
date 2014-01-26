@@ -47,13 +47,18 @@ Renderer.prototype.update = function(dt, time)
   this.drawGems(dt, time);
   this.drawLevelObjects();
   this.drawAvatars();
-  this.drawTexts();
+  // this.drawTexts();
   this.screen.restore();
 };
 
+var bV = new Vec2();
+
 var borderStyle = new Style();
 borderStyle.color = '#333';
-var bV = new Vec2();
+
+var datStyle = new Style();
+datStyle.color = '#222';
+
 Renderer.prototype.drawBg = function()
 {
   var player = this.entities.queryTag('player')[0];
@@ -66,7 +71,7 @@ Renderer.prototype.drawBg = function()
   this.screen.translate(-pad, -pad);
   this.screen.drawRectangle(bV, borderStyle);
   this.screen.restore();
-  this.screen.drawRectangle(this.maps.size, player.colorSpirit.style);
+  this.screen.drawRectangle(this.maps.size, datStyle);
   this.screen.restore();
 };
 
@@ -80,8 +85,8 @@ Renderer.prototype.cameraTransform = function()
   var per = player.newtonian.velocity.magnitude() / player.newtonian.maxSpeed;
 
   // do zoom
-  var p = 0.992;
-  var newZoom = 2 - 1 * per;
+  var p = 0.995;
+  var newZoom = 1.2 - 0.2 * per;
   zoom = zoom * p + (1-p) * newZoom;
   this.screen.scale(zoom, zoom);
   this.zoom = zoom;
@@ -111,8 +116,11 @@ Renderer.prototype.drawWalls = function()
   for (var n = 0; n < entities.length; n++) {
     var entity = entities[n];
     var wColor = entity.colorSpirit.toColor();
-    if (Color.equals(pColor, wColor))
+    if (Color.equals(pColor, wColor)) {
+      this.screen.save().setAlpha(0.1);
       this.drawWall(entities[n]);
+      this.screen.restore();
+    }
   }
 
   for (var n = 0; n < entities.length; n++) {
@@ -173,6 +181,8 @@ Renderer.prototype.drawAvatar = function(entity)
   var h = Vec2.aquire();
   var pos = Vec2.aquire();
 
+  var player = this.entities.queryTag(['player'])[0];
+
   h.assign(entity.spatial.hwidth);
   h.y *= 0.5;
   pos.set(entity.spatial.hwidth.x/2.2, 0);
@@ -183,15 +193,17 @@ Renderer.prototype.drawAvatar = function(entity)
     .rotate(entity.position.rotation)
     //.drawHwRect(entity.spatial.hwidth, playerStyle)
     .drawShape(
-      // [170, 80,
-      // 130, 100, 130, 150, 230, 150,
-      // 250, 180, 320, 180, 340, 150,
-      // 420, 150, 420, 120, 390, 100,
-      // 430, 40, 370, 30, 340, 50,
-      // 320, 5, 250, 20, 250, 50,
-      // 200, 5, 150, 20, 170, 80]
       [ {x:-shipsize, y:shipsize}, {x:shipsize,y:0}, {x:-shipsize,y:-shipsize}]
-      , playerStyle)
+      , player.colorSpirit.style)
+    /*
+    .save()
+    .scale(0.5, 0.5)
+    .drawShape(
+      [ {x:-shipsize, y:shipsize}, {x:shipsize,y:0}, {x:-shipsize,y:-shipsize}]
+      , player.colorSpirit.style)
+    .restore()
+    */
+
 
     //.vtranslate(pos)
     //.drawHwRect(h, playerStyle)
