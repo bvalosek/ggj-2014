@@ -2,6 +2,7 @@ module.exports = MainGameActivity;
 
 var colors     = require('./maps/colors.js');
 var EcsService = require('./services/EcsService.js');
+var Style      = require('../lib/renderer/Style.js');
 
 /**
  * @constructor
@@ -39,6 +40,19 @@ MainGameActivity.prototype.onPause = function()
   this.paused = true;
 };
 
+var hudStyle = new Style();
+hudStyle.color = 'rgba(255,255,255,0.5)';
+hudStyle.font  = '45px Conv_HumanoidStraight';
+hudStyle.textAlign = 'left';
+MainGameActivity.prototype.drawHud = function()
+{
+  this.screen
+    .save()
+    .translate(20, 20)
+    .drawText('LEVEL ' + this.maps.levelNumber, hudStyle)
+    .restore();
+};
+
 /**
  * @param {Number} dt
  * @param {Number} time
@@ -48,6 +62,8 @@ MainGameActivity.prototype.update = function(dt, time)
   this.startTime = this.startTime || time;
   var fade = Math.max(0, 1 - (time - this.startTime) / 1000);
   this.fade = this.fade * 0.9 + fade * 0.1;
+
+  if (this.paused) return;
 
   if (this.inputs.button_k_27) {
     this.navigator.finish(this);
@@ -66,9 +82,8 @@ MainGameActivity.prototype.update = function(dt, time)
   if(this.inputs.button_k_54)
     this.player.colorSpirit.setBoth(colors.gray);
 
-  if (this.paused) return;
-
   this.ecs.update(dt, time);
+  this.drawHud();
   this.drawFade();
 };
 

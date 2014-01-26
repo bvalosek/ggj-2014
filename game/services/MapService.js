@@ -24,6 +24,8 @@ function MapService(container, entities)
   this.position = new Vec2();
   this.hwidth = new Vec2();
 
+  this.levelKey = '';
+
   global.loadLevel = this.loadLevel.bind(this);
 }
 
@@ -32,6 +34,8 @@ function MapService(container, entities)
  */
 MapService.prototype.loadLevel = function(levelName)
 {
+  this.levelKey = levelName;
+  this.levelNumber = levelName.match(/\d+/)[0];
   var level = LEVELS[levelName];
 
   this.clearLevel();
