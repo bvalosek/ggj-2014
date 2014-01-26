@@ -5,11 +5,11 @@ var getName       = require('typedef').getName;
 
 var Systems = [
   require('../systems/ColorSystem.js'),
-  require('../systems/PlayerDriver.js'),
   require('../systems/SteeringSystem.js'),
   require('../systems/Physics.js'),
   require('../systems/SpatialIndexer.js'),
   require('../systems/CollisionSystem.js'),
+  require('../systems/PlayerDriver.js'),
   require('../systems/Renderer.js')
 ];
 
