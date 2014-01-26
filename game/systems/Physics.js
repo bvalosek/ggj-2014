@@ -11,6 +11,8 @@ var Avatar           = require('../components/Avatar.js');
 var Color            = require('../../lib/renderer/Color.js');
 var LevelObject      = require('../components/LevelObject.js');
 
+//hash for preventing multiple collisions
+var collidedEntities = null;
 /**
  * Evolve position w/ velocity.
  * @constructor
@@ -42,8 +44,6 @@ Physics.prototype.onAvatarOutOfBounds = function(player)
 {
   bounceEntity(player);
 };
-
-
 
 Physics.prototype.onAvatarCollide = function(entity, other)
 {
@@ -83,12 +83,19 @@ Physics.prototype.onFinish = function(avatar, finish)
   this.messanger.trigger(avatar, LevelSystem.FINISH_LEVEL, finish);
 };
 
+
 Physics.prototype.onWall = function(avatar, wall)
 {
+  if(!collidedEntities) collidedEntities = {};
+  
+  //prevent multiple avatar collisions per frame;
+  if(collidedEntities[avatar]) return;
+
   var aColor = avatar.colorSpirit.toColor();
   var wColor = wall.colorSpirit.toColor();
 
   if (!Color.equals(aColor, wColor)) {
+    collidedEntities[avatar] = avatar;
     bounceEntity(avatar);
     this.messanger.trigger(avatar, CollisionSystem.WALL, wall);
     wall.colorSpirit.set(255,255,255);
@@ -99,7 +106,7 @@ function bounceEntity(entity)
 {
   var v      = Vec2.aquire();
   var aVel   = entity.newtonian.velocity;
-  v.assign(aVel).rotate(Math.PI).smult(4.05);
+  v.assign(aVel).rotate(Math.PI).smult(6);
   entity.newtonian.velocity.assign(v);
   entity.steering.heading.set(0, 0);
   Vec2.release(v);
@@ -132,6 +139,7 @@ Physics.prototype.update = function(dt, time)
   }
 
   this.collidingGem = false;
+  collidedEntities = null;
 };
 
 
