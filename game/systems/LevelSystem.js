@@ -16,11 +16,21 @@ function LevelSystem(maps, entities, messanger)
   this.messanger = messanger;
   this.maps      = maps;
 
+  this.totalGemCount = 0;
+
   this.currentLevel = 0;
 
   this.messanger.listenTo(
     LevelSystem.FINISH_LEVEL, [], this.onFinishLevel.bind(this));
+
+  this.messanger.listenTo(
+    LevelSystem.COLLECT_GEM, [], this.onGemCollect.bind(this));
 }
+
+LevelSystem.prototype.onGemCollect = function()
+{
+  this.totalGemCount++;
+};
 
 var dist = new Vec2();
 LevelSystem.prototype.onFinishLevel = function(player, fEntity)
