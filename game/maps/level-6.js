@@ -3,14 +3,38 @@ var colors = require('./colors.js');
 
 var u = require('./simplify.js').u;
 var line = require('./simplify.js').line;
+var createGem = require('./simplify.js').createGem;
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 100, y: 50 + C},
-    levelFinish:{x: 500, y: 500}
+    playerStart: {x: u(2)+3*C, y: u(15)},
+    levelFinish:{x: u(28), y: u(2)}
   },
   gems: [
-  ],
+  ].concat(createGem(u(1),u(5),colors.blue,'bg1')).
+  concat(createGem(u(1),u(7),colors.red,'rg1')).
+  concat(createGem(u(1),u(9),colors.blue,'bg2')).
+  concat(createGem(u(1),u(11),colors.purple,'pg1')).
+  concat(createGem(u(1),u(13),colors.red,'rg2')).
+  concat(createGem(u(1),u(17),colors.yellow,'yg1')).
+  concat(createGem(u(1),u(23),colors.green,'gg1')).
+  concat(createGem(u(4),u(5),colors.purple,'pg2')).
+  concat(createGem(u(4),u(13),colors.blue,'bg3')).
+  concat(createGem(u(9),u(1),colors.blue,'bg4')).
+  concat(createGem(u(9),u(7),colors.red,'rg3')).
+  concat(createGem(u(6),u(11),colors.green,'gg2')).
+  concat(createGem(u(11),u(5),colors.blue,'bg5')).
+  concat(createGem(u(14),u(7),colors.yellow,'yg2')).
+  concat(createGem(u(11),u(11),colors.green,'gg3')).
+  concat(createGem(u(14),u(17),colors.blue,'bg6')).
+  concat(createGem(u(16),u(17),colors.purple,'pg3')).
+  concat(createGem(u(18),u(1),colors.red,'rg4')).
+  concat(createGem(u(30),u(7),colors.red,'rg5')).
+  concat(createGem(u(30),u(11),colors.blue,'bg7')).
+  concat(createGem(u(26),u(17),colors.purple,'pg4')).
+  concat(createGem(u(30),u(17),colors.red,'rg6')).
+  concat(createGem(u(30),u(23),colors.blue,'bg8'))
+  ,
   walls: [
 ].
 concat(line(u(5),u(3),C,u(3),colors.blue,'b1')).
