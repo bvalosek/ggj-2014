@@ -8,8 +8,8 @@ function u(n) { return unit*n; }
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 100, y: 50 + C},
-    levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
+    playerStart: {x: u(12)+C, y: u(8)},
+    levelFinish:{x: u(22), y: u(12)-C}
   },
   gems: [
     {
@@ -28,12 +28,10 @@ module.exports = {
 	position : {x: u(16), y: u(1)},
 	color: colors.red
     },
-//LEVEL END
     {
-       position : {x: u(22), y: u(12)-C},
-	color: colors.purple
+	position : {x: u(12)+C, y: u(1)},
+	color: colors.blue
     }
-
   ],
   walls: [
     {
