@@ -30,6 +30,6 @@
     "sack": "~1.2.1",
     "typedef": "~1.0.2",
     "activities": "~1.1.0",
-    "tiny-ecs": "~1.4.0"
+    "tiny-ecs": "~1.4.1"
   }
 }
