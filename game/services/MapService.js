@@ -22,6 +22,8 @@ function MapService(container, entities)
   this.size = new Vec2();
   this.position = new Vec2();
   this.hwidth = new Vec2();
+
+  global.loadLevel = this.loadLevel.bind(this);
 }
 
 /**
@@ -30,6 +32,8 @@ function MapService(container, entities)
 MapService.prototype.loadLevel = function(levelName)
 {
   var level = LEVELS[levelName];
+
+  this.clearLevel();
 
   var player = this.entities.queryTag('player')[0];
 
