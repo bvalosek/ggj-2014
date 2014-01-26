@@ -12,6 +12,7 @@ module.exports = {
     levelFinish:{x: u(22), y: u(12)-C}
   },
   size: { x: mapCX, y: mapCY },
+  startColor: colors.yellow,
   gems: [
     {
       position : {x: u(3), y:u(5)},

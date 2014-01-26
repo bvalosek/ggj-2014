@@ -11,6 +11,7 @@ module.exports = {
     levelFinish:{x: u(28), y: u(2)}
   },
   size: { x: 1000, y: 1000 },
+  startColor: colors.green,
   gems: [
   ].concat(createGem(u(1),u(5),colors.blue,'bg1')).
   concat(createGem(u(1),u(7),colors.red,'rg1')).

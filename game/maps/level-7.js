@@ -3,15 +3,22 @@ var colors = require('./colors.js');
 
 var u = require('./simplify.js').u;
 var line = require('./simplify.js').line;
+var createGem = require('./simplify.js').createGem;
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 100, y: 50 + C},
-    levelFinish:{x: 500, y: 500}
+    playerStart: {x: u(10)+4*C, y: u(6)},
+    levelFinish:{x: u(18), y: u(12)}
   },
-  size: { x: 1000, y: 1000 },
+  size: { x: 1080, y: 960 },
+  startColor: colors.yellow,
   gems: [
-  ],
+  ]
+  
+  
+  
+  
+  ,
   walls: [
 ].concat(line(u(3),u(2),C,u(2),colors.red,'r1')).
 concat(line(u(12),u(2),C,u(2),colors.purple,'p1')).

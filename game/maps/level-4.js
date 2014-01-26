@@ -13,7 +13,8 @@ module.exports = {
     playerStart: {x: u(2), y: u(21)},
     levelFinish:{x: u(30), y: u(2)}
   },
-  size: { x: mapCX, y: mapCY },
+  size: { x: mapCX+350, y: mapCY-40 },
+  startColor: colors.red,
   gems: [
   {
     position : {x: u(1), y: u(1)},
