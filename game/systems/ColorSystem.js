@@ -19,6 +19,15 @@ ColorSystem.prototype.update = function(dt, time)
   for (var n = 0; n < entities.length; n++) {
     var entity = entities[n];
 
+    var t = entity.colorSpirit.target;
+    var cs = entity.colorSpirit;
+
+    var a = 1; b = 1 - a;
+    entity.colorSpirit.set(
+      t.r * a + cs.red * b,
+      t.g * a + cs.green * b,
+      t.b * a + cs.blue * b
+    );
   }
 };
 

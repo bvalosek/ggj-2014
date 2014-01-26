@@ -5,6 +5,7 @@ var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
 var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
+var Avatar        = require('../components/Avatar.js');
 var Text          = require('../components/Text.js');
 
 var LEVELS = require('../maps/levels.js');
@@ -46,7 +47,7 @@ MapService.prototype.loadLevel = function(levelName)
 
     if (wall.text) addText(entity, wall.text);
 
-    entity.colorSpirit.set(
+    entity.colorSpirit.setBoth(
       wall.color.r,
       wall.color.g,
       wall.color.b);
@@ -70,7 +71,7 @@ MapService.prototype.loadLevel = function(levelName)
 
     entity.spatial.hwidth.set(10,10);
 
-    entity.colorSpirit.set(
+    entity.colorSpirit.setBoth(
       gem.color.r,
       gem.color.g,
       gem.color.b);
@@ -90,6 +91,13 @@ MapService.prototype.loadLevel = function(levelName)
   playerStart.position.location.x = level.levelObjects.playerStart.x;
   playerStart.position.location.y = level.levelObjects.playerStart.y;
   playerStart.levelObject.type = LevelObject.types.PLAYER_START;
+
+  //set player start
+  var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
+  var avatars = this.entities.queryComponents(AVATAR_FILTER);
+  for (var a = 0; a < avatars.length; a++) {
+    avatars[a].position.location.set(playerStart.position.location.x, playerStart.position.location.y);
+  };
 
   var levelFinish = this.entities.createEntity()
       .addComponent(Position)
