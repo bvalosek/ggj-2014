@@ -10,7 +10,7 @@ module.exports = {
     playerStart: {x: u(15)+3*C, y: u(10)},
     levelFinish:{x: u(2), y: u(20)}
   },
-  size: { x: 1000, y: 1000 },
+  size: { x: 1165, y: 880 },
   startColor: colors.yellow,
   gems: [
   ].concat(createGem(u(1),u(1),colors.yellow,'yg1')).
