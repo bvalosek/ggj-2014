@@ -1,4 +1,5 @@
 module.exports = {
+  level0    : require('./level-0.js'),
   level1    : require('./nicklevel-1.js'),
   level2    : require('./level-2.js'),
   level3    : require('./level-3.js'),
