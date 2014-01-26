@@ -26,7 +26,7 @@ function MainGameActivity(navigator, inputs, player, maps, screen, ecs, sound)
 
 MainGameActivity.prototype.onStart = function()
 {
-  this.maps.loadLevel('nicklevel');
+  this.maps.loadLevel('level4');
   this.player.colorSpirit.setBoth(colors.green);
 };
 
@@ -55,17 +55,17 @@ MainGameActivity.prototype.update = function(dt, time)
   }
 
   if(this.inputs.button_k_49)
-    this.player.colorSpirit.set(colors.red);
+    this.player.colorSpirit.setBoth(colors.red);
   if(this.inputs.button_k_50)
-    this.player.colorSpirit.set(colors.yellow);
+    this.player.colorSpirit.setBoth(colors.yellow);
   if(this.inputs.button_k_51)
-    this.player.colorSpirit.set(colors.green);
+    this.player.colorSpirit.setBoth(colors.green);
   if(this.inputs.button_k_52)
-    this.player.colorSpirit.set(colors.blue);
+    this.player.colorSpirit.setBoth(colors.blue);
   if(this.inputs.button_k_53)
-    this.player.colorSpirit.set(colors.purple);
+    this.player.colorSpirit.setBoth(colors.purple);
   if(this.inputs.button_k_54)
-    this.player.colorSpirit.set(colors.gray);
+    this.player.colorSpirit.setBoth(colors.gray);
 
   if (this.paused) return;
 
