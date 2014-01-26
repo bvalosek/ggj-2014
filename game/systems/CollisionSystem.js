@@ -20,6 +20,7 @@ var FILTER = [Position, Spatial];
 
 CollisionSystem.COINCIDENT = 'collies#coincidnet';
 CollisionSystem.OUT_OF_BOUNDS = 'collies#oobizzle';
+CollisionSystem.WALL = 'collies#wallz';
 
 CollisionSystem.prototype.update = function(dt, time)
 {

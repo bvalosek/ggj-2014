@@ -45,31 +45,56 @@ function SoundService(container, debug, messanger)
     [Avatar],
     this.onAvatarCollide.bind(this));
 
+  this.messanger.listenTo(
+    CollisionSystem.WALL,
+    [Avatar],
+    this.onWallCollide.bind(this));
+
   this.debug.sounds = [];
 }
 
 SoundService.prototype.load = function(sound){
   if(!_loadedSounds[sound]){
-    _loadedSounds[sound] = document.createElement("audio");
-    _loadedSounds[sound].src = this.path + soundbank[sound];
+    _loadedSounds[sound] = new Audio(this.path + sound); //document.createElement("audio");
+    //_loadedSounds[sound].id = sound;
+    //_loadedSounds[sound].src = this.path + soundbank[sound];
     _loadedSounds[sound].autoload = 'auto';
-    //_loadedSounds[sound].loop = 'true';
+    _loadedSounds[sound].loop = 'true';
     _loadedSounds[sound].oncanplaythrough = this.playthrough.bind(this);
+    _loadedSounds[sound].ended = this.onended;
+    //document.body.appendChild(_loadedSounds[sound]);
   }
   this.debug._loadedSounds = _loadedSounds;
 }
 SoundService.prototype.playthrough = function(sound){
   this._loadedSoundsCount++;
 }
+SoundService.prototype.onended = function(){
+  this.currentTime = 0;
+}
+
+var playing={};
 
 SoundService.prototype.play = function(sound)
 {
-  if(this.doneLoading()){
-    _loadedSounds[sound].currentTime = 0;
-    //_loadedSounds[sound].setAttribute('src', this.path + soundbank[sound])
-    _loadedSounds[sound]
-      .play();
-  }
+  var test = new Audio(this.path + sound);
+  test.play();
+
+  var a,b;
+  b=new Date();
+  a=sound+b.getTime();
+  playing[a] = new Audio(this.path + soundbank[sound]);
+  // with this we prevent playing-object from becoming a memory-monster:
+  playing[a].onended=function(){delete playing[a]};
+  playing[a].play();
+
+  // if(this.doneLoading()){
+  //   //_loadedSounds[sound].pause();
+  //   //this.load(sound);
+  //   //document.getElementById(sound).currentTime = 0;
+  //   _loadedSounds[sound].currentTime = 0;
+  //   _loadedSounds[sound].play();
+  // }
 };
 
 SoundService.prototype.pause = function(sound)
@@ -84,11 +109,14 @@ SoundService.prototype.doneLoading = function(){
 
 SoundService.prototype.onAvatarCollide = function(entity, other)
 {
-  if (other.hasTag('wall'))
-    this.play('wallbump');
-
   if (other.levelObject && other.levelObject.type == LevelObject.types.GEM) {
     var targetColor = other.colorSpirit.target;
+    
+    //this.playerColor = entity.colorSpirit.target;
+
+    if (targetColor === this.lastEntity || targetColor === this.lastOther) return;
+    this.lastEntity = entity.colorSpirit.target;
+    this.lastOther = other.colorSpirit.target;
 
     if(Color.equals(targetColor, colors.red))
       this.play('red_spirit');
@@ -102,6 +130,12 @@ SoundService.prototype.onAvatarCollide = function(entity, other)
       this.play('purple_spirit');
     
   }
+};
+
+SoundService.prototype.onWallCollide = function(entity, other)
+{
+  if (other.hasTag('wall'))
+    this.play('wallbump');
 };
 
 

@@ -79,6 +79,7 @@ Physics.prototype.onWall = function(avatar, wall)
 
   if (!Color.equals(aColor, wColor)) {
     bounceEntity(avatar);
+    this.messanger.trigger(avatar, CollisionSystem.WALL, wall);
   }
 };
 
