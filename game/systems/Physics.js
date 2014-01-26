@@ -57,9 +57,16 @@ Physics.prototype.onAvatarCollide = function(entity, other)
 
 Physics.prototype.onGem = function(avatar, gem)
 {
+  var wasDisabled = !!gem.colorSpirit.cooldown;
+
+  // reset dat timmy
+  gem.colorSpirit.cooldown = 1500;
+
   this.collidingGem = true;
   if (gem === this.lastGem) return;
   this.lastGem = gem;
+
+  if (wasDisabled) return;
   var avatarColor = avatar.colorSpirit.toColor();
   avatar.colorSpirit.setTarget(gem.colorSpirit.toColor());
   gem.colorSpirit.setTarget(avatarColor);

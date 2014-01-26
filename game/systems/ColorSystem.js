@@ -22,6 +22,8 @@ ColorSystem.prototype.update = function(dt, time)
     var t = entity.colorSpirit.target;
     var cs = entity.colorSpirit;
 
+    cs.cooldown = Math.max(0, cs.cooldown - dt);
+
     var a = 1; b = 1 - a;
     entity.colorSpirit.set(
       t.r * a + cs.red * b,

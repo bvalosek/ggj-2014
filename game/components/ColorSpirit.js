@@ -11,6 +11,8 @@ function ColorSpirit()
   this.blue  = 0;
   this.green = 0;
 
+  this.cooldown = 0;
+
   this.target = {
     r: 0, g: 0, b: 0
   }

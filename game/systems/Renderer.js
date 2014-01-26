@@ -149,15 +149,25 @@ Renderer.prototype.drawGems = function(dt, time)
   }
 };
 
+var disabledGemStyle = new Style();
+disabledGemStyle.color = '#555';
 Renderer.prototype.drawGem = function(entity, dt, time)
 {
+  var disabled = !!entity.colorSpirit.cooldown;
   var gemSize = entity.spatial.hwidth.x;
   var mult = gemSize / 4;
   var wiggle = Math.sin(5*time/1000) * mult + mult;
+
+  if (disabled) {
+    wiggle = wiggle*0.5 + -5 + 5 * (1 - entity.colorSpirit.cooldown/1500);
+  }
+
+  var style = disabled ? disabledGemStyle : entity.colorSpirit.style;
+
   this.screen
     .save()
     .vtranslate(entity.position.location)
-    .drawCircle(entity.spatial.hwidth.x + wiggle, entity.colorSpirit.style)
+    .drawCircle(entity.spatial.hwidth.x + wiggle, style)
     .restore();
 };
 
