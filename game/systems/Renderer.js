@@ -47,7 +47,7 @@ Renderer.prototype.update = function(dt, time)
   this.drawGems(dt, time);
   this.drawLevelObjects();
   this.drawAvatars();
-  // this.drawTexts();
+  this.drawTexts();
   this.screen.restore();
 };
 
