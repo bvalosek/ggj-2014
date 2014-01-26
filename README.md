@@ -1,29 +1,33 @@
-# Global Game Jam 2014
-## RELATIVITY
+# RELATIVITY
 
-## Overview
+## The Game
 
-### The Game
-RELATIVITY allows the user to collect spirit orbs, which cause a shift in perspective.
-Everytime the user collects an orb, he or she leaves behind the previous orb and 
-no longer sees the walls and orbs of the current color. We as players therefore see 
-things not as they are but as we are, and throughout the game the world changes as 
-we change. The objective is to complete levels as efficiently as possible by 
-switching orbs the fewest number of times.
+RELATIVITY allows the user to collect spirit orbs, which cause a shift in
+perspective.  Every time the user collects an orb, he or she leaves behind the
+previous orb and no longer sees the walls and orbs of the current color.
 
-### To Play
-* A recent Chrome Browser on Windows, Linux, or Mac
-* To start the game, open release/index.html
+We as players therefore see things not as they are but as we are, and
+throughout the game the world changes as we change.
+
+The objective is to complete levels as efficiently as possible by switching
+orbs the fewest number of times.
+
+## To Play
+
+* A recent Google Chrome Browser on Windows, Linux, or Mac
+* To start the game, open release/index.html in Chrome
 * HTML5/JS game (no flash)
 * Use arrow keys or W-A-S-D to navigate
 
-### The Crew
+## The Crew
 
 * Derek Ensign
 * [Katie Ensign](http://github.com/katieensign)
 * Nick Marra
 * [Dillon Shook](http://github.com/dshook)
 * [Brandon Valosek](http://github.com/bvalosek)
+
+## Overview
 
 ### The Stack
 
