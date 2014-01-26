@@ -35,6 +35,7 @@ module.exports = {
     playerStart: {x: u(3), y: u(3)},
     levelFinish:{x: u(15), y: u(8)}
   },
+  size: { x: mapCX, y: mapCY },
   gems: [
     {
       position : {x: u(1), y:u(14)},

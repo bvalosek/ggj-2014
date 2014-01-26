@@ -9,6 +9,7 @@ module.exports = {
     playerStart: {x: C + 100, y: 50 + C},
     levelFinish:{x: 500, y: 500}
   },
+  size: { x: 1000, y: 1000 },
   gems: [
   ],
   walls: [
