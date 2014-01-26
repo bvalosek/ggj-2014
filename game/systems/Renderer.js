@@ -8,6 +8,7 @@ var Position        = require('../components/Position.js');
 var Spatial         = require('../components/Spatial.js');
 var LevelObject     = require('../components/LevelObject.js');
 var ColorSpirit     = require('../components/ColorSpirit.js');
+var Finish          = require('../components/Finish.js');
 var Color           = require('../../lib/renderer/Color.js');
 var Avatar          = require('../components/Avatar.js');
 var Text            = require('../components/Text.js');
@@ -27,13 +28,15 @@ function Renderer(messanger, screen, entities, maps, inputs)
   this.inputs     = inputs;
   global.renderer = this;
 
+  this.fade = 0;
+
   messanger.listenTo(CollisionSystem.WALL, [], this.onShake.bind(this));
   messanger.listenTo('shake', [], this.onShake.bind(this));
 }
 
 var COLOR_FILTER = [Position, Spatial, ColorSpirit];
 var LEVEL_FILTER = [Position, LevelObject];
-
+var FINISH_FILTER = [Finish];
 var TEXT_FILTER = [Position, Text];
 
 // All avatars have to have a color spirit
@@ -45,6 +48,13 @@ var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
  */
 Renderer.prototype.update = function(dt, time)
 {
+  if (this.isFinishing())
+    this.fade = Math.min(1, this.fade + (dt/1000));
+  else
+    this.fade = Math.max(0, this.fade - (dt/1000));
+
+  global.renderer = this;
+
   this.screen.save();
   this.screen.fill('#202020');
   this.cameraTransform();
@@ -55,6 +65,16 @@ Renderer.prototype.update = function(dt, time)
   this.drawAvatars();
   // this.drawTexts();
   this.screen.restore();
+  this.drawFade();
+};
+
+Renderer.prototype.drawFade = function()
+{
+  this.screen
+    .save()
+    .setAlpha(this.fade)
+    .fill('black')
+    .restore();
 };
 
 var bV = new Vec2();
@@ -81,6 +101,11 @@ Renderer.prototype.drawBg = function()
   this.screen.restore();
 };
 
+Renderer.prototype.isFinishing = function()
+{
+  return !!this.entities.queryComponents(FINISH_FILTER)[0].finish.timeOut;
+};
+
 var ct = new Vec2();
 Renderer.prototype.cameraTransform = function()
 {
@@ -92,6 +117,11 @@ Renderer.prototype.cameraTransform = function()
   // cacl zoom
   var zoom = this.zoom || 1;
   var per = player.newtonian.velocity.magnitude() / player.newtonian.maxSpeed;
+
+  if(this.isFinishing())
+    zoom = Math.min(20, Math.pow(zoom, 1.15));
+  else
+    zoom = 1 - this.fade/3;
 
   // do zoom
   if(per > 0.001){
