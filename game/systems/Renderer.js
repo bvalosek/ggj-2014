@@ -45,7 +45,7 @@ Renderer.prototype.update = function(dt, time)
   this.drawBg();
   this.drawWalls();
   this.drawGems(dt, time);
-  this.drawLevelObjects();
+  this.drawLevelObjects(dt, time);
   this.drawAvatars();
   // this.drawTexts();
   this.screen.restore();
@@ -213,7 +213,7 @@ Renderer.prototype.drawAvatar = function(entity)
   Vec2.release(pos);
 };
 
-Renderer.prototype.drawLevelObjects = function()
+Renderer.prototype.drawLevelObjects = function(dt, time)
 {
   var entities = this.entities.queryComponents(LEVEL_FILTER);
   var screen = this.screen;
@@ -222,10 +222,10 @@ Renderer.prototype.drawLevelObjects = function()
     var entity = entities[n];
 
     if (entity.levelObject.type === LevelObject.types.PLAYER_START)
-      this.drawStart(entity);
+      this.drawStart(entity, dt, time);
 
     if (entity.levelObject.type === LevelObject.types.LEVEL_FINISH)
-      this.drawStart(entity);
+      this.drawStart(entity, dt, time);
   }
 };
 
@@ -243,12 +243,13 @@ Renderer.prototype.drawText = function(entity)
 
 var startSize = new Vec2(25, 25);
 var startStyle = new Style()
-startStyle.stroke = '#333';
+startStyle.stroke = '#fff';
 startStyle.strokeWidth = 5;
-Renderer.prototype.drawStart = function(entity)
+Renderer.prototype.drawStart = function(entity, dt, time)
 {
   this.screen
     .save()
+    .setAlpha(0.3 + 0.2 *Math.cos(time / 1000))
     .vtranslate(entity.position.location)
     //.drawHwRect(startSize, startStyle)
     .drawCircle(50, startStyle)
