@@ -1,67 +1,34 @@
-var C = 15;
+var C = 10;
 var colors = require('./colors.js');
-var mapCX = 1000;
-var mapCY = 1000;
-
-function createPoly(cX, cY, w, h)
-{
-return [{
-      position : {x: cX, y: cY - (h/2)},
-      spatial: {x : w/2 + C/2, y: C},
-      color: colors.green
-    },
-    {
-      position : {x: cX-(w/2), y: cY},
-      spatial: {x : C, y: h/2 + C},
-      color: colors.green
-    },
-    {
-      position : {x: cX, y: cY +(h/2)},
-      spatial: {x : w/2 + C/2, y: C},
-      color: colors.green
-    },
-    {
-      position : {x: cX +(w/2), y: cY},
-      spatial: {x : C, y: h/2 + C},
-      color: colors.green
-    }];
-}
+var u = require('./simplify.js').u;
+var line = require('./simplify.js').line;
+var createGem = require('./simplify.js').createGem;
+var createPoly = require('./simplify.js').createPoly;
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 25, y: 50 + C},
-    levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
+    playerStart: {x: u(2), y: u(2)},
+    levelFinish:{x: u(19), y: u(8)}
   },
-  size: { x: mapCX, y: mapCY },
+  size: { x: 1000, y:1000 },
   startColor: colors.green,
   gems: [
-    //GEM 1
     {
-      position : {x: C + 25, y:(mapCY/4) * 3},
+      position : {x: u(2), y:u(20)},
       color: colors.red
     },
-    //GEM 2
     {
-      position : {x: 3*(mapCX/8), y:50 + C},
+      position : {x: u(9.5), y:u(3)},
       color: colors.blue
     },
-    //GEM 3
     {
-      position : {x: (3*(mapCX/4)) + C, y:(mapCY/4) * 3},
+      position : {x: u(19), y:u(20)},
       color: colors.green
     }
   ],
-  walls: [
-    //LINE 1
-    {
-      position : {x: mapCX/4, y: mapCY/2},
-      spatial: {x : 1*C, y: mapCY/2},
-      color: colors.red
-    },
-    //LINE 2
-    {
-      position : {x: mapCX/2, y: mapCY/2},
-      spatial: {x : 1*C, y: mapCY/2},
-      color: colors.blue
-    }].concat( createPoly((3*(mapCX/4)),(mapCY/3), 12*C, 12*C))  
+  walls: [].
+concat( line(u(13),u(12.5), C, u(12.5), colors.blue, 'b1') ).
+concat( line(u(6), u(12.5), C, u(12.5), colors.red, 'r1' ) ).
+concat( createPoly(u(19),u(8), u(4), u(4), 
+	[colors.green, colors.green, colors.green, colors.green], [1,1,1,1], C))  
 };
