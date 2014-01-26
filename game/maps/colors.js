@@ -1,6 +1,5 @@
 module.exports = {
   red:    { r: 255, g: 85,  b: 83  },
-  orange: { r: 232, g: 134, b: 84  },
   yellow: { r: 255, g: 226, b: 108 },
   green:  { r: 136, g: 233, b: 128 },
   blue:   { r: 055, g: 180, b: 255 },

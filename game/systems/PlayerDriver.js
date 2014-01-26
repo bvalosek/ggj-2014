@@ -1,5 +1,7 @@
 module.exports = PlayerDriver;
 
+var Vec2             = require('tiny-ecs').Vec2;
+
 /**
  * @constructor
  */
@@ -13,15 +15,20 @@ PlayerDriver.prototype.update = function(dt, time)
 {
   var inputs = this.inputs;
 
-  if (inputs.button_k_87)
+  var up = inputs.button_k_87 || inputs.button_k_38;
+  var down = inputs.button_k_83 || inputs.button_k_40;
+  var left = inputs.button_k_65 || inputs.button_k_37;
+  var right = inputs.button_k_68 || inputs.button_k_39;
+
+  if (up)
     this.movePlayer(PlayerDriver.directions.up);
-  else if (inputs.button_k_83)
+  if (down)
     this.movePlayer(PlayerDriver.directions.down);
-  else if (inputs.button_k_68)
+  if (right)
     this.movePlayer(PlayerDriver.directions.right);
-  else if (inputs.button_k_65)
+  if (left)
     this.movePlayer(PlayerDriver.directions.left);
-  else
+  if(!up && !down && !left && !right)
     this.movePlayer(PlayerDriver.directions.stop);
 };
 
@@ -39,26 +46,29 @@ PlayerDriver.prototype.movePlayer = function(direction)
   var v = player.newtonian.velocity
   var h = player.steering.heading;
 
-  var speed = 100;
-
+  var speed = 25;
+  var v     = Vec2.aquire();
   switch (direction) {
     case PlayerDriver.directions.stop:
       h.set(0, 0);
       break;
     case PlayerDriver.directions.up:
-      h.set(0, -speed);
+      h.add( v.set(0, -speed));
       break;
     case PlayerDriver.directions.down:
-      h.set(0, speed);
+      h.add( v.set(0, speed));
       break;
     case PlayerDriver.directions.left:
-      h.set(-speed, 0);
+      h.add( v.set(-speed, 0));
       break;
     case PlayerDriver.directions.right:
-      h.set(speed, 0);
+      h.add( v.set(speed, 0));
       break;
   }
 
+  h.limit(100);
+
+  Vec2.release(v);
 };
 
 
