@@ -30,7 +30,7 @@ function MainGameActivity(messanger, navigator, inputs, player, maps, screen, ec
 
 MainGameActivity.prototype.onStart = function()
 {
-  this.maps.loadLevel('level1');
+  this.maps.loadLevel('level0');
 };
 
 MainGameActivity.prototype.onResume = function()
