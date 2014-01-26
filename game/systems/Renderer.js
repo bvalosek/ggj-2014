@@ -143,7 +143,9 @@ Renderer.prototype.drawGems = function(dt, time)
 
 Renderer.prototype.drawGem = function(entity, dt, time)
 {
-  var wiggle = Math.sin(5*time/1000) * 2 + 2;
+  var gemSize = entity.spatial.hwidth.x;
+  var mult = gemSize / 4;
+  var wiggle = Math.sin(5*time/1000) * mult + mult;
   this.screen
     .save()
     .vtranslate(entity.position.location)
