@@ -11,6 +11,7 @@ var ColorSpirit   = require('../components/ColorSpirit.js');
 var Color         = require('../../lib/renderer/Color.js');
 var Avatar        = require('../components/Avatar.js');
 var Text          = require('../components/Text.js');
+var colors        = require('../maps/colors.js');
 
 /**
  * @constructor
@@ -262,15 +263,14 @@ Renderer.prototype.drawText = function(entity)
 
 var startSize = new Vec2(25, 25);
 var startStyle = new Style()
-startStyle.stroke = '#fff';
+startStyle.stroke = Color.tohtml(colors.green);
 startStyle.strokeWidth = 5;
 Renderer.prototype.drawFinish = function(entity, dt, time)
 {
   this.screen
     .save()
-    .setAlpha(0.3 + 0.2 *Math.cos(time / 1000))
     .vtranslate(entity.position.location)
-    .drawCircle(entity.spatial.hwidth.x, entity.finish.style)
+    .drawCircle(entity.spatial.hwidth.x, startStyle)
     .restore();
 };
 
