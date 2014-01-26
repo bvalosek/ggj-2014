@@ -11,6 +11,6 @@ module.exports = {
   },
   size: { x: 1000, y:200 },
   startColor: colors.green,
-  gems: [].concat( createGem(u(11),u(2.5),colors.red ) ),
-  walls: [].concat( line(u(15),u(2.5), C, u(2.5), colors.red, '') )
+  gems: [].concat( createGem(u(9),u(2.5),colors.red ) ),
+  walls: [].concat( line(u(12),u(2.5), C, u(2.5), colors.red, '') )
 };
