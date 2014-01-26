@@ -13,15 +13,15 @@ module.exports = {
   size: { x: 1165, y: 880 },
   startColor: colors.yellow,
   gems: [
-  ].concat(createGem(u(2)+3*C,u(1),colors.yellow,'yg1')).
+  ].concat(createGem(u(2)+3*C,u(4),colors.yellow,'yg1')).
   concat(createGem(u(2)+3*C,u(12),colors.green,'gg1')).
   concat(createGem(u(8)+3*C,u(1),colors.blue,'bg1')).
   concat(createGem(u(8)+3*C,u(8),colors.yellow,'yg2')).
   concat(createGem(u(8)+3*C,u(12),colors.purple,'pg2')).
   concat(createGem(u(8)+3*C,u(18),colors.green,'gg2')).
   concat(createGem(u(8)+3*C,u(4),colors.red,'rg1')).
-  concat(createGem(u(15)+3*C,u(1),colors.green,'gg3')).
-  concat(createGem(u(15)+3*C,u(4),colors.yellow,'yg3')).
+  concat(createGem(u(14),u(2.5),colors.green,'gg3')).
+  concat(createGem(u(17),u(2.5),colors.yellow,'yg3')).
   concat(createGem(u(14),u(8),colors.green,'gg4')).
   concat(createGem(u(14),u(12),colors.red,'rg2')).
   concat(createGem(u(14),u(16),colors.purple,'pg3')).
