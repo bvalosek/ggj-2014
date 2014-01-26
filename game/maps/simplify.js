@@ -1,6 +1,6 @@
 var mapCX = 1000;
 var mapCY = 1000;
-var unit = mapCX/30;
+var unit = mapCX/25;
 
 function u(n) { return unit*n; }
 
