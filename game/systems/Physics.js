@@ -107,7 +107,7 @@ function bounceEntity(entity)
 {
   var v      = Vec2.aquire();
   var aVel   = entity.newtonian.velocity;
-  v.assign(aVel).rotate(Math.PI).smult(6);
+  v.assign(aVel).rotate(Math.PI).smult(3);
   entity.newtonian.velocity.assign(v);
   entity.steering.heading.set(0, 0);
   Vec2.release(v);

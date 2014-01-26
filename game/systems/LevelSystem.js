@@ -32,15 +32,16 @@ LevelSystem.prototype.onFinishLevel = function(player, fEntity)
   // constrain movement
   player.newtonian.acceleration
     .assign(dist)
-    .smult(5);
+    .smult(100);
 
   // constrain speed
   player.newtonian.velocity
-    .normalize(dist.magnitude());
+    .normalize(dist.magnitude()*5);
 
 
   if (!finish.timeOut && !finish.finished) {
     finish.timeOut = 1500;
+    this.messanger.trigger(fEntity, 'finish-start');
   }
 
   if (finish.finished) {

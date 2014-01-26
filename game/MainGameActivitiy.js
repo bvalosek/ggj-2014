@@ -9,7 +9,7 @@ var Style      = require('../lib/renderer/Style.js');
  * @param {EcsService} ecs
  * @param {Canvas} screen
  */
-function MainGameActivity(navigator, inputs, player, maps, screen, ecs, sound)
+function MainGameActivity(messanger, navigator, inputs, player, maps, screen, ecs, sound)
 {
   this.paused    = true;
   this.screen    = screen;
@@ -21,6 +21,9 @@ function MainGameActivity(navigator, inputs, player, maps, screen, ecs, sound)
   this.navigator = navigator;
 
   this.fade = 1;
+
+  messanger.listenTo('finish-start', [], function() {
+  }.bind(this));
 
   this.startTime = 0;
 }
