@@ -8,32 +8,32 @@ var createGem = require('./simplify.js').createGem;
 module.exports = {
   levelObjects:{
     playerStart: {x: u(15)+3*C, y: u(10)},
-    levelFinish:{x: u(2), y: u(20)}
+    levelFinish:{x: u(2)+3*C, y: u(20)}
   },
   size: { x: 1165, y: 880 },
   startColor: colors.yellow,
   gems: [
-  ].concat(createGem(u(1),u(1),colors.yellow,'yg1')).
-  concat(createGem(u(1),u(11),colors.green,'gg1')).
-  concat(createGem(u(7),u(1),colors.purple,'pg1')).
-  concat(createGem(u(7),u(7),colors.yellow,'yg2')).
-  concat(createGem(u(7),u(13),colors.purple,'pg2')).
-  concat(createGem(u(7),u(21),colors.green,'gg2')).
-  concat(createGem(u(10),u(5),colors.red,'rg1')).
+  ].concat(createGem(u(2)+3*C,u(1),colors.yellow,'yg1')).
+  concat(createGem(u(2)+3*C,u(12),colors.green,'gg1')).
+  concat(createGem(u(8)+3*C,u(1),colors.blue,'bg1')).
+  concat(createGem(u(8)+3*C,u(8),colors.yellow,'yg2')).
+  concat(createGem(u(8)+3*C,u(12),colors.purple,'pg2')).
+  concat(createGem(u(8)+3*C,u(18),colors.green,'gg2')).
+  concat(createGem(u(8)+3*C,u(4),colors.red,'rg1')).
   concat(createGem(u(15)+3*C,u(1),colors.green,'gg3')).
-  concat(createGem(u(13),u(5),colors.yellow,'yg3')).
-  concat(createGem(u(13),u(7),colors.green,'gg4')).
-  concat(createGem(u(13),u(13),colors.red,'rg2')).
-  concat(createGem(u(13),u(15),colors.purple,'pg3')).
-  concat(createGem(u(13),u(21),colors.blue,'bg1')).
-  concat(createGem(u(18),u(7),colors.blue,'bg2')).
-  concat(createGem(u(18),u(13),colors.purple,'pg4')).
-  concat(createGem(u(18),u(15),colors.yellow,'yg4')).
-  concat(createGem(u(28),u(1),colors.yellow,'yg5')).
-  concat(createGem(u(20),u(7),colors.red,'rg3')).
-  concat(createGem(u(28),u(9),colors.blue,'bg3')).
-  concat(createGem(u(24),u(11),colors.green,'gg4')).
-  concat(createGem(u(28),u(21),colors.purple,'pg5'))
+  concat(createGem(u(15)+3*C,u(4),colors.yellow,'yg3')).
+  concat(createGem(u(14),u(8),colors.green,'gg4')).
+  concat(createGem(u(14),u(12),colors.red,'rg2')).
+  concat(createGem(u(14),u(16),colors.purple,'pg3')).
+  concat(createGem(u(14),u(20),colors.blue,'bg1')).
+  concat(createGem(u(17),u(8),colors.blue,'bg2')).
+  concat(createGem(u(17),u(12),colors.purple,'pg4')).
+  concat(createGem(u(17),u(16),colors.yellow,'yg4')).
+  concat(createGem(u(24)+3*C,u(1),colors.yellow,'yg5')).
+  concat(createGem(u(22),u(8),colors.red,'rg3')).
+  concat(createGem(u(27),u(8),colors.blue,'bg3')).
+  concat(createGem(u(22),u(12),colors.green,'gg4')).
+  concat(createGem(u(27),u(20),colors.purple,'pg5'))
   
   
   ,
