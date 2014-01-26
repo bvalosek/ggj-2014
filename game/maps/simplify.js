@@ -23,6 +23,10 @@ function createGem(posx,posy,col,text)
     	}];
 }
 
+function createFullPoly(cX, cY, w, h, col, C)
+{
+	return	createPoly(cX, cY, w, h, [col,col,col,col], [1,1,1,1], C);
+}
 
 function createPoly(cX, cY, w, h, color, b1, C)
 {
@@ -68,5 +72,6 @@ module.exports = {
 	createGem: createGem,
 	mapCX: mapCX,
 	unit: unit,
-	createPoly: createPoly
+	createPoly: createPoly,
+	createFullPoly: createFullPoly
 }
