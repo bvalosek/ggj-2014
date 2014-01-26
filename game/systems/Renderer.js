@@ -193,7 +193,7 @@ Renderer.prototype.drawGem = function(entity, dt, time)
 
   var alpha = Color.equals(
     entity.colorSpirit.toColor(),
-    player.colorSpirit.toColor()) ? 0.25 : 1;
+    player.colorSpirit.toColor()) ? 0.1 : 1;
 
   if (disabled) {
     wiggle = wiggle*0.5 + -5 + 5 * (1 - entity.colorSpirit.cooldown/1500);
