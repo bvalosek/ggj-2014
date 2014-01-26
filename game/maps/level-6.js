@@ -1,16 +1,21 @@
-var C = 5;
+var C = 10;
 var colors = require('./colors.js');
 
 var u = require('./simplify.js').u;
 var line = require('./simplify.js').line;
 var createGem = require('./simplify.js').createGem;
+// Override U function
+var oldU = u;
+var u = function(n) {
+  return oldU(n)*1.5;
+}
 
 module.exports = {
   levelObjects:{
     playerStart: {x: u(2)+3*C, y: u(15)},
-    levelFinish:{x: u(28), y: u(2)}
+    levelFinish:{x: u(28), y: u(3)}
   },
-  size: { x: 1000, y: 1000 },
+  size: { x: 1860, y: 1440 },
   startColor: colors.green,
   gems: [
   ].concat(createGem(u(1),u(5),colors.blue,'bg1')).
