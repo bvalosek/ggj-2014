@@ -48,5 +48,5 @@ concat( line(u(24),u(8.5),C,u(2.5)+C, colors.yellow, 'y2') ).
 
 concat( line(u(24),u(3)+C/2,C,u(3)+C/2, colors.green, 'g4') ).
 concat( line(u(24),u(20),C,u(4), colors.green, 'g5') ).
-concat( line(u(20)+C,u(16)-C/2,u(4), C, colors.purple, 'p4') )
+concat( line(u(20),u(16)-C/2,u(4)+C, C, colors.purple, 'p4') )
 };

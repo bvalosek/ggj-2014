@@ -8,5 +8,6 @@ module.exports = {
   level6    : require('./level-4.js'),
   level7    : require('./level-3.js'),
   level8    : require('./level-6.js'),
-  level9    : require('./level-7.js')
+  level9    : require('./level-7.js'),
+  level10    : require('./level-done.js')
 }
