@@ -189,6 +189,12 @@ Renderer.prototype.drawGem = function(entity, dt, time)
   var mult = gemSize / 4;
   var wiggle = Math.sin(5*time/1000) * mult + mult;
 
+  var player = this.entities.queryTag('player')[0];
+
+  var alpha = Color.equals(
+    entity.colorSpirit.toColor(),
+    player.colorSpirit.toColor()) ? 0.25 : 1;
+
   if (disabled) {
     wiggle = wiggle*0.5 + -5 + 5 * (1 - entity.colorSpirit.cooldown/1500);
   }
@@ -198,6 +204,7 @@ Renderer.prototype.drawGem = function(entity, dt, time)
   this.screen
     .save()
     .vtranslate(entity.position.location)
+    .setAlpha(alpha)
     .drawCircle(entity.spatial.hwidth.x + wiggle, style)
     .restore();
 };
