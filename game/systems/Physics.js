@@ -78,14 +78,9 @@ Physics.prototype.onGem = function(avatar, gem)
   gem.colorSpirit.setTarget(avatarColor);
 };
 
-var finishColor = { r: 136, g: 233, b: 128 };
 Physics.prototype.onFinish = function(avatar, finish)
 {
- 
-  var avatarColor = avatar.colorSpirit.toColor();
-  
-  finish.finish.style.color = Color.tohtml({r: 0, g: 200, b: 0});
-  this.messanger.trigger(player, LevelSystem.FINISH_LEVEL, finish);
+  this.messanger.trigger(avatar, LevelSystem.FINISH_LEVEL, finish);
 };
 
 Physics.prototype.onWall = function(avatar, wall)

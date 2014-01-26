@@ -9,12 +9,8 @@ var Style      = require('../../lib/renderer/Style.js');
  */
 function Finish()
 {
-  this.isFinishing = false;
-  this.color = colors.gray;
-  this.style = new Style();
-  this.style.color = Color.tohtml(this.color);
-  this.style.stroke = Color.tohtml(this.color);
-  this.style.strokeWidth = 5;
+  this.finished = false;
+  this.timeOut = 0;
 }
 
 
