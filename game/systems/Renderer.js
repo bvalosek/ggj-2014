@@ -81,8 +81,8 @@ Renderer.prototype.cameraTransform = function()
 {
   var player = this.entities.queryTag('player')[0];  
   var inputs = this.inputs;
-  var plusKey = inputs.button_k_107 || inputs.button_k_43;
-  var minusKey = inputs.button_k_109 || inputs.button_k_45;
+  var plusKey = inputs.button_k_107 || inputs.button_k_43 || inputs.button_k_187;
+  var minusKey = inputs.button_k_109 || inputs.button_k_45 || inputs.button_k_189;
   
   // cacl zoom
   var zoom = this.zoom || 1;
