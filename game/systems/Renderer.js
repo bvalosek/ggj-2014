@@ -43,7 +43,7 @@ Renderer.prototype.update = function(dt, time)
   this.cameraTransform();
   this.drawBg();
   this.drawWalls();
-  this.drawGems();
+  this.drawGems(dt, time);
   this.drawLevelObjects();
   this.drawAvatars();
   // this.drawTexts();
@@ -119,21 +119,22 @@ Renderer.prototype.drawWall = function(entity)
     .restore();
 };
 
-Renderer.prototype.drawGems = function()
+Renderer.prototype.drawGems = function(dt, time)
 {
   var entities = this.entities.queryTag('gem');
   for (var n = 0; n < entities.length; n++) {
     var entity = entities[n];
-    this.drawGem(entity);
+    this.drawGem(entity, dt, time);
   }
 };
 
-Renderer.prototype.drawGem = function(entity)
+Renderer.prototype.drawGem = function(entity, dt, time)
 {
+  var wiggle = Math.sin(10*time/1000) * 3 + 2;
   this.screen
     .save()
     .vtranslate(entity.position.location)
-    .drawCircle(entity.spatial.hwidth.x, entity.colorSpirit.style)
+    .drawCircle(entity.spatial.hwidth.x + wiggle, entity.colorSpirit.style)
     .restore();
 };
 
