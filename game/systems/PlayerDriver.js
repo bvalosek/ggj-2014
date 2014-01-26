@@ -1,6 +1,7 @@
 module.exports = PlayerDriver;
 
-var Vec2             = require('tiny-ecs').Vec2;
+var Vec2            = require('tiny-ecs').Vec2;
+var CollisionSystem = require('./CollisionSystem.js');
 
 /**
  * @constructor
@@ -13,11 +14,19 @@ function PlayerDriver(messanger, entities, inputs)
   // dont move after collision
   this.collideFlag = false;
 
-  messanger.listenTo('shake', [], function() {
-    this.collideFlag = true;
-    setTimeout(function() { this.collideFlag = false; }.bind(this), 150);
-  }.bind(this));
+  messanger.listenTo(CollisionSystem.WALL, [],
+    this.pauseInput.bind(this));
+  messanger.listenTo(CollisionSystem.OUT_OF_BOUNDS, [],
+    this.pauseInput.bind(this));
 }
+
+PlayerDriver.prototype.pauseInput = function()
+{
+  this.collideFlag = true;
+  setTimeout(function() {
+    this.collideFlag = false;
+  }.bind(this), 150);
+};
 
 PlayerDriver.prototype.update = function(dt, time)
 {
