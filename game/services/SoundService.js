@@ -5,6 +5,7 @@ var Position         = require('../components/Position.js');
 var colors           = require('../maps/colors.js');
 var Color            = require('../../lib/renderer/Color.js');
 var CollisionSystem  = require('../systems/CollisionSystem.js');
+var LevelSystem      = require('../systems/LevelSystem.js');
 var Avatar           = require('../components/Avatar.js');
 var LevelObject      = require('../components/LevelObject.js');
 
@@ -19,8 +20,18 @@ var soundbank = {
   green_spirit: 'green_spirit.mp3',
   purple_spirit: 'purple_spirit.mp3',
   red_spirit: 'red_spirit.mp3',
-  yellow_spirit: 'yellow_spirit.mp3'
-}
+  yellow_spirit: 'yellow_spirit.mp3',
+  level_complete: 'level complete.mp3',
+  bg1:      'level theme 1.mp3',
+  bg2:      'level theme 2.mp3',
+  bg3:      'level theme 3.mp3'
+};
+
+var bgorder = [
+  'bg1',
+  'bg2',
+  'bg3'
+];
 
 var _loadedSounds = {};
 /**
@@ -34,6 +45,7 @@ function SoundService(container, debug, messanger)
   this.messanger = messanger;
   this.path = 'sound/';
   container.register('sound', this);
+  this.bgindex = null;
 
   //load all sounds
   for (var sound in soundbank) {
@@ -49,6 +61,16 @@ function SoundService(container, debug, messanger)
     CollisionSystem.WALL,
     [Avatar],
     this.onWallCollide.bind(this));
+
+  this.messanger.listenTo(
+    LevelSystem.LOAD_LEVEL, 
+    [],
+    this.onLoadLevel.bind(this));
+
+  this.messanger.listenTo(
+    LevelSystem.FINISH_LEVEL, 
+    [],
+    this.onFinishLevel.bind(this));
 
   this.debug.sounds = [];
 }
@@ -75,14 +97,17 @@ SoundService.prototype.onended = function(){
 
 var playing={};
 
-SoundService.prototype.play = function(sound)
+SoundService.prototype.play = function(sound, endcallback)
 {
   var a,b;
   b=new Date();
   a=sound+b.getTime();
   playing[a] = new Audio(this.path + soundbank[sound]);
   // with this we prevent playing-object from becoming a memory-monster:
-  playing[a].onended=function(){delete playing[a]};
+  playing[a].onended=function(){
+    if(endcallback){ endcallback(playing[a]); }
+    delete playing[a];
+   };
   playing[a].play();
 
   // if(this.doneLoading()){
@@ -93,6 +118,26 @@ SoundService.prototype.play = function(sound)
   //   _loadedSounds[sound].play();
   // }
 };
+
+
+SoundService.prototype.playMusic = function()
+{
+  if(this.bgindex === null){
+    this.bgindex = 0;
+  }else{
+    this.bgindex++;
+  }
+  
+  var song = bgorder[this.bgindex];
+  endcallback = function(sound){console.log(sound)};
+
+  this.play(song, endcallback);
+}
+
+SoundService.prototype.pauseMusic = function(){
+  var song = bgorder[this.bgindex];
+  this.pause(song);
+}
 
 SoundService.prototype.pause = function(sound)
 {
@@ -140,7 +185,24 @@ SoundService.prototype.onWallCollide = function(entity, other)
     this.play('wallbump');
 };
 
+var alreadyFinishing = false;
+SoundService.prototype.onFinishLevel = function()
+{
+  if(!alreadyFinishing){
+    this.pauseMusic();
+    this.play('level_complete',
+      function(sound){
+        alreadyFinishing = false;
+      } 
+    );
+    alreadyFinishing = true;
+  }
+};
 
+SoundService.prototype.onLoadLevel = function()
+{
+  this.playMusic();
+};
 
 
 

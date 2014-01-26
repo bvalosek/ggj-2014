@@ -53,10 +53,12 @@ LevelSystem.prototype.onFinishLevel = function(player, fEntity)
 
 LevelSystem.prototype.loadLevel = function()
 {
-  this.entities.queryTag('player')[0].position.rotation = 0;
+  var player = this.entities.queryTag('player')[0];
+  player.position.rotation = 0;
 
   var key = 'level' + this.currentLevel;
   this.maps.loadLevel(key);
+  this.messanger.trigger(player, LevelSystem.LOAD_LEVEL);
 };
 
 var FILTER = [Finish];
@@ -78,4 +80,5 @@ LevelSystem.prototype.update = function(dt, time)
 };
 
 LevelSystem.FINISH_LEVEL = 'level#finish';
+LevelSystem.LOAD_LEVEL = 'level#load';
 
