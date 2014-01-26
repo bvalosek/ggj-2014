@@ -28,10 +28,10 @@ concat( line(u(2.5),u(14),u(2.5),C,colors.red, 'r2')).
 concat( line(u(5)-C,u(11)+C,C,u(3),colors.blue, 'b1')).
 concat( line(u(5)-C,u(16)-C,C,u(2),colors.purple, 'p1')).
 concat( line(u(10),u(11)+C,C,u(3),colors.purple, 'p2')).
-concat( line(u(13),u(14),u(3)-C,C,colors.green, 'g2')).
+concat( line(u(12),u(14),u(2.25),C,colors.green, 'g2')).
 concat( line(u(14)+C,u(2),C,u(2),colors.purple, 'p3')).
 concat( line(u(14)+C,u(9)-C/2,C,u(5)-C/2,colors.blue, 'b2')).
-concat( line(u(16),u(16)-C,C,u(2),colors.green, 'g3')).
+concat( line(u(14)+C,u(16)-C,C,u(2),colors.green, 'g3')).
 concat( line(u(23),u(14),u(2), C,colors.blue, 'b3')).
 concat( line(u(16)+C/2,u(4),u(2)+C/2, C,colors.green, 'g4')).
 concat( line(u(20)-C,u(7),u(1.5),C,colors.purple, 'p5')).
