@@ -46,11 +46,11 @@ CollisionSystem.prototype.update = function(dt, time)
   // if we're hitting a wall
   var m = this.maps;
   var p = player;
-  var onMap = Vec2.rectIntersect(
-    m.position,
-    m.hwidth,
+  var onMap = Vec2.rectContains(
     p.position.location,
-    p.spatial.hwidth);
+    p.spatial.hwidth,
+    m.position,
+    m.hwidth)
 
   if (!onMap) {
     this.messanger.trigger(player, CollisionSystem.OUT_OF_BOUNDS);
