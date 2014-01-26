@@ -39,6 +39,7 @@ Renderer.prototype.update = function(dt, time)
 {
   this.drawWalls();
   this.drawGems();
+  this.drawLevelObjects();
   this.drawAvatars();
   this.drawTexts();
 };
@@ -132,6 +133,9 @@ Renderer.prototype.drawLevelObjects = function()
 
     if (entity.levelObject.type === LevelObject.types.PLAYER_START)
       this.drawStart(entity);
+
+    if (entity.levelObject.type === LevelObject.types.LEVEL_FINISH)
+      this.drawStart(entity);
   }
 };
 
@@ -149,14 +153,15 @@ Renderer.prototype.drawText = function(entity)
 
 var startSize = new Vec2(25, 25);
 var startStyle = new Style()
-startStyle.stroke = '#fff';
-startStyle.strokeWidth = 2;
+startStyle.stroke = '#333';
+startStyle.strokeWidth = 5;
 Renderer.prototype.drawStart = function(entity)
 {
   this.screen
     .save()
     .vtranslate(entity.position.location)
-    .drawHwRect(startSize, startStyle)
+    //.drawHwRect(startSize, startStyle)
+    .drawCircle(50, startStyle)
     .restore();
 };
 
