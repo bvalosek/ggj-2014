@@ -33,7 +33,7 @@ function PlayerService(entities, container)
   var playerSize = 15;
   player.spatial.hwidth.set(playerSize, playerSize);
   player.newtonian.maxSpeed = 200;
-  player.steering.deceleration = 5;
+  player.steering.deceleration = 10;
 }
 
 
