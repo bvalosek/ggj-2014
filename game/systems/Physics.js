@@ -6,6 +6,7 @@ var Position         = require('../components/Position.js');
 var Newtonian        = require('../components/Newtonian.js');
 var MessangerService = require('../services/MessangerService.js');
 var CollisionSystem  = require('./CollisionSystem.js');
+var LevelSystem      = require('./LevelSystem.js');
 var Avatar           = require('../components/Avatar.js');
 var Color            = require('../../lib/renderer/Color.js');
 var LevelObject      = require('../components/LevelObject.js');
@@ -53,6 +54,11 @@ Physics.prototype.onAvatarCollide = function(entity, other)
     == LevelObject.types.GEM) {
     this.onGem(entity, other);
   }
+
+  if (other.levelObject && other.levelObject.type
+    == LevelObject.types.LEVEL_FINISH) {
+    this.onFinish(entity, other);
+  }
 };
 
 Physics.prototype.onGem = function(avatar, gem)
@@ -70,6 +76,16 @@ Physics.prototype.onGem = function(avatar, gem)
   var avatarColor = avatar.colorSpirit.toColor();
   avatar.colorSpirit.setTarget(gem.colorSpirit.toColor());
   gem.colorSpirit.setTarget(avatarColor);
+};
+
+var finishColor = { r: 136, g: 233, b: 128 };
+Physics.prototype.onFinish = function(avatar, finish)
+{
+ 
+  var avatarColor = avatar.colorSpirit.toColor();
+  
+  finish.finish.style.color = Color.tohtml({r: 0, g: 200, b: 0});
+  this.messanger.trigger(player, LevelSystem.FINISH_LEVEL, finish);
 };
 
 Physics.prototype.onWall = function(avatar, wall)

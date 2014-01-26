@@ -15,5 +15,5 @@ function LevelSystem(entities, messanger)
   this.messanger = messanger;
 }
 
-
+LevelSystem.FINISH_LEVEL = 'level#finish';
 

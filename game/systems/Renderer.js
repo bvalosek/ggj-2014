@@ -231,11 +231,8 @@ Renderer.prototype.drawLevelObjects = function(dt, time)
   for (var n = 0; n < entities.length; n++) {
     var entity = entities[n];
 
-    if (entity.levelObject.type === LevelObject.types.PLAYER_START)
-      this.drawStart(entity, dt, time);
-
     if (entity.levelObject.type === LevelObject.types.LEVEL_FINISH)
-      this.drawStart(entity, dt, time);
+      this.drawFinish(entity, dt, time);
   }
 };
 
@@ -255,14 +252,13 @@ var startSize = new Vec2(25, 25);
 var startStyle = new Style()
 startStyle.stroke = '#fff';
 startStyle.strokeWidth = 5;
-Renderer.prototype.drawStart = function(entity, dt, time)
+Renderer.prototype.drawFinish = function(entity, dt, time)
 {
   this.screen
     .save()
     .setAlpha(0.3 + 0.2 *Math.cos(time / 1000))
     .vtranslate(entity.position.location)
-    //.drawHwRect(startSize, startStyle)
-    .drawCircle(50, startStyle)
+    .drawCircle(entity.spatial.hwidth.x, entity.finish.style)
     .restore();
 };
 

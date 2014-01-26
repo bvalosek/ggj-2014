@@ -7,6 +7,7 @@ var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
 var Avatar        = require('../components/Avatar.js');
 var Text          = require('../components/Text.js');
+var Finish        = require('../components/Finish.js');
 var Vec2          = require('tiny-ecs').Vec2;
 
 var LEVELS = require('../maps/levels.js');
@@ -120,11 +121,16 @@ MapService.prototype.loadLevel = function(levelName)
 
   var levelFinish = this.entities.createEntity()
       .addComponent(Position)
+      .addComponent(Spatial)
       .addComponent(LevelObject)
+      .addComponent(Finish)
       .addTag('world');
 
   levelFinish.position.location.x = level.levelObjects.levelFinish.x;
   levelFinish.position.location.y = level.levelObjects.levelFinish.y;
+  levelFinish.spatial.hwidth.x = 50;
+  levelFinish.spatial.hwidth.y = 50;
+
   levelFinish.levelObject.type = LevelObject.types.LEVEL_FINISH;
 };
 
