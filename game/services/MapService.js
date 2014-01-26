@@ -20,8 +20,8 @@ function MapService(container, entities)
   this.entities = entities;
   container.register('maps', this);
   this.size = new Vec2();
-  this.position = this.size.copy().smult(0.5);
-  this.hwidth = this.position.copy();
+  this.position = new Vec2();
+  this.hwidth = new Vec2();
 }
 
 /**
@@ -35,6 +35,8 @@ MapService.prototype.loadLevel = function(levelName)
 
   // dat dimensh
   this.size.assign(level.size);
+  this.position.assign(this.size).smult(0.5);
+  this.hwidth.assign(this.position);
 
   // dat colo tho
   player.colorSpirit.setBoth(level.startColor);

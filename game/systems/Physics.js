@@ -28,9 +28,21 @@ function Physics(messanger, entities)
     CollisionSystem.COINCIDENT,
     [Avatar],
     this.onAvatarCollide.bind(this));
+
+  this.messanger.listenTo(
+    CollisionSystem.OUT_OF_BOUNDS,
+    [Avatar],
+    this.onAvatarOutOfBounds.bind(this));
 }
 
 var FILTER = [Position, Newtonian];
+
+Physics.prototype.onAvatarOutOfBounds = function(player)
+{
+  bounceEntity(player);
+};
+
+
 
 Physics.prototype.onAvatarCollide = function(entity, other)
 {
@@ -55,18 +67,23 @@ Physics.prototype.onGem = function(avatar, gem)
 
 Physics.prototype.onWall = function(avatar, wall)
 {
-  var v      = Vec2.aquire();
-  var aVel   = avatar.newtonian.velocity;
   var aColor = avatar.colorSpirit.toColor();
   var wColor = wall.colorSpirit.toColor();
 
   if (!Color.equals(aColor, wColor)) {
-    v.assign(aVel).rotate(Math.PI).smult(4.05);
-    avatar.newtonian.velocity.assign(v);
-    avatar.steering.heading.set(0, 0);
+    bounceEntity(avatar);
   }
-  Vec2.release(v);
 };
+
+function bounceEntity(entity)
+{
+  var v      = Vec2.aquire();
+  var aVel   = entity.newtonian.velocity;
+  v.assign(aVel).rotate(Math.PI).smult(4.05);
+  entity.newtonian.velocity.assign(v);
+  entity.steering.heading.set(0, 0);
+  Vec2.release(v);
+}
 
 Physics.prototype.update = function(dt, time)
 {
