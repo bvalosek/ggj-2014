@@ -104,11 +104,11 @@ TitleActivity.prototype.drawBg = function(dt)
 
 var textStyle = new Style();
 textStyle.color = '#fff';
-textStyle.font  = '75px Conv_HumanoidStraight';
+textStyle.font  = '150px Conv_HumanoidStraight';
 textStyle.textAlign = 'right';
 textStyle.textBaseline = Style.MIDDLE;
 var title = 'Relativity';
-var KARRAY = [0, 40, 25, 45, 30, 30, 45, 25, 40, 40];
+var KARRAY = [0, 80, 50, 90, 60, 60, 90, 50, 80, 80];
 //var KERN = new Vec2(35, 0);
 
 TitleActivity.prototype.drawText = function(entity)
@@ -131,12 +131,12 @@ TitleActivity.prototype.drawText = function(entity)
 
 var aboutText = new Style();
 aboutText.color = '#fff';
-aboutText.font  = 'italic 25px monospace';
+aboutText.font  = '50px Conv_ArcadeClassic';
 aboutText.textAlign = 'left';
 
 var inc = new Style();
 inc.color = '#fff';
-inc.font  = '25px Conv_HumanoidStraight';
+inc.font  = '25px Conv_ArcadeClassic';
 inc.textAlign = 'right';
 TitleActivity.prototype.drawAbout = function(entity)
 {
@@ -153,7 +153,7 @@ TitleActivity.prototype.drawAbout = function(entity)
   this.screen
     .save()
     .translate(screenSize.x - 25, screenSize.y - screenSize.y / 6)
-    .drawText("Sapphire on Sails", inc)
+    .drawText("A Sapphire on Sails Studios Production", inc) 
     .restore();
 
 }
