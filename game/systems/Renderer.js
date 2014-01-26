@@ -37,11 +37,24 @@ var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
  */
 Renderer.prototype.update = function(dt, time)
 {
+  this.screen.save();
+  this.cameraTransform();
   this.drawWalls();
   this.drawGems();
   this.drawLevelObjects();
   this.drawAvatars();
   this.drawTexts();
+  this.screen.restore();
+};
+
+var ct = new Vec2();
+Renderer.prototype.cameraTransform = function()
+{
+  var player = this.entities.queryTag('player')[0];
+  ct.assign(this.screen.getSize()).smult(0.5)
+  this.screen.vtranslate(ct);
+  ct.assign(player.position.location).smult(-1);
+  this.screen.vtranslate(ct);
 };
 
 Renderer.prototype.drawTexts = function()
