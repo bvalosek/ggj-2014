@@ -18,7 +18,7 @@ module.exports = {
   size: { x: 1.5*1080, y: 1.5*960 },
   startColor: colors.yellow,
   gems: [
-  ].concat(createGem(u(2)-7*C,u(1),colors.green,'1')).
+  ].concat(createGem(u(2)-7*C,u(2),colors.green,'1')).
   concat(createGem(u(1),u(13),colors.purple,'2')).
   concat(createGem(u(2),u(15),colors.yellow,'3')).
   concat(createGem(u(2)-7*C,u(20),colors.green,'4')).
@@ -39,22 +39,22 @@ module.exports = {
   concat(createGem(u(14)-6*C,u(10),colors.purple,'19')).
   concat(createGem(u(14)-6*C,u(14),colors.blue,'21')).
   concat(createGem(u(16),u(18),colors.yellow,'22')).
-  concat(createGem(u(15),u(23),colors.purple,'23')).
+  concat(createGem(u(15),u(22),colors.purple,'23')).
   concat(createGem(u(16),u(7),colors.purple,'24')).
   concat(createGem(u(17)+4*C,u(7),colors.red,'25')).
   concat(createGem(u(19)-4*C,u(7),colors.yellow,'26')).
   concat(createGem(u(20),u(7),colors.blue,'27')).
   concat(createGem(u(14),u(18),colors.green,'28')).
-  concat(createGem(u(22),u(1),colors.red,'29')).
-  concat(createGem(u(20),u(1),colors.blue,'30')).
+  concat(createGem(u(22),u(2),colors.red,'29')).
+  concat(createGem(u(20),u(2),colors.blue,'30')).
   concat(createGem(u(21),u(18),colors.red,'31')).
-  concat(createGem(u(26)+3*C,u(1),colors.yellow,'32')).
+  concat(createGem(u(25.5),u(2),colors.yellow,'32')).
   concat(createGem(u(24)+3*C,u(7),colors.yellow,'33')).
   concat(createGem(u(24)+3*C,u(9),colors.blue,'34')).
-  concat(createGem(u(26)+3*C,u(14),colors.yellow,'35')).
-  concat(createGem(u(26)+3*C,u(18),colors.blue,'36')).
-  concat(createGem(u(24)+3*C,u(23),colors.green,'37')).
-  concat(createGem(u(26)+3*C,u(23),colors.yellow,'38'))
+  concat(createGem(u(25.5)+3*C,u(14),colors.yellow,'35')).
+  concat(createGem(u(25.5)+3*C,u(18),colors.blue,'36')).
+  concat(createGem(u(21),u(22),colors.yellow,'37')).
+  concat(createGem(u(24)+3*C,u(22),colors.green,'38'))
   ,
   walls: [
 ].concat(line(u(3),u(2),C,u(2),colors.red,'r1')).
