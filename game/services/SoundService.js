@@ -53,7 +53,7 @@ SoundService.prototype.load = function(sound){
     _loadedSounds[sound] = document.createElement("audio");
     _loadedSounds[sound].src = this.path + soundbank[sound];
     _loadedSounds[sound].autoload = 'auto';
-    _loadedSounds[sound].loop = 'true';
+    //_loadedSounds[sound].loop = 'true';
     _loadedSounds[sound].oncanplaythrough = this.playthrough.bind(this);
   }
   this.debug._loadedSounds = _loadedSounds;
