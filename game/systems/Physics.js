@@ -42,7 +42,9 @@ Physics.prototype.onAvatarCollide = function(entity, other)
 
 Physics.prototype.onGem = function(avatar, gem)
 {
+  var avatarColor = avatar.colorSpirit.toColor();
   avatar.colorSpirit.setTarget(gem.colorSpirit.toColor());
+  gem.colorSpirit.setTarget(avatarColor);
 };
 
 Physics.prototype.onWall = function(avatar, wall)
