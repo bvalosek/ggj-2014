@@ -40,11 +40,11 @@ module.exports = {
     color : colors.green
   },
   {
-    position : {x: u(10), y: u(2)},
+    position : {x: u(9), y: u(3)},
     color : colors.red
   },
   {
-    position : {x: u(8), y: u(6)},
+    position : {x: u(9), y: u(6)},
     color : colors.blue
   },
   {
