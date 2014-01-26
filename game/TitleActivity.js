@@ -7,6 +7,7 @@ var Color             = require('../lib/renderer/Color.js');
 var MainGameActivity  = require('./MainGameActivitiy.js');
 var colors            = require('./maps/colors.js');
 
+startingKeysPressed = 0;
 /**
  * @constructor
  * @param {EcsService} ecs
@@ -30,7 +31,7 @@ function TitleActivity(debug, navigator, screen, sound, inputs)
   this.currentColor = colors.black;
   this.colorIndex = 1;
   this.blackTime = 5000;
-
+  startingKeysPressed = this.inputs.keysPressed;
 }
 
 TitleActivity.prototype.onStart = function()
@@ -42,7 +43,7 @@ TitleActivity.prototype.onStart = function()
 TitleActivity.prototype.onResume = function()
 {
   this.paused = false;
-
+  startingKeysPressed = this.inputs.keysPressed;
   this.sound.play('synth');
 };
 
@@ -61,7 +62,8 @@ TitleActivity.prototype.update = function(dt, time)
 {
   if (this.paused) return;
 
-  if (this.inputs.button_k_87){
+  if (this.inputs.keysPressed > startingKeysPressed){
+    this.inputs.button_k_27 = 0; //HACKS
     this.navigator.start(MainGameActivity);
   }
   this.drawBg(dt);

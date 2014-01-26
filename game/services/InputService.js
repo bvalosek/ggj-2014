@@ -19,6 +19,8 @@ function InputService(container)
   // neutral, -1, 1 range). Each input has a tag that is generated
   this.inputs = {};
 
+  this.inputs.keysPressed = 0;
+
   this.monitorKeys();
   this.monitorMouse();
 
@@ -62,6 +64,7 @@ InputService.prototype._keyDown = function(e)
 {
   e.preventDefault();
   this.inputs['button_k_' + e.keyCode] = 1;
+  this.inputs.keysPressed++;
 };
 
 InputService.prototype._keyUp = function(e)
