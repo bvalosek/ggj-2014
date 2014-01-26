@@ -5,10 +5,18 @@ var Vec2             = require('tiny-ecs').Vec2;
 /**
  * @constructor
  */
-function PlayerDriver(entities, inputs)
+function PlayerDriver(messanger, entities, inputs)
 {
   this.entities = entities;
   this.inputs = inputs;
+
+  // dont move after collision
+  this.collideFlag = false;
+
+  messanger.listenTo('shake', [], function() {
+    this.collideFlag = true;
+    setTimeout(function() { this.collideFlag = false; }.bind(this), 150);
+  }.bind(this));
 }
 
 PlayerDriver.prototype.update = function(dt, time)
@@ -28,8 +36,10 @@ PlayerDriver.prototype.update = function(dt, time)
     this.movePlayer(PlayerDriver.directions.right);
   if (left)
     this.movePlayer(PlayerDriver.directions.left);
-  if(!up && !down && !left && !right)
+  if(!up && !down && !left && !right) {
     this.movePlayer(PlayerDriver.directions.stop);
+    this.collideFlag = false;
+  }
 };
 
 PlayerDriver.directions = {
@@ -42,6 +52,8 @@ PlayerDriver.directions = {
 
 PlayerDriver.prototype.movePlayer = function(direction)
 {
+  if (this.collideFlag) return;
+
   var player = this.entities.queryTag('player')[0];
   var v = player.newtonian.velocity
   var h = player.steering.heading;
