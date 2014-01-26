@@ -30,6 +30,7 @@ function LevelSystem(maps, entities, messanger)
 LevelSystem.prototype.onGemCollect = function()
 {
   this.totalGemCount++;
+  this.maps.totalGemCount = this.totalGemCount;
 };
 
 var dist = new Vec2();

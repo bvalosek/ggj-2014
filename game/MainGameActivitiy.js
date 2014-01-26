@@ -56,7 +56,7 @@ MainGameActivity.prototype.drawHud = function()
     .restore()
     .save()
     .translate(this.screen.getSize().x - 75, 20)
-    .drawText('#', hudStyle)
+    .drawText(this.maps.totalGemCount, hudStyle)
     .restore()
 
 };
