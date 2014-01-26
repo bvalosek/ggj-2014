@@ -78,6 +78,9 @@ Physics.prototype.onGem = function(avatar, gem)
   this.lastGem = gem;
 
   if (wasDisabled) return;
+
+  this.messanger.trigger(gem, LevelSystem.GEM_COLLECT);
+
   var avatarColor = avatar.colorSpirit.toColor();
   avatar.colorSpirit.setTarget(gem.colorSpirit.toColor());
   gem.colorSpirit.setTarget(avatarColor);

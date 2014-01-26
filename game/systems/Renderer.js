@@ -118,13 +118,13 @@ Renderer.prototype.cameraTransform = function()
   var zoom = this.zoom || 1;
   var per = player.newtonian.velocity.magnitude() / player.newtonian.maxSpeed;
 
-  if(this.isFinishing())
-    zoom = Math.min(20, Math.pow(zoom, 1.15));
-  else
-    zoom = 1 - this.fade/3;
-
   // do zoom
   if(per > 0.001){
+    if(this.isFinishing())
+      zoom = Math.min(20, Math.pow(zoom, 1.15));
+    else
+      zoom = 1 - this.fade/3;
+
     var p = 0.995;
     var newZoom = 1.2 - 0.2 * per;
     zoom = zoom * p + (1-p) * newZoom;

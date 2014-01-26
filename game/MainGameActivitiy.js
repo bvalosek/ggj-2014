@@ -53,7 +53,12 @@ MainGameActivity.prototype.drawHud = function()
     .save()
     .translate(20, 20)
     .drawText('LEVEL ' + (this.maps.levelNumber + 1), hudStyle)
-    .restore();
+    .restore()
+    .save()
+    .translate(this.screen.getSize().x - 75, 20)
+    .drawText('#', hudStyle)
+    .restore()
+
 };
 
 /**
