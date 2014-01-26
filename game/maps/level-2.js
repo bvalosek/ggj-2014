@@ -12,19 +12,18 @@ var createPoly = require('./simplify.js').createPoly;
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: u(3), y: u(3)},
+    playerStart: {x: u(1.5), y: u(23)},
     levelFinish:{x: u(14), y: u(9)}
   },
   size: { x: mapCX, y: mapCY },
   startColor: colors.red,
   gems: [].
 concat(createGem(u(7), u(7), colors.red, '')).
-concat(createGem(u(7), u(11), colors.red, '')).
-concat(createGem(u(9.5), u(7), colors.blue, '')).
+concat(createGem(u(9.5), u(7), colors.green, '')).
 concat(createGem(u(9.5), u(11), colors.blue, '')).
 concat(createGem(u(14), u(15), colors.green, '')).
-concat(createGem(u(4), u(17), colors.green, '')).
-concat(createGem(u(2), u(22), colors.blue, '')).
+concat(createGem(u(4.5), u(24), colors.green, '')).
+concat(createGem(u(1), u(20), colors.blue, '')).
 concat(createGem(u(23), u(16), colors.blue, ''))
  ,
   walls: [].
