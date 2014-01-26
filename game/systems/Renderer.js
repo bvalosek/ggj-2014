@@ -17,11 +17,12 @@ var Text          = require('../components/Text.js');
  * @param {EntityManager} entities
  * @param {Canvas} screen
  */
-function Renderer(screen, entities, maps)
+function Renderer(screen, entities, maps, inputs)
 {
   this.screen     = screen;
   this.entities   = entities;
   this.maps       = maps;
+  this.inputs     = inputs;
   global.renderer = this;
 }
 
@@ -78,16 +79,27 @@ Renderer.prototype.drawBg = function()
 var ct = new Vec2();
 Renderer.prototype.cameraTransform = function()
 {
-  var player = this.entities.queryTag('player')[0];
-
+  var player = this.entities.queryTag('player')[0];  
+  var inputs = this.inputs;
+  var plusKey = inputs.button_k_107 || inputs.button_k_43;
+  var minusKey = inputs.button_k_109 || inputs.button_k_45;
+  
   // cacl zoom
   var zoom = this.zoom || 1;
   var per = player.newtonian.velocity.magnitude() / player.newtonian.maxSpeed;
 
   // do zoom
-  var p = 0.995;
-  var newZoom = 1.2 - 0.2 * per;
-  zoom = zoom * p + (1-p) * newZoom;
+  if(per > 0.001){
+  	var p = 0.995;
+  	var newZoom = 1.2 - 0.2 * per;
+  	zoom = zoom * p + (1-p) * newZoom;
+  }
+  if(plusKey){
+	zoom += (zoom+0.01 > 1) ? 0 : 0.01;
+  }
+  if(minusKey){
+	zoom -= (zoom-0.01 < 0.15) ? 0 : 0.01;
+  }
   this.screen.scale(zoom, zoom);
   this.zoom = zoom;
 
