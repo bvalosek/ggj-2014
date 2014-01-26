@@ -13,7 +13,45 @@ module.exports = {
   size: { x: 1080, y: 960 },
   startColor: colors.yellow,
   gems: [
-  ]
+  ].concat(createGem(u(1),u(1),colors.green,'1')).
+  concat(createGem(u(1),u(13),colors.purple,'2')).
+  concat(createGem(u(1),u(15),colors.red,'3')).
+  concat(createGem(u(1),u(23),colors.green,'4')).
+  concat(createGem(u(4),u(7),colors.red,'5')).
+  concat(createGem(u(4),u(23),colors.blue,'6')).
+  concat(createGem(u(7),u(23),colors.yellow,'7')).
+  concat(createGem(u(9),u(1),colors.red,'7')).
+  concat(createGem(u(11),u(1),colors.purple,'7')).
+  concat(createGem(u(7),u(5),colors.blue,'7')).
+  concat(createGem(u(7),u(7),colors.green,'7')).
+  concat(createGem(u(14),u(5),colors.purple,'7')).
+  concat(createGem(u(14),u(7),colors.red,'7')).
+  concat(createGem(u(7),u(9),colors.blue,'7')).
+  concat(createGem(u(7),u(11),colors.yellow,'7')).
+  concat(createGem(u(7),u(15),colors.green,'7')).
+  concat(createGem(u(14),u(1),colors.yellow,'7')).
+  concat(createGem(u(16),u(1),colors.purple,'7')).
+  concat(createGem(u(14),u(11),colors.purple,'7')).
+  concat(createGem(u(13),u(15),colors.blue,'7')).
+  concat(createGem(u(14),u(15),colors.red,'7')).
+  concat(createGem(u(17),u(19),colors.green,'7')).
+  concat(createGem(u(13),u(23),colors.purple,'7')).
+  concat(createGem(u(16),u(7),colors.purple,'7')).
+  concat(createGem(u(17)+3*C,u(7),colors.red,'7')).
+  concat(createGem(u(18)+6*C,u(7),colors.yellow,'7')).
+  concat(createGem(u(20),u(7),colors.blue,'7')).
+  concat(createGem(u(17),u(19),colors.green,'7')).
+  concat(createGem(u(18)+6*C,u(1),colors.red,'7')).
+  concat(createGem(u(20),u(1),colors.blue,'7')).
+  concat(createGem(u(23),u(19),colors.red,'7')).
+  concat(createGem(u(26)+3*C,u(1),colors.yellow,'7')).
+  concat(createGem(u(26)+3*C,u(7),colors.yellow,'7')).
+  concat(createGem(u(26)+3*C,u(9),colors.blue,'7')).
+  concat(createGem(u(26)+3*C,u(17),colors.yellow,'7')).
+  concat(createGem(u(26)+3*C,u(19),colors.blue,'7')).
+  concat(createGem(u(24)+3*C,u(23),colors.green,'7')).
+  concat(createGem(u(26)+3*C,u(23),colors.yellow,'7'))
+
   
   
   
