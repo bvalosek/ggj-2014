@@ -31,8 +31,8 @@ module.exports = {
   concat(createGem(u(8)-2*C,u(8),colors.red,'rg3')).
   concat(createGem(u(8)-2*C,u(10),colors.green,'gg2')).
   concat(createGem(u(15),u(3),colors.red,'bg5')).
-  concat(createGem(u(13)-3*C,u(8),colors.yellow,'yg2')).
-  concat(createGem(u(13)-3*C,u(10),colors.green,'gg3')).
+  concat(createGem(u(13)-3*C,u(8),colors.green,'yg2')).
+  concat(createGem(u(13)-3*C,u(10),colors.yellow,'gg3')).
   concat(createGem(u(13)-3*C,u(15),colors.blue,'bg6')).
   concat(createGem(u(17),u(15),colors.purple,'pg3')).
   concat(createGem(u(19),u(3),colors.blue,'rg4')).
