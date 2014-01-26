@@ -15,23 +15,22 @@ module.exports = {
   size: { x: mapCX, y: mapCY },
   startColor: colors.yellow,
   gems: [].
-concat(createGem( u(3),u(11), colors.red)).
-concat(createGem( u(2),u(16), colors.purple)).
-concat(createGem( u(18),u(16)-C, colors.green)).
-concat(createGem( u(16),u(1), colors.red)).
-concat(createGem( u(12)+C,u(1), colors.blue))
+concat(createGem( u(2),u(11), colors.red)).
+concat(createGem( u(1.5),u(16.5), colors.purple)).
+concat(createGem( u(19),u(17), colors.green)).
+concat(createGem( u(17),u(1), colors.red)).
+concat(createGem( u(11),u(1), colors.blue))
 ,
   walls: [].
-concat(line(u(2),u(4),C,u(4),colors.green, 'g1')).
-concat( line(u(6),u(8),u(4)+C,C,colors.red, 'r1')).
+concat(line(u(3),u(4),C,u(4),colors.green, 'g1')).
+concat( line(u(6.5),u(8),u(4)-C,C,colors.red, 'r1')).
 concat( line(u(2.5),u(14),u(2.5),C,colors.red, 'r2')).
 concat( line(u(5)-C,u(11)+C,C,u(3),colors.blue, 'b1')).
 concat( line(u(5)-C,u(16)-C,C,u(2),colors.purple, 'p1')).
 concat( line(u(10),u(11)+C,C,u(3),colors.purple, 'p2')).
-concat( line(u(12)+C,u(14),u(2),C,colors.green, 'g2')).
+concat( line(u(13),u(14),u(3)-C,C,colors.green, 'g2')).
 concat( line(u(14)+C,u(2),C,u(2),colors.purple, 'p3')).
-concat( line(u(14)+C,u(9)+C/2,C,u(5)+C/2,colors.blue, 'b2')).
-concat( line(u(15),u(14),u(1),C,colors.red, 'r3')).
+concat( line(u(14)+C,u(9)-C/2,C,u(5)-C/2,colors.blue, 'b2')).
 concat( line(u(16),u(16)-C,C,u(2),colors.green, 'g3')).
 concat( line(u(23),u(14),u(2), C,colors.blue, 'b3')).
 concat( line(u(16)+C/2,u(4),u(2)+C/2, C,colors.green, 'g4')).
