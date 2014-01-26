@@ -17,11 +17,11 @@ concat( createGem(u(20),u(6),colors.yellow ) ).
 concat( createGem(u(20),u(12),colors.green ) ).
 concat( createGem(u(20),u(20),colors.blue ) ).
 concat( createGem(u(4),u(20),colors.purple ) ).
-concat( createGem(u(12),u(22),colors.red ) ).
-concat( createGem(u(12),u(18),colors.purple ) ).
+concat( createGem(u(12),u(22),colors.purple ) ).
+concat( createGem(u(12),u(18),colors.red ) ).
 concat( createGem(u(12),u(4),colors.red ) ).
-concat( createGem(u(10),u(12),colors.green ) ).
-concat( createGem(u(14),u(12),colors.yellow ) ).
+concat( createGem(u(10),u(12),colors.yellow ) ).
+concat( createGem(u(14),u(12),colors.green ) ).
 concat( createGem(u(4),u(10),colors.purple ) ).
 concat( createGem(u(4),u(14),colors.green ) )
 ,
