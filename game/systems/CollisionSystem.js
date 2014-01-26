@@ -9,10 +9,11 @@ var MessangerService = require('../services/MessangerService.js');
  * @constructor
  * @param {MessangerService} messanger
  */
-function CollisionSystem(messanger, entities)
+function CollisionSystem(maps, messanger, entities)
 {
-  this.entities = entities;
+  this.entities  = entities;
   this.messanger = messanger;
+  this.maps      = maps;
 }
 
 var FILTER = [Position, Spatial];
@@ -38,5 +39,19 @@ CollisionSystem.prototype.update = function(dt, time)
     if (coincident)
       this.messanger.trigger(player, CollisionSystem.COINCIDENT, entity);
   }
+
+  // if we're hitting a wall
+  var m = this.maps;
+  var p = player;
+  var onMap = Vec2.rectIntersect(
+    m.position,
+    m.hwidth,
+    p.position.location,
+    p.spatial.hwidth);
+
+  if (!onMap) {
+      // this.messanger.trigger(player, CollisionSystem.COINCIDENT, null);
+  }
+
 };
 

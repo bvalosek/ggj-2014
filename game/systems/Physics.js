@@ -34,7 +34,7 @@ var FILTER = [Position, Newtonian];
 
 Physics.prototype.onAvatarCollide = function(entity, other)
 {
-  if (other.hasTag('wall'))
+  if (!other || other.hasTag('wall'))
     this.onWall(entity, other);
 
   if (other.levelObject && other.levelObject.type

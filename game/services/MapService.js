@@ -20,6 +20,8 @@ function MapService(container, entities)
   this.entities = entities;
   container.register('maps', this);
   this.size = new Vec2();
+  this.position = this.size.copy().smult(0.5);
+  this.hwidth = this.position.copy();
 }
 
 /**
