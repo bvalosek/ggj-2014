@@ -24,6 +24,8 @@ function MapService(container, entities)
   this.position = new Vec2();
   this.hwidth = new Vec2();
 
+  this.totalGemCount = 0;
+
   this.levelKey = '';
 
   global.loadLevel = this.loadLevel.bind(this);
