@@ -7,8 +7,8 @@ var createGem = require('./simplify.js').createGem;
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: C + 100, y: 50 + C},
-    levelFinish:{x: 500, y: 500}
+    playerStart: {x: u(15)+3*C, y: u(10)},
+    levelFinish:{x: u(2), y: u(20)}
   },
   size: { x: 1000, y: 1000 },
   gems: [
