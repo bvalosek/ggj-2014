@@ -71,7 +71,7 @@ module.exports = {
     color : colors.purple
   },
   {
-    position : {x: u(24)+2*C, y: u(5)},
+    position : {x: u(27)+2*C, y: u(6)},
     color : colors.red
   },
   {
