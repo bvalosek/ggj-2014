@@ -33,6 +33,7 @@ module.exports = {
     levelFinish:{x: (3*(mapCX/4)), y: (mapCY/3)}
   },
   size: { x: mapCX, y: mapCY },
+  startColor: colors.green,
   gems: [
     //GEM 1
     {

@@ -29,8 +29,13 @@ MapService.prototype.loadLevel = function(levelName)
 {
   var level = LEVELS[levelName];
 
+  var player = this.entities.queryTag('player')[0];
+
   // dat dimensh
   this.size.assign(level.size);
+
+  // dat colo tho
+  player.colorSpirit.setBoth(level.startColor);
 
   //whaaals
   for (var i = 0; i < level.walls.length; i++) {
