@@ -29,8 +29,6 @@ function Renderer(messanger, screen, entities, maps, inputs)
 
   messanger.listenTo(CollisionSystem.WALL, [], this.onShake.bind(this));
   messanger.listenTo('shake', [], this.onShake.bind(this));
-
-  this.shake = 30;
 }
 
 var COLOR_FILTER = [Position, Spatial, ColorSpirit];
@@ -129,7 +127,7 @@ Renderer.prototype.cameraTransform = function()
 
 Renderer.prototype.onShake = function()
 {
-  this.shake = 30;
+  this.shake = 40;
 };
 
 Renderer.prototype.drawTexts = function()
