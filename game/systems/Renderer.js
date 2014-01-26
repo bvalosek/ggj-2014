@@ -8,6 +8,7 @@ var Position      = require('../components/Position.js');
 var Spatial       = require('../components/Spatial.js');
 var LevelObject   = require('../components/LevelObject.js');
 var ColorSpirit   = require('../components/ColorSpirit.js');
+var Color         = require('../../lib/renderer/Color.js');
 var Avatar        = require('../components/Avatar.js');
 var Text          = require('../components/Text.js');
 
@@ -105,8 +106,20 @@ Renderer.prototype.drawTexts = function()
 Renderer.prototype.drawWalls = function()
 {
   var entities = this.entities.queryTag('wall');
+  var pColor = this.entities.queryTag('player')[0].colorSpirit.toColor();
+
   for (var n = 0; n < entities.length; n++) {
-    this.drawWall(entities[n]);
+    var entity = entities[n];
+    var wColor = entity.colorSpirit.toColor();
+    if (Color.equals(pColor, wColor))
+      this.drawWall(entities[n]);
+  }
+
+  for (var n = 0; n < entities.length; n++) {
+    var entity = entities[n];
+    var wColor = entity.colorSpirit.toColor();
+    if (!Color.equals(pColor, wColor))
+      this.drawWall(entities[n]);
   }
 };
 
@@ -177,7 +190,7 @@ Renderer.prototype.drawAvatar = function(entity)
       // 200, 5, 150, 20, 170, 80]
       [ {x:-shipsize, y:shipsize}, {x:shipsize,y:0}, {x:-shipsize,y:-shipsize}]
       , playerStyle)
-    
+
     //.vtranslate(pos)
     //.drawHwRect(h, playerStyle)
     .restore();
