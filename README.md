@@ -29,6 +29,8 @@ orbs the fewest number of times.
 
 ## Overview
 
+The game is entirely open source: [Github](https://github.com/djanx-inc/ggj-2014)
+
 ### The Stack
 
 * **Javascript**. ES5 Javascript for the game's code base.
