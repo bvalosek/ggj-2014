@@ -61,7 +61,7 @@ Physics.prototype.onWall = function(avatar, wall)
   var wColor = wall.colorSpirit.toColor();
 
   if (!Color.equals(aColor, wColor)) {
-    v.set(2,2).assign(aVel).rotate(Math.PI).smult(4.05);
+    v.assign(aVel).rotate(Math.PI).smult(4.05);
     avatar.newtonian.velocity.assign(v);
     avatar.steering.heading.set(0, 0);
   }
