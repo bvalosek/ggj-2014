@@ -7,6 +7,7 @@ var ColorSpirit   = require('../components/ColorSpirit.js');
 var LevelObject   = require('../components/LevelObject.js');
 var Avatar        = require('../components/Avatar.js');
 var Text          = require('../components/Text.js');
+var Vec2          = require('tiny-ecs').Vec2;
 
 var LEVELS = require('../maps/levels.js');
 
@@ -18,6 +19,7 @@ function MapService(container, entities)
 {
   this.entities = entities;
   container.register('maps', this);
+  this.size = new Vec2();
 }
 
 /**
@@ -26,6 +28,8 @@ function MapService(container, entities)
 MapService.prototype.loadLevel = function(levelName)
 {
   var level = LEVELS[levelName];
+
+  this.size.assign(level.size);
 
   //whaaals
   for (var i = 0; i < level.walls.length; i++) {

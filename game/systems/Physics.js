@@ -21,6 +21,9 @@ function Physics(messanger, entities)
   this.entities = entities;
   this.messanger = messanger;
 
+  this.lastGem = null;
+  this.collidingGem = false;
+
   this.messanger.listenTo(
     CollisionSystem.COINCIDENT,
     [Avatar],
@@ -42,6 +45,9 @@ Physics.prototype.onAvatarCollide = function(entity, other)
 
 Physics.prototype.onGem = function(avatar, gem)
 {
+  this.collidingGem = true;
+  if (gem === this.lastGem) return;
+  this.lastGem = gem;
   var avatarColor = avatar.colorSpirit.toColor();
   avatar.colorSpirit.setTarget(gem.colorSpirit.toColor());
   gem.colorSpirit.setTarget(avatarColor);
@@ -66,6 +72,10 @@ Physics.prototype.update = function(dt, time)
 {
   var entities = this.entities.queryComponents(FILTER);
 
+  if (!this.collidingGem) {
+    this.lastGem = null;
+  }
+
   var t = dt/1000;
 
   for (var n = 0; n < entities.length; n++) {
@@ -83,6 +93,8 @@ Physics.prototype.update = function(dt, time)
 
     v.limit(maxV);
   }
+
+  this.collidingGem = false;
 };
 
 
