@@ -77,19 +77,6 @@ MainGameActivity.prototype.update = function(dt, time)
     this.navigator.finish(this);
   }
 
-  if(this.inputs.button_k_49)
-    this.player.colorSpirit.setBoth(colors.red);
-  if(this.inputs.button_k_50)
-    this.player.colorSpirit.setBoth(colors.yellow);
-  if(this.inputs.button_k_51)
-    this.player.colorSpirit.setBoth(colors.green);
-  if(this.inputs.button_k_52)
-    this.player.colorSpirit.setBoth(colors.blue);
-  if(this.inputs.button_k_53)
-    this.player.colorSpirit.setBoth(colors.purple);
-  if(this.inputs.button_k_54)
-    this.player.colorSpirit.setBoth(colors.gray);
-
   this.ecs.update(dt, time);
   this.drawHud();
   this.drawFade();

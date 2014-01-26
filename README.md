@@ -31,6 +31,9 @@ orbs the fewest number of times.
 
 The game is entirely open source: [Github](https://github.com/djanx-inc/ggj-2014)
 
+The music is on
+[Soundcloud](https://soundcloud.com/derek-ensign/sets/relativity-game-music)
+
 ### The Stack
 
 * **Javascript**. ES5 Javascript for the game's code base.
