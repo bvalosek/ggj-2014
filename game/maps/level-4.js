@@ -10,8 +10,8 @@ var createPoly = require('./simplify.js').createPoly;
 
 module.exports = {
   levelObjects:{
-    playerStart: {x: 100, y: 50},
-    levelFinish:{x: 500, y: 500}
+    playerStart: {x: u(2), y: u(21)},
+    levelFinish:{x: u(30), y: u(2)}
   },
   size: { x: mapCX, y: mapCY },
   gems: [
