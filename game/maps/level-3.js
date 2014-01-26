@@ -16,10 +16,10 @@ module.exports = {
   startColor: colors.yellow,
   gems: [].
 concat(createGem( u(2),u(11), colors.red)).
-concat(createGem( u(1.5),u(16.5), colors.purple)).
-concat(createGem( u(19),u(17), colors.green)).
-concat(createGem( u(17),u(1), colors.red)).
-concat(createGem( u(11),u(1), colors.blue))
+concat(createGem( u(2),u(16), colors.purple)).
+concat(createGem( u(18),u(11), colors.green)).
+concat(createGem( u(22.5),u(3), colors.red)).
+concat(createGem( u(8.5),u(3), colors.blue))
 ,
   walls: [].
 concat(line(u(3),u(4),C,u(4),colors.green, 'g1')).
