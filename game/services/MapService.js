@@ -35,7 +35,7 @@ function MapService(container, entities)
 MapService.prototype.loadLevel = function(levelName)
 {
   this.levelKey = levelName;
-  this.levelNumber = levelName.match(/\d+/)[0];
+  this.levelNumber = 0|levelName.match(/\d+/)[0];
   var level = LEVELS[levelName];
 
   this.clearLevel();

@@ -52,7 +52,7 @@ MainGameActivity.prototype.drawHud = function()
   this.screen
     .save()
     .translate(20, 20)
-    .drawText('LEVEL ' + this.maps.levelNumber, hudStyle)
+    .drawText('LEVEL ' + (this.maps.levelNumber + 1), hudStyle)
     .restore();
 };
 
