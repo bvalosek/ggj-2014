@@ -29,6 +29,7 @@ MapService.prototype.loadLevel = function(levelName)
 {
   var level = LEVELS[levelName];
 
+  // dat dimensh
   this.size.assign(level.size);
 
   //whaaals

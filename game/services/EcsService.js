@@ -24,14 +24,21 @@ function EcsService(container)
   });
   container.shared('entities', this.entities);
   container.shared('ecs', this);
+  this.systems = [];
+  this.ready = false;
+}
 
+EcsService.prototype.initSystems = function()
+{
   this.systems = Systems.map(function(T) {
     var name = getName(T).charAt(0).toLowerCase() + getName(T).slice(1);
     var sys = container.make(T);
     container.registerInstance(name, sys);
     return sys;
   });
-}
+
+  this.ready = true;
+};
 
 /**
  * Update all systems
@@ -40,6 +47,8 @@ function EcsService(container)
  */
 EcsService.prototype.update = function(dt, time)
 {
+  if (!this.ready)
+    this.initSystems();
   for (var n = 0; n < this.systems.length; n++) {
     var system = this.systems[n];
     if (system.update)
