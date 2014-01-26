@@ -66,6 +66,10 @@ Physics.prototype.onGem = function(avatar, gem)
 {
   var wasDisabled = !!gem.colorSpirit.cooldown;
 
+  if (Color.equals(avatar.colorSpirit.toColor(),
+    gem.colorSpirit.toColor()))
+      return;
+
   // reset dat timmy
   gem.colorSpirit.cooldown = 1500;
 
@@ -88,7 +92,7 @@ Physics.prototype.onFinish = function(avatar, finish)
 Physics.prototype.onWall = function(avatar, wall)
 {
   if(!collidedEntities) collidedEntities = {};
-  
+
   //prevent multiple avatar collisions per frame;
   if(collidedEntities[avatar]) return;
 
