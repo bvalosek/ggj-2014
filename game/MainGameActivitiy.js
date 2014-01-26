@@ -27,7 +27,6 @@ function MainGameActivity(navigator, inputs, player, maps, screen, ecs, sound)
 MainGameActivity.prototype.onStart = function()
 {
   this.maps.loadLevel('level4');
-  this.player.colorSpirit.setBoth(colors.green);
 };
 
 MainGameActivity.prototype.onResume = function()
