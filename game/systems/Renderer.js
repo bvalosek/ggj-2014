@@ -50,10 +50,23 @@ Renderer.prototype.update = function(dt, time)
   this.screen.restore();
 };
 
+var borderStyle = new Style();
+borderStyle.color = '#333';
+var bV = new Vec2();
 Renderer.prototype.drawBg = function()
 {
   var player = this.entities.queryTag('player')[0];
+  var pad = 30;
+  bV.assign(this.maps.size);
+  bV.x += pad*2;
+  bV.y += pad*2;
+  this.screen.save();
+  this.screen.save();
+  this.screen.translate(-pad, -pad);
+  this.screen.drawRectangle(bV, borderStyle);
+  this.screen.restore();
   this.screen.drawRectangle(this.maps.size, player.colorSpirit.style);
+  this.screen.restore();
 };
 
 var ct = new Vec2();
