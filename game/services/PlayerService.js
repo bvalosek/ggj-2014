@@ -30,7 +30,7 @@ function PlayerService(entities, container)
   container.register('player', player);
   player.position.location.set(50, 50);
 
-  var playerSize = 20;
+  var playerSize = 10;
   player.spatial.hwidth.set(playerSize, playerSize);
   player.newtonian.maxSpeed = 200;
   player.steering.deceleration = 5;

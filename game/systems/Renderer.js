@@ -51,10 +51,24 @@ var ct = new Vec2();
 Renderer.prototype.cameraTransform = function()
 {
   var player = this.entities.queryTag('player')[0];
-  ct.assign(this.screen.getSize()).smult(0.5)
+
+  // cacl zoom
+  var zoom = this.zoom || 1;
+  var per = player.newtonian.velocity.magnitude() / player.newtonian.maxSpeed;
+
+  // do zoom
+  var p = 0.992;
+  var newZoom = 2 - 1 * per;
+  zoom = zoom * p + (1-p) * newZoom;
+  this.screen.scale(zoom, zoom);
+  this.zoom = zoom;
+
+  // Translate to account for player
+  ct.assign(this.screen.getSize()).smult(0.5 * (1/zoom));
   this.screen.vtranslate(ct);
   ct.assign(player.position.location).smult(-1);
   this.screen.vtranslate(ct);
+
 };
 
 Renderer.prototype.drawTexts = function()
