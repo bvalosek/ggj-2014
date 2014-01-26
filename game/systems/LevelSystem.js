@@ -10,10 +10,13 @@ var Finish           = require('../components/Finish.js');
  * @constructor
  * @param {MessangerService} messanger
  */
-function LevelSystem(entities, messanger)
+function LevelSystem(maps, entities, messanger)
 {
   this.entities  = entities;
   this.messanger = messanger;
+  this.maps      = maps;
+
+  this.currentLevel = 0;
 
   this.messanger.listenTo(
     LevelSystem.FINISH_LEVEL, [], this.onFinishLevel.bind(this));
@@ -37,13 +40,22 @@ LevelSystem.prototype.onFinishLevel = function(player, fEntity)
 
 
   if (!finish.timeOut && !finish.finished) {
-    finish.timeOut = 1000;
+    finish.timeOut = 1500;
   }
 
   if (finish.finished) {
-
+    this.currentLevel++;
+    this.loadLevel();
   }
 
+};
+
+LevelSystem.prototype.loadLevel = function()
+{
+  this.entities.queryTag('player')[0].position.rotation = 0;
+
+  var key = 'level' + this.currentLevel;
+  this.maps.loadLevel(key);
 };
 
 var FILTER = [Finish];
