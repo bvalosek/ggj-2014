@@ -39,7 +39,7 @@ var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
 Renderer.prototype.update = function(dt, time)
 {
   this.screen.save();
-  this.screen.fill('black');
+  this.screen.fill('#202020');
   this.cameraTransform();
   this.drawBg();
   this.drawWalls();
