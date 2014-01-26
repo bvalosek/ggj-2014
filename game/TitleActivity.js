@@ -151,14 +151,14 @@ TitleActivity.prototype.drawAbout = function(entity)
   this.screen
     .save()
     .translate(25, screenSize.y - screenSize.y / 4)
-    .drawText("We don't see things as they are, we see them as we are", aboutText)
+    .drawText("We  don't  see  things  as  they  are,  we  see  them  as  we  are", aboutText)
     .restore();
 
   //draw right
   this.screen
     .save()
     .translate(screenSize.x - 25, screenSize.y - screenSize.y / 6)
-    .drawText("A Sapphire on Sails Studios Production", inc) 
+    .drawText("A  Sapphire  on  Sails  Studios  Production", inc) 
     .restore();
 
 }
