@@ -27,8 +27,9 @@ function TitleActivity(debug, navigator, screen, sound, inputs)
       this.colorArray.push(colors[key])
   }
   this.maxColors = this.colorArray.length;
-  this.currentColor = this.colorArray[0];
+  this.currentColor = colors.black;
   this.colorIndex = 1;
+  this.blackTime = 5000;
 
 }
 
@@ -73,8 +74,10 @@ boxStyle.color = '#333';
 
 TitleActivity.prototype.drawBg = function(dt)
 {
+  this.blackTime -= dt;
   var nextcolor = this.colorArray[this.colorIndex];
   var scale = 0.05; //* dt;
+  if(this.blackTime > 0) scale = 0.005;
   var colorDiff = Color.sub(nextcolor, this.currentColor);
   this.currentColor = Color.cap(Color.add(this.currentColor, colorDiff, scale));
 

@@ -77,9 +77,6 @@ var playing={};
 
 SoundService.prototype.play = function(sound)
 {
-  var test = new Audio(this.path + sound);
-  test.play();
-
   var a,b;
   b=new Date();
   a=sound+b.getTime();
@@ -99,8 +96,13 @@ SoundService.prototype.play = function(sound)
 
 SoundService.prototype.pause = function(sound)
 {
-  _loadedSounds[sound]
-    .pause();
+  for (var soundKey in playing) {
+    if(soundKey.indexOf(sound) !== -1){
+        playing[soundKey].pause();
+        //pausing is for losers
+        delete playing[soundKey];
+      }
+  }
 }
 
 SoundService.prototype.doneLoading = function(){
