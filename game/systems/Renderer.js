@@ -1,30 +1,36 @@
 module.exports = Renderer;
 
-var EntityManager = require('tiny-ecs').EntityManager;
-var Vec2          = require('tiny-ecs').Vec2;
-var Style         = require('../../lib/renderer/Style.js');
-var Canvas        = require('../../lib/renderer/Canvas.js');
-var Position      = require('../components/Position.js');
-var Spatial       = require('../components/Spatial.js');
-var LevelObject   = require('../components/LevelObject.js');
-var ColorSpirit   = require('../components/ColorSpirit.js');
-var Color         = require('../../lib/renderer/Color.js');
-var Avatar        = require('../components/Avatar.js');
-var Text          = require('../components/Text.js');
-var colors        = require('../maps/colors.js');
+var EntityManager   = require('tiny-ecs').EntityManager;
+var Vec2            = require('tiny-ecs').Vec2;
+var Style           = require('../../lib/renderer/Style.js');
+var Canvas          = require('../../lib/renderer/Canvas.js');
+var Position        = require('../components/Position.js');
+var Spatial         = require('../components/Spatial.js');
+var LevelObject     = require('../components/LevelObject.js');
+var ColorSpirit     = require('../components/ColorSpirit.js');
+var Color           = require('../../lib/renderer/Color.js');
+var Avatar          = require('../components/Avatar.js');
+var Text            = require('../components/Text.js');
+var colors          = require('../maps/colors.js');
+var CollisionSystem = require('./CollisionSystem.js');
 
 /**
  * @constructor
  * @param {EntityManager} entities
  * @param {Canvas} screen
  */
-function Renderer(screen, entities, maps, inputs)
+function Renderer(messanger, screen, entities, maps, inputs)
 {
   this.screen     = screen;
   this.entities   = entities;
   this.maps       = maps;
   this.inputs     = inputs;
   global.renderer = this;
+
+  messanger.listenTo(CollisionSystem.WALL, [], this.onShake.bind(this));
+  messanger.listenTo('shake', [], this.onShake.bind(this));
+
+  this.shake = 30;
 }
 
 var COLOR_FILTER = [Position, Spatial, ColorSpirit];
@@ -80,26 +86,26 @@ Renderer.prototype.drawBg = function()
 var ct = new Vec2();
 Renderer.prototype.cameraTransform = function()
 {
-  var player = this.entities.queryTag('player')[0];  
+  var player = this.entities.queryTag('player')[0];
   var inputs = this.inputs;
   var plusKey = inputs.button_k_107 || inputs.button_k_43 || inputs.button_k_187;
   var minusKey = inputs.button_k_109 || inputs.button_k_45 || inputs.button_k_189;
-  
+
   // cacl zoom
   var zoom = this.zoom || 1;
   var per = player.newtonian.velocity.magnitude() / player.newtonian.maxSpeed;
 
   // do zoom
   if(per > 0.001){
-  	var p = 0.995;
-  	var newZoom = 1.2 - 0.2 * per;
-  	zoom = zoom * p + (1-p) * newZoom;
+    var p = 0.995;
+    var newZoom = 1.2 - 0.2 * per;
+    zoom = zoom * p + (1-p) * newZoom;
   }
   if(plusKey){
-	zoom += (zoom+0.01 > 1) ? 0 : 0.01;
+    zoom += (zoom+0.01 > 1) ? 0 : 0.01;
   }
   if(minusKey){
-	zoom -= (zoom-0.01 < 0.15) ? 0 : 0.01;
+    zoom -= (zoom-0.01 < 0.15) ? 0 : 0.01;
   }
   this.screen.scale(zoom, zoom);
   this.zoom = zoom;
@@ -110,6 +116,20 @@ Renderer.prototype.cameraTransform = function()
   ct.assign(player.position.location).smult(-1);
   this.screen.vtranslate(ct);
 
+  var shake = this.shake;
+
+  this.screen.translate(
+    Math.random()*shake - shake/2,
+    Math.random()*shake - shake/2
+  );
+
+  this.shake = this.shake * 0.7;
+
+};
+
+Renderer.prototype.onShake = function()
+{
+  this.shake = 30;
 };
 
 Renderer.prototype.drawTexts = function()

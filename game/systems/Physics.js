@@ -43,6 +43,7 @@ var FILTER = [Position, Newtonian];
 Physics.prototype.onAvatarOutOfBounds = function(player)
 {
   bounceEntity(player);
+  this.messanger.trigger(player, 'shake');
 };
 
 Physics.prototype.onAvatarCollide = function(entity, other)
