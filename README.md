@@ -11,8 +11,9 @@ things not as they are but as we are, and throughout the game the world changes 
 we change. The objective is to complete levels as efficiently as possible by 
 switching orbs the fewest number of times.
 
-### Gameplay Requirements
+### To Play
 * A recent Chrome Browser on Windows, Linux, or Mac
+* To start the game, open release/index.html
 * HTML5/JS game (no flash)
 * Use arrow keys or W-A-S-D to navigate
 
