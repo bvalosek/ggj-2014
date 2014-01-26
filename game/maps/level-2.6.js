@@ -7,13 +7,26 @@ var createGem = require('./simplify.js').createGem;
 module.exports = {
   levelObjects:{
     playerStart: {x: u(20), y: u(11)},
-    levelFinish:{x: u(4), y: u(4)}
+    levelFinish:{x: u(4), y: u(20)}
   },
   size: { x: 1280, y: 960 },
-  startColor: colors.blue,
+  startColor: colors.green,
   gems: [].
-concat( createGem(u(20),u(4),colors.green ) ).
-concat( createGem(u(20),u(8),colors.red ) )
+concat( createGem(u(20),u(3),colors.blue ) ).
+concat( createGem(u(18),u(8),colors.red ) ).
+concat( createGem(u(22),u(8),colors.yellow ) ).
+concat( createGem(u(20),u(14),colors.blue ) ).
+concat( createGem(u(20),u(18),colors.purple ) ).
+concat( createGem(u(20),u(22),colors.blue ) ).
+concat( createGem(u(28),u(4),colors.green ) ).
+concat( createGem(u(28),u(8),colors.red ) ).
+concat( createGem(u(28),u(20),colors.green ) ).
+concat( createGem(u(12),u(2),colors.yellow ) ).
+concat( createGem(u(12),u(4),colors.green ) ).
+concat( createGem(u(12),u(8.5),colors.purple ) ).
+concat( createGem(u(12),u(15),colors.green ) ).
+concat( createGem(u(12),u(20),colors.blue ) ).
+concat( createGem(u(4),u(8),colors.green ) )
 ,
   walls: [].
 concat( line(u(4),u(16),u(4), C, colors.green, 'g1') ).
