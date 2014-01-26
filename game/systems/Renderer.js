@@ -16,10 +16,11 @@ var Text          = require('../components/Text.js');
  * @param {EntityManager} entities
  * @param {Canvas} screen
  */
-function Renderer(screen, entities)
+function Renderer(screen, entities, maps)
 {
-  this.screen   = screen;
-  this.entities = entities;
+  this.screen     = screen;
+  this.entities   = entities;
+  this.maps       = maps;
   global.renderer = this;
 }
 
@@ -38,13 +39,21 @@ var AVATAR_FILTER = [Position, Spatial, Avatar, ColorSpirit];
 Renderer.prototype.update = function(dt, time)
 {
   this.screen.save();
+  this.screen.fill('black');
   this.cameraTransform();
+  this.drawBg();
   this.drawWalls();
   this.drawGems();
   this.drawLevelObjects();
   this.drawAvatars();
   // this.drawTexts();
   this.screen.restore();
+};
+
+Renderer.prototype.drawBg = function()
+{
+  var player = this.entities.queryTag('player')[0];
+  this.screen.drawRectangle(this.maps.size, player.colorSpirit.style);
 };
 
 var ct = new Vec2();

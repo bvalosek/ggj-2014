@@ -69,7 +69,6 @@ MainGameActivity.prototype.update = function(dt, time)
 
   if (this.paused) return;
 
-  this.drawBg();
   this.ecs.update(dt, time);
   this.drawFade();
 };
@@ -78,14 +77,4 @@ MainGameActivity.prototype.drawFade = function()
 {
   this.screen.save().setAlpha(this.fade).fill('black').restore();
 };
-
-MainGameActivity.prototype.drawBg = function()
-{
-  this.screen
-    .save()
-    .fill(this.player.colorSpirit.style.color)
-    .restore();
-};
-
-
 
