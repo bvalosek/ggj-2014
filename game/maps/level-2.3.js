@@ -1,9 +1,15 @@
-var C = 5;
 var colors = require('./colors.js');
 var u = require('./simplify.js').u;
-var line = require('./simplify.js').line;
+var setUnitSize = require('./simplify.js').setUnitSize;
+var setWallWidth = require('./simplify.js').setWallWidth;
+var setWallUnit = require('./simplify.js').setWallUnit;
+
+var createLine = require('./simplify.js').createLine;
 var createGem = require('./simplify.js').createGem;
 
+setUnitSize(40);
+setWallUnit(160);
+setWallWidth(5);
 module.exports = {
   levelObjects:{
     playerStart: {x: u(20), y: u(4)},
@@ -26,22 +32,19 @@ concat( createGem(u(4),u(10),colors.purple ) ).
 concat( createGem(u(4),u(14),colors.green ) )
 ,
   walls: [].
-concat( line(u(8),u(4)+C/2, C, u(4)+C/2, colors.blue, 'b1') ).
-concat( line(u(8),u(12), C, u(4)+C, colors.yellow, 'y1') ).
-concat( line(u(8),u(20), C, u(4), colors.purple, 'p3') ).
+concat( createLine(2, 1, 'v', 1, colors.blue,  'b1') ).
+concat( createLine(2, 3, 'v', 1, colors.yellow,'y1') ).
+concat( createLine(2, 5, 'v', 1, colors.purple,'p3') ).
 
-concat( line(u(4)+C/2,u(8), u(4)+C/2, C, colors.purple, 'p2') ).
-concat( line(u(4)+C/2,u(16),u(4)+C/2, C, colors.green, 'g1') ).
+concat( createLine(1, 2, 'h', 1, colors.purple,'p2') ).
+concat( createLine(1, 4, 'h', 1, colors.green, 'g1') ).
+concat( createLine(3, 2, 'h', 1, colors.green, 'g2') ).
+concat( createLine(3, 4, 'h', 1, colors.red,   'r2') ).
+concat( createLine(5, 2, 'h', 1, colors.yellow,'y2') ).
+concat( createLine(5, 4, 'h', 1, colors.green, 'g3') ).
 
-concat( line(u(12),u(8), u(4)+C, C, colors.green, 'g2') ).
-concat( line(u(12),u(16),u(4)+C, C, colors.red, 'r2') ).
-
-concat( line(u(20),u(8), u(4), C, colors.yellow, 'y2') ).
-concat( line(u(20),u(16),u(4), C, colors.green, 'g3') ).
-
-concat( line(u(16),u(20)-C/2, C, u(4)+C/2, colors.blue, 'b1') ).
-concat( line(u(16),u(4)+C/2, C, u(4)+C/2, colors.red, 'r1') ).
-concat( line(u(16),u(12), C, u(4)+C, colors.purple, 'p1') )
-
+concat( createLine(4, 5, 'v', 1, colors.blue,  'b2') ).
+concat( createLine(4, 1, 'v', 1, colors.red,   'r1') ).
+concat( createLine(4, 3, 'v', 1, colors.purple,'p1') )
 
 };

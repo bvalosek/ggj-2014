@@ -1,23 +1,42 @@
-var mapCX = 1000;
 var mapCY = 1000;
-var unit = mapCX/25;
+var unit = 40;
+var wallWidth = 5;
+var wallUnit = 40;
 
+function setUnitSize(n) { unit = n; }
+function setWallWidth(n) { wallWidth = n; }
+function setWallUnit(n) { wallUnit = n; }
 function u(n) { return unit*n; }
+function w(n) { return wallUnit*n; }
 
-function line(posx,posy,hw,hh,col,text)
+//posx/posy - center position x/y
+//orient - 'v' for vertical, 'h' for horizontal
+//length - wall length in v/h wall units
+//Col - color
+//Text - render debug text
+function createLine(posx, posy, orient, length, col, text)
 {
-	return [{
-      position : {x:posx, y:posy},
-      spatial: {x : hw, y: hh},
-      color: col,
-	text: text
-    	}];
+   if(orient=='v')
+	return line(w(posx), w(posy), wallWidth, w(length)+wallWidth, col, text);
+   if(orient=='h')
+	return line(w(posx), w(posy), w(length)+wallWidth, wallWidth, col, text);
+
 }
 
 function createGem(posx,posy,col,text)
 {
 	return [{
       position : {x:posx, y:posy},
+      color: col,
+	text: text
+    	}];
+}
+
+function line(posx,posy,hw,hh,col,text)
+{
+	return [{
+      position : {x:posx, y:posy},
+      spatial: {x : hw, y: hh},
       color: col,
 	text: text
     	}];
@@ -68,9 +87,12 @@ return retArray;
 
 module.exports = { 
 	u: u,
+	setUnitSize: setUnitSize,
+	setWallWidth: setWallWidth,
+	setWallUnit: setWallUnit,
 	line: line,
+	createLine: createLine,
 	createGem: createGem,
-	mapCX: mapCX,
 	unit: unit,
 	createPoly: createPoly,
 	createFullPoly: createFullPoly
